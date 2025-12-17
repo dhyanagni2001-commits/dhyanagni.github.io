@@ -593,7 +593,7 @@ main {
   box-shadow: var(--shadow-1);
 }
 
-.testimonials-item-title { margin-bottom: 7px; }
+.testimonials-item-title { margin-bottom: 4px; }
 
 .testimonials-text {
   color: var(--light-gray);
@@ -605,7 +605,14 @@ main {
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-align: left; 
 }
+
+.testimonials-item-title {
+  margin-bottom: 7px;
+  text-align: left;
+}
+
 
 
 /**
@@ -866,6 +873,15 @@ main {
   height: 100%;
   border-radius: inherit;
 }
+
+.skills-item {
+  color: white;
+}
+
+.skills-item strong {
+  color: var(--vegas-gold);
+}
+
 
 
 
