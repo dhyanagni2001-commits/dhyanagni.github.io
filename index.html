@@ -1,0 +1,1589 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dhyan Agni | Dev</title>
+
+    <!--
+    - favicon
+  -->
+    <link
+      rel="shortcut icon"
+      href="assets/images/42b86449-f1ec-420a-a182-9f2e18f8b066.png"
+      type="image/x-icon"
+    />
+
+    <!--
+    - custom css link
+  -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <!--
+    - google font link
+  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!--
+    - #MAIN
+  -->
+
+    <main>
+      <!--
+      - #SIDEBAR
+    -->
+
+      <aside class="sidebar" data-sidebar>
+        <div class="sidebar-info">
+          <figure class="avatar-box">
+            <img
+              src="./assets/images/my-avatar.png"
+              alt="Dhyan Suresh Agni"
+              width="80"
+            />
+          </figure>
+
+          <div class="info-content">
+            <h1 class="name" title="Dhyan Suresh Agni">Dhyan Suresh Agni</h1>
+
+            <p class="title">
+              Masters in Computer Science @ University of Southern California
+            </p>
+          </div>
+
+          <button class="info_more-btn" data-sidebar-btn>
+            <span>Show Contacts</span>
+
+            <ion-icon name="chevron-down"></ion-icon>
+          </button>
+        </div>
+
+        <div class="sidebar-info_more">
+          <div class="separator"></div>
+
+          <ul class="contacts-list">
+            <li class="contact-item">
+              <div class="icon-box">
+                <ion-icon name="mail-outline"></ion-icon>
+              </div>
+
+              <div class="contact-info">
+                <p class="contact-title">Email</p>
+
+                <a href="mailto:dhyanagnidev@gmail.com" class="contact-link"
+                  >dhyanagnidev@gmail.com</a
+                >
+              </div>
+            </li>
+
+            <!-- <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+
+              <a href="tel:+18457707702" class="contact-link">+1 (845) 770-7702</a>
+            </div>
+
+          </li> -->
+
+            <!-- <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Birthday</p>
+
+              <time datetime="2001-10-19">Oct 19, 2001</time>
+            </div>
+
+          </li> -->
+
+            <li class="contact-item">
+              <div class="icon-box">
+                <ion-icon name="location-outline"></ion-icon>
+              </div>
+
+              <div class="contact-info">
+                <p class="contact-title">Location</p>
+
+                <address>Los Angeles, California, USA</address>
+              </div>
+            </li>
+          </ul>
+
+          <div class="separator"></div>
+
+          <ul class="social-list">
+            <li class="social-item">
+              <a
+                href="https://www.linkedin.com/in/dhyan-agni/"
+                class="social-link"
+              >
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </li>
+
+            <li class="social-item">
+              <a
+                href="https://github.com/dhyanagni2001-commits"
+                class="social-link"
+              >
+                <ion-icon name="logo-github"></ion-icon>
+              </a>
+            </li>
+
+            <!-- <li class="social-item">
+            <a href="https://www.instagram.com/dhyan.agni/" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li> -->
+          </ul>
+        </div>
+      </aside>
+
+      <!--
+      - #main-content
+    -->
+
+      <div class="main-content">
+        <!--
+        - #NAVBAR
+      -->
+
+        <nav class="navbar">
+          <ul class="navbar-list">
+            <li class="navbar-item">
+              <button class="navbar-link active" data-nav-link>About</button>
+            </li>
+
+            <li class="navbar-item">
+              <button class="navbar-link" data-nav-link>Resume</button>
+            </li>
+
+            <li class="navbar-item">
+              <button class="navbar-link" data-nav-link>Projects</button>
+            </li>
+
+            <li class="navbar-item">
+              <button class="navbar-link" data-nav-link>Milestones</button>
+            </li>
+
+            <li class="navbar-item">
+              <button class="navbar-link" data-nav-link>Contact</button>
+            </li>
+          </ul>
+        </nav>
+
+        <!--
+        - #ABOUT
+      -->
+
+        <article class="about active" data-page="about">
+          <header>
+            <h2 class="h2 article-title">About me</h2>
+          </header>
+
+          <section class="about-text">
+            <p>
+              I'm a Software Engineer currently doing my MS in Computer Science
+              at USC. Before this, I spent over a year at Happiest Minds
+              building full-stack apps and backend services that real people
+              actually used — 10K+ of them, in fact — which taught me a lot
+              about what "production-ready" really means versus what looks good
+              in a demo.
+            </p>
+
+            <p>
+              🤖 These days I'm most interested in where backend engineering
+              meets applied AI. I like the kind of problems where you have to
+              sit with the mess for a while before the clean solution shows up —
+              and I'd rather spend an extra day understanding why something's
+              broken than duct-tape a fix that'll bite me later.
+            </p>
+
+            <p>
+              🎾 When I'm not at a keyboard, I'm probably on a tennis or squash
+              court. Both scratch a similar itch to engineering, honestly —
+              you're constantly reading the situation, adjusting on the fly, and
+              trying not to panic when your first plan stops working.
+            </p>
+          </section>
+
+          <!--
+          - service
+        -->
+
+          <section class="service">
+            <h3 class="h3 service-title">What i'm doing</h3>
+
+            <ul class="service-list">
+              <li class="service-item">
+                <div class="service-icon-box">
+                  <img
+                    src="./assets/images/icon-design.svg
+                "
+                    alt="design icon"
+                    width="40"
+                  />
+                </div>
+
+                <div class="service-content-box">
+                  <h4 class="h4 service-item-title">AI & Machine Learning</h4>
+
+                  <p class="service-item-text">
+                    Honestly the model architecture is usually the easy part.
+                    What I actually spend my time on is the data — cleaning it,
+                    figuring out what "good" even looks like, building an eval
+                    loop I can trust. I like AI systems that make a decision and
+                    can also tell you why.
+                  </p>
+                </div>
+              </li>
+
+              <li class="service-item">
+                <div class="service-icon-box">
+                  <img
+                    src="./assets/images/icon-dev.svg"
+                    alt="Web development icon"
+                    width="40"
+                  />
+                </div>
+
+                <div class="service-content-box">
+                  <h4 class="h4 service-item-title">Web Development</h4>
+
+                  <p class="service-item-text">
+                    I don't really have a "frontend person" or "backend person"
+                    identity — I just go wherever the bug or the feature
+                    actually is. Most of the annoying stuff happens at the seams
+                    anyway, where the API contract and the UI don't quite agree
+                    with each other.
+                  </p>
+                </div>
+              </li>
+
+              <li class="service-item">
+                <div class="service-icon-box">
+                  <img
+                    src="./assets/images/icon-dev.svg"
+                    alt="Web development icon"
+                    width="40"
+                  />
+                </div>
+
+                <div class="service-content-box">
+                  <h4 class="h4 service-item-title">CI/CD & DevOps</h4>
+
+                  <p class="service-item-text">
+                    Deploys should be boring. If pushing to prod gives you
+                    anxiety, something upstream is broken. I like setting things
+                    up so shipping on a Friday isn't a personality trait, it's
+                    just Tuesday.
+                  </p>
+                </div>
+              </li>
+
+              <li class="service-item">
+                <div class="service-icon-box">
+                  <img
+                    src="./assets/images/icon-design.svg
+                "
+                    alt="design icon"
+                    width="40"
+                  />
+                </div>
+
+                <div class="service-content-box">
+                  <h4 class="h4 service-item-title">
+                    Backend & Distributed Systems
+                  </h4>
+
+                  <p class="service-item-text">
+                    I've been the person paged at 2am for a race condition, so
+                    now I think about failure modes obsessively before they
+                    become my problem. What happens when a node dies mid-job?
+                    When two requests hit at once? I'd rather spend the extra
+                    day now than get that call later.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </section>
+
+          <!--
+          - testimonials
+        -->
+
+          <section class="testimonials">
+            <h3 class="h3 testimonials-title">Experience</h3>
+
+            <ul class="testimonials-list has-scrollbar">
+              <li class="testimonials-item">
+                <div class="content-card" data-testimonials-item>
+                  <div class="testimonials-item-header">
+                    <h4
+                      class="h4 testimonials-item-title"
+                      data-testimonials-title
+                    >
+                      Happiest Minds
+                    </h4>
+
+                    <span class="testimonials-item-year"
+                      >May 2024 - July 2025</span
+                    >
+                  </div>
+
+                  <div class="testimonials-text" data-testimonials-text>
+                    <p>
+                      Worked as a full-stack developer building scalable web
+                      applications.
+                    </p>
+                  </div>
+                </div>
+              </li>
+
+              <li class="testimonials-item">
+                <div class="content-card" data-testimonials-item>
+                  <div class="testimonials-item-header">
+                    <h4
+                      class="h4 testimonials-item-title"
+                      data-testimonials-title
+                    >
+                      Bounce
+                    </h4>
+
+                    <span class="testimonials-item-year"
+                      >Sep 2023 - Apr 2024</span
+                    >
+                  </div>
+
+                  <div class="testimonials-text" data-testimonials-text>
+                    <p>
+                      Worked as a data science intern optimizing ride-demand
+                      data pipelines.
+                    </p>
+                  </div>
+                </div>
+              </li>
+
+              <li class="testimonials-item">
+                <div class="content-card" data-testimonials-item>
+                  <div class="testimonials-item-header">
+                    <h4
+                      class="h4 testimonials-item-title"
+                      data-testimonials-title
+                    >
+                      Coulomb AI
+                    </h4>
+
+                    <span class="testimonials-item-year"
+                      >Mar 2023 - Aug 2023</span
+                    >
+                  </div>
+
+                  <div class="testimonials-text" data-testimonials-text>
+                    <p>
+                      Worked as a data science intern on predictive analytics
+                      models.
+                    </p>
+                  </div>
+                </div>
+              </li>
+
+              <li class="testimonials-item">
+                <div class="content-card" data-testimonials-item>
+                  <div class="testimonials-item-header">
+                    <h4
+                      class="h4 testimonials-item-title"
+                      data-testimonials-title
+                    >
+                      Tequed Lab
+                    </h4>
+
+                    <span class="testimonials-item-year"
+                      >Aug 2022 - Sep 2022</span
+                    >
+                  </div>
+
+                  <div class="testimonials-text" data-testimonials-text>
+                    <p>
+                      Worked as an AI/ML intern building predictive analytics
+                      models.
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </section>
+
+          <!--
+          - testimonials modal
+        -->
+
+          <div class="modal-container" data-modal-container>
+            <div class="overlay" data-overlay></div>
+
+            <section class="testimonials-modal">
+              <button class="modal-close-btn" data-modal-close-btn>
+                <ion-icon name="close-outline"></ion-icon>
+              </button>
+
+              <div class="modal-img-wrapper">
+                <figure class="modal-avatar-box">
+                  <img
+                    src="./assets/images/avatar-1.png"
+                    alt="Daniel lewis"
+                    width="80"
+                    data-modal-img
+                  />
+                </figure>
+
+                <img src="./assets/images/icon-quote.svg" alt="quote icon" />
+              </div>
+
+              <div class="modal-content">
+                <h4 class="h3 modal-title" data-modal-title></h4>
+
+                <time datetime="2021-06-14"></time>
+
+                <div data-modal-text>
+                  <p></p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </article>
+
+        <!--
+        - #RESUME
+      -->
+
+        <article class="resume" data-page="resume">
+          <header>
+            <h2 class="h2 article-title">Resume</h2>
+          </header>
+
+          <section class="timeline">
+            <div class="title-wrapper">
+              <div class="icon-box">
+                <ion-icon name="book-outline"></ion-icon>
+              </div>
+
+              <h3 class="h3">Education</h3>
+            </div>
+
+            <ol class="timeline-list">
+              <li class="timeline-item">
+                <h4 class="h4 timeline-item-title">
+                  University of Southern California
+                </h4>
+
+                <span>2025 — 2027</span>
+
+                <p class="timeline-text">
+                  I am a Master’s student in Computer Science at the USC Viterbi
+                  School of Engineering, concentrating on Artificial
+                  Intelligence and Machine Learning with an emphasis on
+                  scalable, real-world systems.
+                </p>
+              </li>
+
+              <li class="timeline-item">
+                <h4 class="h4 timeline-item-title">
+                  Visvesvaraya Technological University
+                </h4>
+
+                <span>2019 — 2023</span>
+
+                <p class="timeline-text">
+                  Bachelor of Engineering in Computer Science from Malnad
+                  College of Engineering (Visvesvaraya Technological
+                  University). Built a strong foundation in software
+                  engineering, data structures, and problem-solving through
+                  coursework and projects.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section class="timeline">
+            <div class="title-wrapper">
+              <div class="icon-box">
+                <ion-icon name="book-outline"></ion-icon>
+              </div>
+
+              <h3 class="h3">Experience</h3>
+            </div>
+
+            <ol class="timeline-list">
+              <li class="timeline-item">
+                <h4 class="h4 timeline-item-title">
+                  Happiest Minds Technologies
+                </h4>
+
+                <span>May 2024 - July 2025</span>
+
+                <p class="timeline-text">
+                  Software Engineer at Happiest Minds Technologies, building
+                  scalable backend services and web applications using ASP.NET
+                  Core, Angular, and MySQL. Optimized REST APIs and implemented
+                  Kafka-based asynchronous processing to improve performance and
+                  scalability. Containerized services using Docker and
+                  strengthened deployments through CI/CD pipelines. Resolved
+                  production issues efficiently to ensure high system
+                  reliability and uptime.
+                </p>
+              </li>
+
+              <li class="timeline-item">
+                <h4 class="h4 timeline-item-title">Bounce</h4>
+
+                <span>Sep 2023 - Apr 2024</span>
+
+                <p class="timeline-text">
+                  Data Science Intern at Bounce, optimizing SQL queries and
+                  redesigning schemas for a ride-demand data pipeline using
+                  Python, SQL, and Tableau, cutting query load time by 35% for
+                  fleet-operations services. Engineered ETL pipelines in Python,
+                  SQL, and Pandas processing 10M+ ride and user activity records
+                  daily, improving data quality by 30% and downstream service
+                  reliability.
+                </p>
+              </li>
+
+              <li class="timeline-item">
+                <h4 class="h4 timeline-item-title">Coulomb AI (YC-backed)</h4>
+
+                <span>Mar 2023 - Aug 2023</span>
+
+                <p class="timeline-text">
+                  Data Science Intern at Coulomb AI, engineering large-scale ETL
+                  pipelines in Python and SQL to process 5M+ battery telemetry
+                  records, powering downstream remaining useful life (RUL)
+                  prediction and anomaly-detection services. Deployed RUL
+                  prediction and anomaly-detection models as production
+                  inference services on Amazon SageMaker, achieving 85%
+                  accuracy.
+                </p>
+              </li>
+
+              <li class="timeline-item">
+                <h4 class="h4 timeline-item-title">Tequed Lab</h4>
+
+                <span>Aug 2022 - Sep 2022</span>
+
+                <p class="timeline-text">
+                  AI/ML Intern at Tequed Labs, where I built machine learning
+                  models using Python and Scikit-learn for sports performance
+                  prediction. Performed data analysis, feature engineering, and
+                  visualization to extract meaningful insights from real-world
+                  datasets.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section class="skill">
+            <h3 class="h3 skills-title">Technical Skills</h3>
+
+            <div class="content-card">
+              <ul class="skills-list">
+                <li class="skills-item">
+                  <strong style="color: var(--vegas-gold)"
+                    >Programming Languages:</strong
+                  >
+                  Python, C++, JavaScript, TypeScript, SQL
+                </li>
+
+                <li class="skills-item">
+                  <strong style="color: var(--vegas-gold)"
+                    >Backend & APIs:</strong
+                  >
+                  ASP.NET Core, Flask, FastAPI, REST APIs, Microservices
+                </li>
+
+                <li class="skills-item">
+                  <strong style="color: var(--vegas-gold)">Frontend:</strong>
+                  React, Angular
+                </li>
+
+                <li class="skills-item">
+                  <strong style="color: var(--vegas-gold)"
+                    >Machine Learning & AI:</strong
+                  >
+                  Scikit-learn, PyTorch, TensorFlow, Transformers, XGBoost,
+                  OpenCV, YOLO, NLP
+                </li>
+
+                <li class="skills-item">
+                  <strong style="color: var(--vegas-gold)"
+                    >Data & Analytics:</strong
+                  >
+                  Pandas, NumPy, Data Cleaning, Feature Engineering, EDA,
+                  Matplotlib, Seaborn
+                </li>
+
+                <li class="skills-item">
+                  <strong style="color: var(--vegas-gold)"
+                    >Databases & Caching:</strong
+                  >
+                  MySQL, MongoDB, Redis
+                </li>
+
+                <li class="skills-item">
+                  <strong style="color: var(--vegas-gold)"
+                    >Cloud & DevOps:</strong
+                  >
+                  AWS, Azure, AWS SageMaker, Docker, Kubernetes, Kafka, CI/CD
+                  Pipelines, Linux, Git
+                </li>
+
+                <li class="skills-item">
+                  <strong style="color: var(--vegas-gold)">Distributed:</strong>
+                  Microservices, Sharding, Replication, Message Queues,
+                  Event-Driven Architecture, Worker Leasing
+                </li>
+              </ul>
+            </div>
+          </section>
+        </article>
+
+        <!--
+        - #PORTFOLIO
+      -->
+
+        <article class="projects" data-page="projects">
+          <header>
+            <h2 class="h2 article-title">Projects</h2>
+          </header>
+
+          <section class="projects">
+            <!-- FILTER BUTTONS -->
+            <ul class="filter-list">
+              <li class="filter-item">
+                <button class="active" data-filter-btn>All</button>
+              </li>
+
+              <li class="filter-item">
+                <button data-filter-btn>AI/ML Projects</button>
+              </li>
+
+              <li class="filter-item">
+                <button data-filter-btn>Web Development</button>
+              </li>
+
+              <li class="filter-item">
+                <button data-filter-btn>Others</button>
+              </li>
+            </ul>
+
+            <!-- MOBILE DROPDOWN FILTER -->
+            <div class="filter-select-box">
+              <button class="filter-select" data-select>
+                <div class="select-value" data-selecct-value>
+                  Select category
+                </div>
+                <div class="select-icon">
+                  <ion-icon name="chevron-down"></ion-icon>
+                </div>
+              </button>
+
+              <ul class="select-list">
+                <li class="select-item">
+                  <button data-select-item>All</button>
+                </li>
+                <li class="select-item">
+                  <button data-select-item>AI/ML Projects</button>
+                </li>
+                <li class="select-item">
+                  <button data-select-item>Web Development</button>
+                </li>
+                <li class="select-item">
+                  <button data-select-item>Others</button>
+                </li>
+              </ul>
+            </div>
+
+            <!-- PROJECT LIST -->
+            <ul class="project-list">
+              <!-- ===== FEATURED ===== -->
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="ai/ml projects"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/omnisort-ai"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">OmniSort AI</h3>
+                  <p class="project-description">
+                    AI-powered file organizer that watches folders and
+                    auto-sorts files into custom categories, entirely on-device.
+                  </p>
+
+                  <p class="project-category">AI / ML Project</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="others"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/Distributed_Job_Queue_with_PostgresSQL_Coordination"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">
+                    Distributed Job Queue with PostgreSQL Coordination
+                  </h3>
+                  <p class="project-description">
+                    PostgreSQL-backed distributed job queue with exactly-once
+                    execution, retries, and full observability.
+                  </p>
+
+                  <p class="project-category">Others</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="ai/ml projects"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/Agentic-AI-Healthcare-Intelligence-System"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">
+                    HealthIQ - Agentic AI Healthcare Intelligence System
+                  </h3>
+                  <p class="project-description">
+                    5-agent LangGraph healthcare platform with RAG search across
+                    5,335 hospitals and 536K+ doctors.
+                  </p>
+
+                  <p class="project-category">AI / ML Project</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="web development"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/AEGIS_COGNITION-Parental_Control"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">
+                    AEGIS COGNITION - Parental Control & Screen-Time Manager
+                    (Chrome Extension)
+                  </h3>
+                  <p class="project-description">
+                    Chrome extension for parental control and screen-time
+                    management with daily limits and site blocking.
+                  </p>
+
+                  <p class="project-category">Web Development</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="others"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/TrojanGuide-MCP"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">TrojanGuide MCP</h3>
+                  <p class="project-description">
+                    MCP server giving LLM clients grounded answers about USC
+                    campus buildings, dining, and services.
+                  </p>
+
+                  <p class="project-category">Others</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="ai/ml projects"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/LiDAR-Based-Pedestrian-Counter-for-Crosswalks"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">
+                    LiDAR-Based Pedestrian Counter for Crosswalks
+                  </h3>
+                  <p class="project-description">
+                    Privacy-preserving pedestrian counter using 2D LiDAR point
+                    clouds to track crosswalk crossings.
+                  </p>
+
+                  <p class="project-category">AI / ML Project</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="ai/ml projects"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/GestureLens"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">GestureLens</h3>
+                  <p class="project-description">
+                    Real-time hand gesture recognition running fully in-browser
+                    via a TFLite/TensorFlow.js model.
+                  </p>
+
+                  <p class="project-category">AI / ML Project</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="ai/ml projects"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/autotriage-workflow"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">AutoTriage</h3>
+                  <p class="project-description">
+                    Agentic support-ticket triage system that auto-resolves,
+                    drafts replies, or escalates using LangGraph.
+                  </p>
+
+                  <p class="project-category">AI / ML Project</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="ai/ml projects"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/FraudMesh"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">FraudMesh</h3>
+                  <p class="project-description">
+                    Graph-based fraud ring detection using GraphSAGE on
+                    transaction networks linked by shared card/device IDs.
+                  </p>
+
+                  <p class="project-category">AI / ML Project</p>
+                </a>
+              </li>
+
+              <!-- ===== AI / ML PROJECTS ===== -->
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="ai/ml projects"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/AI_Spoken_English"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">AI Spoken English Coach</h3>
+                  <p class="project-description">
+                    AI backend that scores spoken English audio and returns
+                    transcripts, grammar feedback, and an IELTS band.
+                  </p>
+
+                  <p class="project-category">AI / ML Project</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="ai/ml projects"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/Hostel-Mess-Attendence-system"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">Hostel Mess Attendance System</h3>
+                  <p class="project-description">
+                    Flask app automating hostel mess attendance via real-time,
+                    CNN-based face recognition.
+                  </p>
+
+                  <p class="project-category">AI / ML Project</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="ai/ml projects"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/movie-recommender-matrix-factorization"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">
+                    Movie Recommendation System using Matrix Factorization
+                  </h3>
+                  <p class="project-description">
+                    End-to-end movie recommender built from scratch with matrix
+                    factorization on MovieLens-100K.
+                  </p>
+
+                  <p class="project-category">AI / ML Project</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="ai/ml projects"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/Student-Performance-Analysis"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">
+                    Student Academic Performance - Exploratory Data Analysis
+                    (EDA)
+                  </h3>
+                  <p class="project-description">
+                    Exploratory data analysis uncovering factors behind student
+                    academic performance.
+                  </p>
+
+                  <p class="project-category">AI / ML Project</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="ai/ml projects"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/DeepANPR-YOLO-CRNN-Based-Vehicle-Plate-Detection-and-Dues-Verification"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">
+                    DeepANPR: YOLO-Based License Plate Detection and OCR
+                    (FastAPI + Docker)
+                  </h3>
+                  <p class="project-description">
+                    Modular ANPR system combining YOLO plate detection and OCR
+                    via FastAPI microservices.
+                  </p>
+
+                  <p class="project-category">AI / ML Project</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="ai/ml projects"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/Transformers"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">Transformers</h3>
+                  <p class="project-description">
+                    Decoder-only Transformer built from scratch in PyTorch,
+                    trained for autoregressive text generation.
+                  </p>
+
+                  <p class="project-category">AI / ML Project</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="ai/ml projects"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/kmeans-implementation"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">Kmeans implementation</h3>
+                  <p class="project-description">
+                    Lightweight K-Means clustering implementation in Python with
+                    NumPy and Matplotlib visualization.
+                  </p>
+
+                  <p class="project-category">AI / ML Project</p>
+                </a>
+              </li>
+
+              <!-- ===== WEB DEVELOPMENT PROJECTS ===== -->
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="web development"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/slidementor"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">SlideMentor</h3>
+                  <p class="project-description">
+                    Chrome extension that explains lecture slides instantly with
+                    AI-generated summaries, chat, and flashcards.
+                  </p>
+
+                  <p class="project-category">Web Development</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="web development"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/JWT"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">JWT Authentication API</h3>
+                  <p class="project-description">
+                    Node.js + Express API demonstrating JWT authentication and
+                    role-based authorization.
+                  </p>
+
+                  <p class="project-category">Web Development</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="web development"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/Rentals_House_Web"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">Rentals House Web (Frontend)</h3>
+                  <p class="project-description">
+                    React/TypeScript rental marketplace frontend with
+                    interactive maps and real-time chat.
+                  </p>
+
+                  <p class="project-category">Web Development</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="web development"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/Rentals_House_Web2"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">Rentals House Web (Backend)</h3>
+                  <p class="project-description">
+                    Microservice-based backend powering auth, listings,
+                    favorites, and real-time chat.
+                  </p>
+
+                  <p class="project-category">Web Development</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="web development"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/Invoice-Web-Application"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">Invoice Web Application</h3>
+                  <p class="project-description">
+                    PHP web app for secure authentication, invoice creation, and
+                    PDF generation.
+                  </p>
+
+                  <p class="project-category">Web Development</p>
+                </a>
+              </li>
+
+              <!-- ===== OTHER PROJECTS ===== -->
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="others"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/IOS_MVVC"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">SplitWise Clone (iOS)</h3>
+                  <p class="project-description">
+                    Native iOS expense-splitting app with SwiftUI, MVVM+Combine,
+                    CloudKit sync, and on-device CoreML.
+                  </p>
+
+                  <p class="project-category">Others</p>
+                </a>
+              </li>
+
+              <!-- <li class="project-item active" data-filter-item data-category="others">
+        <a href="https://github.com/dhyanagni2001-commits/Agni-OS" target="_blank">
+           <span class="project-github-link" style=" color: var(--vegas-gold);">🔗 GitHub</span>
+          <h3 class="project-title">Kernel Development</h3>
+          <p class="project-category">Others</p>
+        </a>
+      </li> -->
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="others"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/Sequence-Alignment"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">Sequence-Alignment</h3>
+                  <p class="project-description">
+                    Sequence alignment solved with dynamic programming and a
+                    memory-efficient divide-and-conquer algorithm.
+                  </p>
+
+                  <p class="project-category">Others</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="others"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/Smart-Traffic-management-system"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">Smart Traffic management system</h3>
+                  <p class="project-description">
+                    IoT traffic control system using Raspberry Pi to adapt
+                    signal timing to real-time vehicle density.
+                  </p>
+
+                  <p class="project-category">Others</p>
+                </a>
+              </li>
+
+              <li
+                class="project-item active"
+                data-filter-item
+                data-category="others"
+              >
+                <a
+                  href="https://github.com/dhyanagni2001-commits/Online-Game"
+                  target="_blank"
+                >
+                  <span
+                    class="project-github-link"
+                    style="color: var(--vegas-gold)"
+                    >🔗 GitHub</span
+                  >
+                  <h3 class="project-title">
+                    Online Treasure Hunt Game (Flutter App)
+                  </h3>
+                  <p class="project-description">
+                    Cross-platform mobile treasure hunt game built with Flutter.
+                  </p>
+
+                  <p class="project-category">Others</p>
+                </a>
+              </li>
+            </ul>
+          </section>
+        </article>
+
+        <!--
+        - #BLOG
+      -->
+
+        <article class="milestones" data-page="milestones">
+          <header>
+            <h2 class="h2 article-title">Milestones</h2>
+          </header>
+
+          <section class="blog-posts">
+            <ul class="blog-posts-list">
+              <li class="blog-post-item">
+                <a href="#">
+                  <figure class="blog-banner-box">
+                    <img
+                      src="assets/images/IMG_0583.jpg"
+                      alt="Insta Award"
+                      loading="lazy"
+                    />
+                  </figure>
+
+                  <div class="blog-content">
+                    <div class="blog-meta">
+                      <p class="blog-category">Insta Award</p>
+
+                      <span class="dot"></span>
+
+                      <time datetime="2022-02-23">July 2025</time>
+                    </div>
+
+                    <h3 class="h3 blog-item-title">
+                      Happiest Minds Technologies
+                    </h3>
+
+                    <p class="blog-text">
+                      Received the Insta Award for Best Learning of the Quarter
+                      at Happiest Minds Technologies for continuous learning and
+                      professional growth.
+                    </p>
+                  </div>
+                </a>
+              </li>
+
+              <li class="blog-post-item">
+                <a href="#">
+                  <figure class="blog-banner-box">
+                    <img
+                      src="assets/images/WhatsApp Image 2026-01-16 at 20.12.40.jpeg"
+                      alt="Full StackRoute"
+                      loading="lazy"
+                    />
+                  </figure>
+
+                  <div class="blog-content">
+                    <div class="blog-meta">
+                      <p class="blog-category">Full-stack development</p>
+
+                      <span class="dot"></span>
+
+                      <time datetime="2022-02-23">Nov, 2024</time>
+                    </div>
+
+                    <h3 class="h3 blog-item-title">
+                      Happiest Minds Technologies
+                    </h3>
+
+                    <p class="blog-text">
+                      Completed Full-Stack Development training with CI/CD and
+                      Azure at NIIT StackRoute.
+                    </p>
+                  </div>
+                </a>
+              </li>
+
+              <li class="blog-post-item">
+                <a href="#">
+                  <figure class="blog-banner-box">
+                    <img
+                      src="assets/images/4MC19CS043-PUBLICATION CERTIFICATE.jpg"
+                      alt="Design digest #80"
+                      loading="lazy"
+                    />
+                  </figure>
+
+                  <div class="blog-content">
+                    <div class="blog-meta">
+                      <p class="blog-category">Journal Publication</p>
+
+                      <span class="dot"></span>
+
+                      <time datetime="2022-02-23">July 2023</time>
+                    </div>
+
+                    <h3 class="h3 blog-item-title">
+                      Hostel Mess Attendence System
+                    </h3>
+
+                    <p class="blog-text">
+                      Published a research paper on the Hostel Mess Attendance
+                      System, presenting an automated face-recognition-based
+                      attendance solution.
+                    </p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </section>
+        </article>
+
+        <!--
+        - #CONTACT
+      -->
+
+        <article class="contact" data-page="contact">
+          <header>
+            <h2 class="h2 article-title">Contact</h2>
+          </header>
+
+          <section class="mapbox" data-mapbox>
+            <figure>
+              <iframe
+                src="https://www.google.com/maps?q=34.021020,-118.287976&z=16&output=embed"
+                width="400"
+                height="300"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              >
+              </iframe>
+            </figure>
+          </section>
+
+          <section class="contact-form">
+            <h3 class="h3 form-title">Contact Form</h3>
+
+            <form id="contact-form" class="form">
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  name="fullname"
+                  class="form-input"
+                  placeholder="Full name"
+                  required
+                  data-form-input
+                />
+
+                <input
+                  type="email"
+                  name="email"
+                  class="form-input"
+                  placeholder="Email address"
+                  required
+                  data-form-input
+                />
+              </div>
+
+              <textarea
+                name="message"
+                class="form-input"
+                placeholder="Your Message"
+                required
+                data-form-input
+              ></textarea>
+
+              <button class="form-btn" type="submit" disabled data-form-btn>
+                <ion-icon name="paper-plane"></ion-icon>
+                <span>Send Message</span>
+              </button>
+            </form>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <!--
+    - custom js link
+  -->
+    <script src="./assets/js/script.js"></script>
+
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+    <script>
+      const inputs = document.querySelectorAll("[data-form-input]");
+      const submitBtn = document.querySelector("[data-form-btn]");
+
+      inputs.forEach((input) => {
+        input.addEventListener("input", () => {
+          submitBtn.disabled = !Array.from(inputs).every(
+            (input) => input.value.trim() !== "",
+          );
+        });
+      });
+    </script>
+
+    <script>
+      // 1. Initialize EmailJS
+      emailjs.init("EMfEegrAvCP49KYsC");
+
+      // 2. Handle form submit
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          emailjs.sendForm("service_wnrkg6r", "template_4eyokvp", this).then(
+            function () {
+              alert("✅ Message sent successfully!");
+              document.getElementById("contact-form").reset();
+            },
+            function (error) {
+              alert("❌ Failed to send message");
+              console.error(error);
+            },
+          );
+        });
+    </script>
+
+    <!--
+    - ionicon link
+  -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
