@@ -110,16 +110,14 @@ const SERVICES_EN = [
   { name: "Applied AI & RAG" },
   { name: "Backend Systems" },
   { name: "Python & Java" },
-  { name: "FastAPI & Spring Boot" },
-  { name: "AWS, Azure & Docker" },
+  { name: "AWS & Docker" },
 ] as const satisfies { name: string }[];
 
 const SERVICES_DE = [
   { name: "Applied AI & RAG" },
   { name: "Backend-Systeme" },
   { name: "Python & Java" },
-  { name: "FastAPI & Spring Boot" },
-  { name: "AWS, Azure & Docker" },
+  { name: "AWS & Docker" },
 ] as const satisfies { name: string }[];
 
 const services = computed(() => {

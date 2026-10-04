@@ -113,7 +113,7 @@ import { t } from "../../../i18n/utils/translate";
     left: 4px;
     z-index: 10;
     max-width: calc(100vw - 40px);
-    transform: rotate(-3deg) translate(0, 70%);
+    transform: translate(0, 70%);
 
     :deep(.banner-copy) {
       font-size: clamp(13px, 3.7vw, 17px);
@@ -124,12 +124,12 @@ import { t } from "../../../i18n/utils/translate";
     @include mixins.mq("sm") {
       left: auto;
       right: -24px;
-      transform: rotate(-5deg) translate(0, 70%);
+      transform: translate(0, 70%);
     }
 
     @include mixins.mq("lg") {
       right: -32px;
-      transform: rotate(-5deg) translate(0, 80%);
+      transform: translate(0, 80%);
 
       :deep(.banner-copy) {
         font-size: var(--font-size-title-xs);
