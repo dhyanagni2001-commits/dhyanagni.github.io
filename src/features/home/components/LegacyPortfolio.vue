@@ -4,7 +4,7 @@ import { lenis } from "../../../composables/useScroll";
 
 const frame = ref<HTMLIFrameElement | null>(null);
 const section = ref<HTMLElement | null>(null);
-const frameHeight = ref(1100);
+const frameHeight = ref(600);
 const activePage = ref("about");
 const emit = defineEmits<{ ready: [] }>();
 const legacyUrl = `${import.meta.env.BASE_URL}legacy/index.html`;
@@ -17,11 +17,13 @@ let frameDocument: Document | null = null;
 let lastTouchY = 0;
 
 const updateHeight = () => {
-  const documentElement = frame.value?.contentDocument?.documentElement;
-  const body = frame.value?.contentDocument?.body;
-  if (!documentElement || !body) return;
+  const main = frame.value?.contentDocument?.querySelector<HTMLElement>("main");
+  if (!main) return;
 
-  frameHeight.value = Math.max(documentElement.scrollHeight, body.scrollHeight, 700);
+  const styles = frame.value?.contentWindow?.getComputedStyle(main);
+  const marginTop = Number.parseFloat(styles?.marginTop ?? "0") || 0;
+  const marginBottom = Number.parseFloat(styles?.marginBottom ?? "0") || 0;
+  frameHeight.value = Math.max(Math.ceil(main.getBoundingClientRect().height + marginTop + marginBottom), 320);
 };
 
 const scrollToPortfolio = () => {
@@ -81,8 +83,8 @@ const handleFrameLoad = async () => {
 
   resizeObserver?.disconnect();
   resizeObserver = new ResizeObserver(updateHeight);
-  resizeObserver.observe(frameDocument.documentElement);
-  if (frameDocument.body) resizeObserver.observe(frameDocument.body);
+  const main = frameDocument.querySelector("main");
+  if (main) resizeObserver.observe(main);
 
   mutationObserver?.disconnect();
   mutationObserver = new MutationObserver(() => requestAnimationFrame(updateHeight));
@@ -168,7 +170,6 @@ onBeforeUnmount(() => {
   position: relative;
   z-index: 5;
   width: 100%;
-  min-height: 100vh;
   background: #121212;
   overflow: clip;
 
@@ -197,10 +198,8 @@ onBeforeUnmount(() => {
   &-frame {
     display: block;
     width: 100%;
-    min-height: 700px;
     border: 0;
     background: #121212;
-    transition: height 0.35s ease;
   }
 }
 
