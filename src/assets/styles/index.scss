@@ -60,3 +60,13 @@ html {
     pointer-events: none;
   }
 }
+
+body.legacy-portfolio-visible {
+  .header,
+  .header-home,
+  .cursor-wrapper,
+  .scroll-icon {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}

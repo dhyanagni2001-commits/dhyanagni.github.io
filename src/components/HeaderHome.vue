@@ -7,14 +7,20 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useHeaderTheme } from "../composables/useHeaderTheme";
 import { projectId } from "../composables/useRouteObserver";
 
-const handleLinkClick = (link: string) => {
-  if (!lenis.value) return;
-  lenis.value.scrollTo(link);
-};
-
 type ActiveLink = "about" | "projects" | "contact";
 const activeLink = ref<ActiveLink | null>(null);
 const sections: ActiveLink[] = ["about", "projects", "contact"];
+
+const handleLinkClick = (section: ActiveLink) => {
+  if (section === "about") {
+    lenis.value?.scrollTo("#about");
+    return;
+  }
+
+  activeLink.value = section;
+  updateBarPosition();
+  window.dispatchEvent(new CustomEvent("portfolio:navigate", { detail: section }));
+};
 const ariaLabels = {
   about: t("about"),
   projects: t("projects"),
@@ -38,8 +44,11 @@ const updateBarPosition = () => {
 
 onMounted(() => {
   sections.forEach((section) => {
+    const trigger = document.querySelector(`#${section}`);
+    if (!trigger) return;
+
     ScrollTrigger.create({
-      trigger: `#${section}`,
+      trigger,
       start: section === "about" ? "top 22.5%" : "top center",
       end: "bottom center",
       onEnter: () => {
@@ -80,7 +89,7 @@ onMounted(() => {
           { 'header-home-link-active': activeLink === section && hasScrolledIntoView },
           'children-unclickable',
         ]"
-        @click="handleLinkClick('#' + section)"
+        @click="handleLinkClick(section)"
         :is-dark-theme="isDarkTheme"
         :aria-label="ariaLabels[section]"
         data-sound="click"

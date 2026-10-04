@@ -2,10 +2,7 @@
 import Layout from "../../../components/Layout.vue";
 import Hero from "./Hero.vue";
 import About from "./About.vue";
-//import AboutSections from "../features/about/Sections.vue";
-import Projects from "./Projects.vue";
-import Contact from "./Contact.vue";
-import Footer from "../../../components/Footer.vue";
+import LegacyPortfolio from "./LegacyPortfolio.vue";
 import { ref, onMounted, onUnmounted, watchEffect, computed, watch } from "vue";
 import { three } from "../../../three";
 import { animations } from "../../../animations";
@@ -23,8 +20,6 @@ const introRef = ref<HTMLElement | null>(null);
 const stickyObserver = ref<IntersectionObserver | null>(null);
 const scrolledPastIntro = ref(false);
 const projectsLoaded = ref(false);
-const contactRef = ref<HTMLElement | null>(null);
-const contactBottom = ref<number>(0);
 const aboutSpacerRef = ref<HTMLElement | null>(null);
 const isHoveringObject3D = ref<boolean>(false);
 const threeCanvasRef = ref<HTMLCanvasElement | null>(null);
@@ -37,36 +32,6 @@ const handleIntersection = (entries: IntersectionObserverEntry[]) => {
 
 const isStickyVisible = computed(() => {
   return scrolledPastIntro.value || !projectsLoaded.value;
-});
-
-const updateContactBottomOffset = () => {
-  if (!contactRef.value) return;
-  const bounding = contactRef.value.getBoundingClientRect();
-  const documentBottom = document.documentElement.scrollHeight;
-  const elementBottom = bounding.bottom + window.scrollY;
-  // distance from bottom of document to bottom of contact section
-  contactBottom.value = documentBottom - elementBottom;
-};
-
-watch([projectVisible, isTransitioning], () => {
-  if (!projectVisible.value) {
-    updateContactBottomOffset();
-  }
-});
-
-watchEffect((onInvalidate) => {
-  if (!contactRef.value || preloaderVisible.value) return;
-
-  const resizeObserver = new ResizeObserver(updateContactBottomOffset);
-  resizeObserver.observe(contactRef.value as HTMLElement);
-
-  //const intersectionObserver = new IntersectionObserver(updateContactBottomOffset);
-  //intersectionObserver.observe(contactRef.value as HTMLElement);
-
-  onInvalidate(() => {
-    resizeObserver.disconnect();
-    //intersectionObserver.disconnect();
-  });
 });
 
 const updateCursor = () => {
@@ -146,9 +111,8 @@ watch(
         <div
           class="intro-sticky"
           :class="{ 'intro-sticky-visible': isStickyVisible }"
-          :style="{ '--contact-bottom': `${contactBottom}px` }"
         >
-          <canvas :class="['three-canvas', { 'three-canvas-contact': !isStickyVisible }]" ref="threeCanvasRef"></canvas>
+          <canvas :class="['three-canvas', { 'three-canvas-hidden': !isStickyVisible }]" ref="threeCanvasRef"></canvas>
           <div :class="{ 'intro-about-hidden': !isStickyVisible }">
             <About :spacer-ref="aboutSpacerRef" />
           </div>
@@ -157,11 +121,7 @@ watch(
         <div class="intro-wrapper-spacer"></div>
         <div class="about-spacer" ref="aboutSpacerRef" id="about"></div>
       </div>
-      <Projects id="projects" @loaded="handleProjectsLoaded" />
-      <div ref="contactRef" class="home-contact">
-        <Contact id="contact" v-if="projectsLoaded" />
-      </div>
-      <Footer :withSocial="false"></Footer>
+      <LegacyPortfolio id="projects" @ready="handleProjectsLoaded" />
     </Layout>
   </div>
   <HeaderHome v-if="projectsLoaded" />
@@ -183,6 +143,10 @@ watch(
     height: calc(var(--lvh) * 100);
     max-height: calc(var(--lvh) * 100);
   }
+}
+
+.three-canvas-hidden {
+  visibility: hidden;
 }
 
 .home {
