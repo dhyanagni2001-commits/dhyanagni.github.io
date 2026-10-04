@@ -77,6 +77,16 @@ const relayTouch = (event: TouchEvent) => {
   lastTouchY = currentY;
 };
 
+const redirectSocialLink = (event: Event) => {
+  const element = event.target instanceof Element ? event.target : null;
+  const link = element?.closest<HTMLAnchorElement>("a.social-link");
+  if (!link?.href) return;
+
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  window.location.assign(link.href);
+};
+
 const handleFrameLoad = async () => {
   await nextTick();
   frameDocument = frame.value?.contentDocument ?? null;
@@ -119,6 +129,7 @@ const handleFrameLoad = async () => {
   frameDocument.addEventListener("wheel", relayWheel, { passive: false });
   frameDocument.addEventListener("touchstart", rememberTouch, { passive: true });
   frameDocument.addEventListener("touchmove", relayTouch, { passive: false });
+  frameDocument.addEventListener("click", redirectSocialLink, true);
 
   emit("ready");
 };
@@ -142,6 +153,7 @@ onBeforeUnmount(() => {
   frameDocument?.removeEventListener("wheel", relayWheel);
   frameDocument?.removeEventListener("touchstart", rememberTouch);
   frameDocument?.removeEventListener("touchmove", relayTouch);
+  frameDocument?.removeEventListener("click", redirectSocialLink, true);
   document.body.classList.remove("legacy-portfolio-visible");
 });
 </script>

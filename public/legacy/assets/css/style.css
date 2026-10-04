@@ -1390,6 +1390,76 @@ textarea.form-input::-webkit-resizer {
   background: var(--bg-gradient-jet);
 }
 
+.contact-socials {
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px solid var(--jet);
+}
+
+.contact-socials-label {
+  margin-bottom: 14px;
+  color: var(--light-gray-70);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-500);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.contact-socials-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.contact-social-link {
+  position: relative;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 18px;
+  overflow: hidden;
+  color: var(--orange-yellow-crayola);
+  background: var(--border-gradient-onyx);
+  border-radius: 14px;
+  box-shadow: var(--shadow-2);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-500);
+  transition: var(--transition-1);
+  z-index: 1;
+}
+
+.contact-social-link::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: var(--bg-gradient-jet);
+  transition: var(--transition-1);
+  z-index: -1;
+}
+
+.contact-social-link:is(:hover, :focus-visible) {
+  color: var(--white-1);
+  background: var(--bg-gradient-yellow-1);
+  transform: translateY(-2px);
+}
+
+.contact-social-link:is(:hover, :focus-visible)::before {
+  background: var(--bg-gradient-yellow-2);
+}
+
+.contact-social-link ion-icon {
+  font-size: 20px;
+}
+
+@media (max-width: 449px) {
+  .contact-socials-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
 /*-----------------------------------*\
   #RESPONSIVE
 \*-----------------------------------*/
