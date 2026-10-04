@@ -284,10 +284,10 @@ onBeforeUnmount(() => {
   z-index: 20;
   width: min(calc(100% - 32px), 720px);
   margin: -22px auto 24px;
-  padding: 6px;
+  padding: 4px;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 4px;
+  gap: 2px;
   border: 1px solid rgba(255, 219, 112, 0.22);
   border-radius: 18px;
   background: rgba(31, 31, 34, 0.86);
@@ -295,8 +295,11 @@ onBeforeUnmount(() => {
   backdrop-filter: blur(18px);
 
   &-button {
+    position: relative;
+    width: 100%;
+    min-height: 52px;
     min-width: 0;
-    padding: 12px 10px;
+    padding: 14px 12px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -316,14 +319,16 @@ onBeforeUnmount(() => {
     &:hover,
     &:focus-visible {
       color: #fff;
-      background: rgba(255, 255, 255, 0.07);
+      background: rgba(255, 255, 255, 0.12);
     }
 
     &:active {
       transform: scale(0.97);
     }
 
-    &-active {
+    &-active,
+    &-active:hover,
+    &-active:focus-visible {
       color: #1d1d20;
       background: linear-gradient(135deg, #ffe38a, #ffbd5c);
       box-shadow: 0 5px 18px rgba(255, 193, 92, 0.2);
@@ -360,7 +365,8 @@ onBeforeUnmount(() => {
     }
 
     &-button {
-      padding: 10px 13px;
+      min-height: 48px;
+      padding: 12px 16px;
       font-size: 12px;
       scroll-snap-align: center;
     }
