@@ -9,7 +9,7 @@ import { t } from "../../../i18n/utils/translate";
     <div class="hero-content grid">
       <div class="hero-content-inner" id="hero-content-inner">
         <div class="hero-content-copys">
-          <h1 class="hero-title"><span>Dhyan S.</span><span>Agni</span></h1>
+          <h1 class="hero-title"><span>Dhyan S. Agni</span></h1>
           <Banner class="hero-banner" :copy="t('job-title')" v-if="!preloaderVisible" animated />
         </div>
       </div>
@@ -84,7 +84,7 @@ import { t } from "../../../i18n/utils/translate";
     flex-direction: column;
     font-weight: 900;
     letter-spacing: 0.02em;
-    font-size: clamp(48px, 15vw, var(--font-size-title-xl));
+    font-size: clamp(36px, 12.5vw, var(--font-size-title-xl));
     line-height: 0.92;
 
     span {
