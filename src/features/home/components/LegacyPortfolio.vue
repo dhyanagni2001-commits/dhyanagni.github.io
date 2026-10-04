@@ -17,6 +17,8 @@ let frameDocument: Document | null = null;
 let lastTouchY = 0;
 let lastTouchTime = 0;
 let touchVelocity = 0;
+let pendingWheelDelta = 0;
+let wheelFrame: number | null = null;
 
 const updateHeight = () => {
   const main = frame.value?.contentDocument?.querySelector<HTMLElement>("main");
@@ -82,10 +84,22 @@ const scrollParentBy = (delta: number, immediate: boolean) => {
   instance.scrollTo(nextScroll, { immediate, force: true, lerp: immediate ? undefined : 0.1 });
 };
 
+const flushWheel = () => {
+  wheelFrame = null;
+  if (pendingWheelDelta === 0) return;
+
+  const delta = pendingWheelDelta;
+  pendingWheelDelta = 0;
+  scrollParentBy(delta, false);
+};
+
 const relayWheel = (event: WheelEvent) => {
   event.preventDefault();
-  const multiplier = event.deltaMode === WheelEvent.DOM_DELTA_LINE ? 16 : 1;
-  scrollParentBy(event.deltaY * multiplier, false);
+
+  const multiplier = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1;
+  pendingWheelDelta += event.deltaY * multiplier;
+
+  if (wheelFrame === null) wheelFrame = requestAnimationFrame(flushWheel);
 };
 
 const rememberTouch = (event: TouchEvent) => {
@@ -214,6 +228,9 @@ onBeforeUnmount(() => {
   resizeObserver?.disconnect();
   mutationObserver?.disconnect();
   visibilityObserver?.disconnect();
+  if (wheelFrame !== null) cancelAnimationFrame(wheelFrame);
+  wheelFrame = null;
+  pendingWheelDelta = 0;
   frameDocument?.removeEventListener("wheel", relayWheel);
   frameDocument?.removeEventListener("touchstart", rememberTouch);
   frameDocument?.removeEventListener("touchmove", relayTouch);

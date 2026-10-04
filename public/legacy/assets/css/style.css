@@ -176,7 +176,6 @@ body {
     linear-gradient(180deg, #092748 0%, #071b35 52%, #06162c 100%);
   background-position: center, center, 0 0, 43px 67px, center;
   background-size: auto, auto, 112px 112px, 173px 173px, auto;
-  background-attachment: fixed;
 }
 
 /*-----------------------------------*\
