@@ -14,6 +14,7 @@ const mouseY = ref(0);
 const currentX = ref(0);
 const currentY = ref(0);
 const isVisible = ref(false);
+const hasMoved = ref(false);
 const cursorType = ref<"circle-black" | "arrow" | "arrow-external" | "circle-white" | null>(null);
 const detectedType = ref<"circle-black" | "arrow" | "arrow-external" | "circle-white" | null>(null);
 
@@ -40,6 +41,9 @@ const tick = () => {
       currentY.value = mouseY.value;
     }
     cursorType.value = detectedType.value;
+  } else if (hasMoved.value) {
+    isVisible.value = true;
+    cursorType.value = document.body.classList.contains("legacy-portfolio-visible") ? "circle-white" : "circle-black";
   } else {
     isVisible.value = false;
     cursorType.value = null;
@@ -69,9 +73,18 @@ const checkIfHasCursorAttribute = (
 };
 
 const handleMouseMove = (e: MouseEvent) => {
+  hasMoved.value = true;
   mouseX.value = e.clientX;
   mouseY.value = e.clientY;
   detectedType.value = checkIfHasCursorAttribute(e.target as Element);
+};
+
+const handlePortfolioMouseMove = (e: Event) => {
+  const { clientX, clientY } = (e as CustomEvent<{ clientX: number; clientY: number }>).detail;
+  hasMoved.value = true;
+  mouseX.value = clientX;
+  mouseY.value = clientY;
+  detectedType.value = "circle-white";
 };
 
 onMounted(() => {
@@ -82,6 +95,7 @@ onMounted(() => {
   currentY.value = mouseY.value;
 
   window.addEventListener("mousemove", handleMouseMove);
+  window.addEventListener("portfolio:mousemove", handlePortfolioMouseMove);
   gsap.ticker.add(tick);
 });
 
@@ -96,6 +110,7 @@ watch(
 
 onUnmounted(() => {
   window.removeEventListener("mousemove", handleMouseMove);
+  window.removeEventListener("portfolio:mousemove", handlePortfolioMouseMove);
   gsap.ticker.remove(tick);
 });
 </script>

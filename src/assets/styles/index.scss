@@ -64,9 +64,16 @@ html {
 body.legacy-portfolio-visible {
   .header,
   .header-home,
-  .cursor-wrapper,
   .scroll-icon {
     opacity: 0 !important;
     pointer-events: none !important;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body,
+  body * {
+    cursor: none !important;
   }
 }

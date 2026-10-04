@@ -167,7 +167,16 @@ html {
 }
 
 body {
-  background: var(--smoky-black);
+  background-color: #071b35;
+  background-image:
+    radial-gradient(circle at 16% 9%, rgba(39, 214, 255, 0.14), transparent 25%),
+    radial-gradient(circle at 84% 42%, rgba(48, 103, 190, 0.2), transparent 32%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.68) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(115, 205, 255, 0.45) 0 1px, transparent 1.5px),
+    linear-gradient(180deg, #092748 0%, #071b35 52%, #06162c 100%);
+  background-position: center, center, 0 0, 43px 67px, center;
+  background-size: auto, auto, 112px 112px, 173px 173px, auto;
+  background-attachment: fixed;
 }
 
 /*-----------------------------------*\

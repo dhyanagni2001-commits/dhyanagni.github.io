@@ -126,6 +126,20 @@ const redirectSocialLink = (event: Event) => {
   window.location.assign(link.href);
 };
 
+const relayMouseMove = (event: MouseEvent) => {
+  const frameRect = frame.value?.getBoundingClientRect();
+  if (!frameRect) return;
+
+  window.dispatchEvent(
+    new CustomEvent("portfolio:mousemove", {
+      detail: {
+        clientX: frameRect.left + event.clientX,
+        clientY: frameRect.top + event.clientY,
+      },
+    }),
+  );
+};
+
 const handleFrameLoad = async () => {
   await nextTick();
   frameDocument = frame.value?.contentDocument ?? null;
@@ -134,6 +148,9 @@ const handleFrameLoad = async () => {
   const embeddedStyle = frameDocument.createElement("style");
   embeddedStyle.textContent = `
     .navbar { display: none !important; }
+    @media (hover: hover) and (pointer: fine) {
+      html, body, body * { cursor: none !important; }
+    }
     @media (max-width: 579px) {
       main { padding-inline: 14px !important; }
       article { padding: 20px 16px !important; border-radius: 16px !important; }
@@ -172,6 +189,7 @@ const handleFrameLoad = async () => {
   frameDocument.addEventListener("touchend", finishTouch, { passive: true });
   frameDocument.addEventListener("touchcancel", finishTouch, { passive: true });
   frameDocument.addEventListener("click", redirectSocialLink, true);
+  frameDocument.addEventListener("mousemove", relayMouseMove);
 
   emit("ready");
 };
@@ -202,6 +220,7 @@ onBeforeUnmount(() => {
   frameDocument?.removeEventListener("touchend", finishTouch);
   frameDocument?.removeEventListener("touchcancel", finishTouch);
   frameDocument?.removeEventListener("click", redirectSocialLink, true);
+  frameDocument?.removeEventListener("mousemove", relayMouseMove);
   document.body.classList.remove("legacy-portfolio-visible");
 });
 </script>
@@ -243,7 +262,11 @@ onBeforeUnmount(() => {
   position: relative;
   z-index: 5;
   width: 100%;
-  background: #121212;
+  background-color: #071b35;
+  background-image:
+    radial-gradient(circle at 18% 15%, rgba(39, 214, 255, 0.14), transparent 25%),
+    radial-gradient(circle at 82% 48%, rgba(48, 103, 190, 0.2), transparent 32%),
+    linear-gradient(180deg, #073b79 0%, #092748 24%, #071b35 100%);
   overflow: clip;
 
   &-transition {
@@ -255,7 +278,7 @@ onBeforeUnmount(() => {
     justify-content: center;
     gap: 14px;
     color: rgba(255, 255, 255, 0.72);
-    background: linear-gradient(180deg, #073b79 0%, #092748 38%, #121212 100%);
+    background: linear-gradient(180deg, #073b79 0%, #092748 58%, transparent 100%);
     font-family: "ProFontWindows", monospace;
     font-size: clamp(12px, 1.2vw, 16px);
     letter-spacing: 0.14em;
@@ -272,7 +295,7 @@ onBeforeUnmount(() => {
     display: block;
     width: 100%;
     border: 0;
-    background: #121212;
+    background: transparent;
     pointer-events: auto !important;
     touch-action: pan-y;
   }
