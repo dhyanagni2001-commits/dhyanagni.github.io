@@ -132,7 +132,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section ref="section" class="legacy-portfolio" aria-label="Dhyan Agni portfolio">
+  <section ref="section" class="legacy-portfolio" aria-label="Dhyan S Agni portfolio">
     <div class="legacy-portfolio-transition" aria-hidden="true">
       <span>Explore my work</span>
       <span class="legacy-portfolio-transition-line"></span>
@@ -155,7 +155,7 @@ onBeforeUnmount(() => {
       ref="frame"
       class="legacy-portfolio-frame"
       :src="legacyUrl"
-      title="Dhyan Agni — portfolio, resume, projects, milestones, and contact"
+      title="Dhyan S Agni — portfolio, resume, projects, milestones, and contact"
       scrolling="no"
       :style="{ height: `${frameHeight}px` }"
       @load="handleFrameLoad"

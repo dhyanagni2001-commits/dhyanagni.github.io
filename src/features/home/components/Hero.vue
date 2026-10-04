@@ -1,9 +1,7 @@
 <script setup>
-import Button from "../../../components/Button.vue";
 import Banner from "../../../components/Banner.vue";
 import { preloaderVisible } from "../../../composables/usePreloader";
 import { t } from "../../../i18n/utils/translate";
-import AppearingText from "../../../components/AppearingText.vue";
 </script>
 
 <template>
@@ -11,7 +9,7 @@ import AppearingText from "../../../components/AppearingText.vue";
     <div class="hero-content grid">
       <div class="hero-content-inner" id="hero-content-inner">
         <div class="hero-content-copys">
-          <h1 class="hero-title">Dhyan<br />Agni</h1>
+          <h1 class="hero-title"><span>Dhyan S.</span><span>Agni</span></h1>
           <Banner class="hero-banner" :copy="t('job-title')" v-if="!preloaderVisible" animated />
         </div>
       </div>
@@ -82,12 +80,20 @@ import AppearingText from "../../../components/AppearingText.vue";
   }
 
   &-title {
+    display: flex;
+    flex-direction: column;
     font-weight: 900;
     letter-spacing: 0.02em;
-    font-size: var(--font-size-title-lg);
+    font-size: clamp(48px, 15vw, var(--font-size-title-xl));
+    line-height: 0.92;
+
+    span {
+      white-space: nowrap;
+    }
 
     @include mixins.landscape {
       font-size: var(--font-size-title-lg);
+      line-height: var(--line-height-title);
     }
 
     @include mixins.landscape-large {
@@ -103,12 +109,20 @@ import AppearingText from "../../../components/AppearingText.vue";
 
   &-banner {
     position: absolute;
-    bottom: 0;
-    right: -16px;
+    bottom: -6px;
+    left: 4px;
     z-index: 10;
-    transform: rotate(-5deg) translate(0, 65%);
+    max-width: calc(100vw - 40px);
+    transform: rotate(-3deg) translate(0, 70%);
+
+    :deep(.banner-copy) {
+      font-size: clamp(13px, 3.7vw, 17px);
+      line-height: 1.1;
+      white-space: nowrap;
+    }
 
     @include mixins.mq("sm") {
+      left: auto;
       right: -24px;
       transform: rotate(-5deg) translate(0, 70%);
     }
@@ -116,6 +130,10 @@ import AppearingText from "../../../components/AppearingText.vue";
     @include mixins.mq("lg") {
       right: -32px;
       transform: rotate(-5deg) translate(0, 80%);
+
+      :deep(.banner-copy) {
+        font-size: var(--font-size-title-xs);
+      }
     }
   }
 }
