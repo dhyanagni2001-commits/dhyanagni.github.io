@@ -20,6 +20,7 @@ const introRef = ref<HTMLElement | null>(null);
 const stickyObserver = ref<IntersectionObserver | null>(null);
 const scrolledPastIntro = ref(false);
 const projectsLoaded = ref(false);
+const portfolioVisible = ref(false);
 const aboutSpacerRef = ref<HTMLElement | null>(null);
 const isHoveringObject3D = ref<boolean>(false);
 const threeCanvasRef = ref<HTMLCanvasElement | null>(null);
@@ -73,6 +74,11 @@ const handleProjectsLoaded = () => {
   projectsLoaded.value = true;
 };
 
+const handlePortfolioVisibility = (visible: boolean) => {
+  portfolioVisible.value = visible;
+  renderer.setIsActive(!visible && !projectVisible.value);
+};
+
 watchEffect((onInvalidate) => {
   if (
     projectsLoaded &&
@@ -91,7 +97,7 @@ watchEffect((onInvalidate) => {
 watch(
   projectVisible,
   (newVal) => {
-    renderer.setIsActive(!newVal);
+    renderer.setIsActive(!newVal && !portfolioVisible.value);
   },
   { immediate: true },
 );
@@ -121,7 +127,7 @@ watch(
         <div class="intro-wrapper-spacer"></div>
         <div class="about-spacer" ref="aboutSpacerRef" id="about"></div>
       </div>
-      <LegacyPortfolio id="projects" @ready="handleProjectsLoaded" />
+      <LegacyPortfolio id="projects" @ready="handleProjectsLoaded" @visibility="handlePortfolioVisibility" />
     </Layout>
   </div>
   <HeaderHome v-if="projectsLoaded" />

@@ -6,7 +6,7 @@ const frame = ref<HTMLIFrameElement | null>(null);
 const section = ref<HTMLElement | null>(null);
 const frameHeight = ref(600);
 const activePage = ref("about");
-const emit = defineEmits<{ ready: [] }>();
+const emit = defineEmits<{ ready: []; visibility: [visible: boolean] }>();
 const legacyUrl = `${import.meta.env.BASE_URL}legacy/index.html`;
 const pages = ["about", "resume", "projects", "milestones", "contact"] as const;
 
@@ -159,7 +159,11 @@ onMounted(() => {
   window.addEventListener("portfolio:navigate", navigatePortfolio);
 
   visibilityObserver = new IntersectionObserver(
-    ([entry]) => document.body.classList.toggle("legacy-portfolio-visible", entry?.isIntersecting ?? false),
+    ([entry]) => {
+      const isVisible = entry?.isIntersecting ?? false;
+      document.body.classList.toggle("legacy-portfolio-visible", isVisible);
+      emit("visibility", isVisible);
+    },
     { rootMargin: "-42% 0px -42% 0px" },
   );
 
@@ -326,6 +330,9 @@ onBeforeUnmount(() => {
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     scrollbar-width: none;
+    background: rgba(31, 31, 34, 0.97);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 
     &::-webkit-scrollbar {
       display: none;
