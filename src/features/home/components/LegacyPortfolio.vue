@@ -46,13 +46,26 @@ const navigateTo = (page: string, shouldScroll = true) => {
 
 const navigatePortfolio = (event: Event) => navigateTo((event as CustomEvent<string>).detail);
 
+const scrollParentBy = (delta: number, immediate: boolean) => {
+  const instance = lenis.value;
+  if (!instance) {
+    window.scrollBy({ top: delta, left: 0 });
+    return;
+  }
+
+  const nextScroll = Math.max(0, Math.min(instance.targetScroll + delta, instance.limit));
+  instance.scrollTo(nextScroll, { immediate, force: true, lerp: immediate ? undefined : 0.1 });
+};
+
 const relayWheel = (event: WheelEvent) => {
   event.preventDefault();
-  window.scrollBy({ top: event.deltaY, left: 0 });
+  const multiplier = event.deltaMode === WheelEvent.DOM_DELTA_LINE ? 16 : 1;
+  scrollParentBy(event.deltaY * multiplier, false);
 };
 
 const rememberTouch = (event: TouchEvent) => {
   lastTouchY = event.touches[0]?.clientY ?? 0;
+  lenis.value?.scrollTo(window.scrollY, { immediate: true, force: true });
 };
 
 const relayTouch = (event: TouchEvent) => {
@@ -60,7 +73,7 @@ const relayTouch = (event: TouchEvent) => {
   const delta = lastTouchY - currentY;
   if (Math.abs(delta) < 2) return;
   event.preventDefault();
-  window.scrollBy({ top: delta, left: 0 });
+  scrollParentBy(delta, true);
   lastTouchY = currentY;
 };
 
@@ -200,6 +213,8 @@ onBeforeUnmount(() => {
     width: 100%;
     border: 0;
     background: #121212;
+    pointer-events: auto !important;
+    touch-action: pan-y;
   }
 }
 
