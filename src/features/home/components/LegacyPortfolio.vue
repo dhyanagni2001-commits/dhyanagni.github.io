@@ -17,8 +17,7 @@ let frameDocument: Document | null = null;
 let lastTouchY = 0;
 let lastTouchTime = 0;
 let touchVelocity = 0;
-let pendingWheelDelta = 0;
-let wheelFrame: number | null = null;
+let resizeFrame: number | null = null;
 
 const updateHeight = () => {
   const main = frame.value?.contentDocument?.querySelector<HTMLElement>("main");
@@ -27,7 +26,18 @@ const updateHeight = () => {
   const styles = frame.value?.contentWindow?.getComputedStyle(main);
   const marginTop = Number.parseFloat(styles?.marginTop ?? "0") || 0;
   const marginBottom = Number.parseFloat(styles?.marginBottom ?? "0") || 0;
-  frameHeight.value = Math.max(Math.ceil(main.getBoundingClientRect().height + marginTop + marginBottom), 320);
+  const nextHeight = Math.max(Math.ceil(main.getBoundingClientRect().height + marginTop + marginBottom), 320);
+  if (nextHeight === frameHeight.value) return;
+
+  frameHeight.value = nextHeight;
+
+  if (resizeFrame !== null) cancelAnimationFrame(resizeFrame);
+  nextTick(() => {
+    resizeFrame = requestAnimationFrame(() => {
+      resizeFrame = null;
+      lenis.value?.resize();
+    });
+  });
 };
 
 const scrollToPortfolio = () => {
@@ -84,25 +94,37 @@ const scrollParentBy = (delta: number, immediate: boolean) => {
   instance.scrollTo(nextScroll, { immediate, force: true, lerp: immediate ? undefined : 0.1 });
 };
 
-const flushWheel = () => {
-  wheelFrame = null;
-  if (pendingWheelDelta === 0) return;
-
-  const delta = pendingWheelDelta;
-  pendingWheelDelta = 0;
-  scrollParentBy(delta, false);
-};
-
 const relayWheel = (event: WheelEvent) => {
   event.preventDefault();
 
   const multiplier = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1;
-  pendingWheelDelta += event.deltaY * multiplier;
+  const deltaY = event.deltaY * multiplier;
 
-  if (wheelFrame === null) wheelFrame = requestAnimationFrame(flushWheel);
+  if (!lenis.value) {
+    window.scrollBy({ top: deltaY, left: 0, behavior: "auto" });
+    return;
+  }
+
+  // Iframe wheel events do not bubble to the parent window. Re-dispatch a
+  // normalized event so Lenis handles trackpads and mouse wheels exactly as it
+  // does everywhere else on the page.
+  window.dispatchEvent(
+    new WheelEvent("wheel", {
+      deltaX: event.deltaX * multiplier,
+      deltaY,
+      deltaMode: 0,
+      bubbles: true,
+      cancelable: true,
+      ctrlKey: event.ctrlKey,
+      shiftKey: event.shiftKey,
+      altKey: event.altKey,
+      metaKey: event.metaKey,
+    }),
+  );
 };
 
 const rememberTouch = (event: TouchEvent) => {
+  if (event.touches.length !== 1) return;
   lastTouchY = event.touches[0]?.clientY ?? 0;
   lastTouchTime = performance.now();
   touchVelocity = 0;
@@ -110,6 +132,7 @@ const rememberTouch = (event: TouchEvent) => {
 };
 
 const relayTouch = (event: TouchEvent) => {
+  if (event.touches.length !== 1) return;
   const currentY = event.touches[0]?.clientY ?? lastTouchY;
   const delta = lastTouchY - currentY;
   if (Math.abs(delta) < 2) return;
@@ -128,6 +151,36 @@ const relayTouch = (event: TouchEvent) => {
 const finishTouch = () => {
   if (Math.abs(touchVelocity) > 0.04) scrollParentBy(touchVelocity * 220, false);
   touchVelocity = 0;
+};
+
+const relayKeyScroll = (event: KeyboardEvent) => {
+  const target = event.target instanceof Element ? event.target : null;
+  if (target?.closest("input, textarea, select, button, a, [contenteditable='true']")) return;
+
+  const pageStep = Math.max(window.innerHeight * 0.85, 320);
+  const deltas: Record<string, number> = {
+    ArrowDown: 48,
+    ArrowUp: -48,
+    PageDown: pageStep,
+    PageUp: -pageStep,
+    " ": event.shiftKey ? -pageStep : pageStep,
+  };
+
+  if (event.key === "Home" || event.key === "End") {
+    event.preventDefault();
+    const targetScroll = event.key === "Home" ? 0 : (lenis.value?.limit ?? document.documentElement.scrollHeight);
+    if (lenis.value) {
+      lenis.value.scrollTo(targetScroll, { force: true });
+    } else {
+      window.scrollTo({ top: targetScroll, left: 0, behavior: "auto" });
+    }
+    return;
+  }
+
+  const delta = deltas[event.key];
+  if (delta === undefined) return;
+  event.preventDefault();
+  scrollParentBy(delta, false);
 };
 
 const redirectSocialLink = (event: Event) => {
@@ -170,6 +223,7 @@ const handleFrameLoad = async () => {
       article { padding: 20px 16px !important; border-radius: 16px !important; }
     }
     @media (max-width: 839px), (pointer: coarse) {
+      html, body { touch-action: pan-x pinch-zoom; }
       .mapbox iframe { pointer-events: none !important; }
     }
   `;
@@ -202,6 +256,7 @@ const handleFrameLoad = async () => {
   frameDocument.addEventListener("touchmove", relayTouch, { passive: false });
   frameDocument.addEventListener("touchend", finishTouch, { passive: true });
   frameDocument.addEventListener("touchcancel", finishTouch, { passive: true });
+  frameDocument.addEventListener("keydown", relayKeyScroll);
   frameDocument.addEventListener("click", redirectSocialLink, true);
   frameDocument.addEventListener("mousemove", relayMouseMove);
 
@@ -228,14 +283,14 @@ onBeforeUnmount(() => {
   resizeObserver?.disconnect();
   mutationObserver?.disconnect();
   visibilityObserver?.disconnect();
-  if (wheelFrame !== null) cancelAnimationFrame(wheelFrame);
-  wheelFrame = null;
-  pendingWheelDelta = 0;
+  if (resizeFrame !== null) cancelAnimationFrame(resizeFrame);
+  resizeFrame = null;
   frameDocument?.removeEventListener("wheel", relayWheel);
   frameDocument?.removeEventListener("touchstart", rememberTouch);
   frameDocument?.removeEventListener("touchmove", relayTouch);
   frameDocument?.removeEventListener("touchend", finishTouch);
   frameDocument?.removeEventListener("touchcancel", finishTouch);
+  frameDocument?.removeEventListener("keydown", relayKeyScroll);
   frameDocument?.removeEventListener("click", redirectSocialLink, true);
   frameDocument?.removeEventListener("mousemove", relayMouseMove);
   document.body.classList.remove("legacy-portfolio-visible");
@@ -314,7 +369,7 @@ onBeforeUnmount(() => {
     border: 0;
     background: transparent;
     pointer-events: auto !important;
-    touch-action: pan-y;
+    touch-action: pan-x pinch-zoom;
   }
 }
 
