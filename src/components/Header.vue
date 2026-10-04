@@ -6,7 +6,6 @@ import { t } from "../i18n/utils/translate";
 import { useHeaderTheme } from "../composables/useHeaderTheme";
 import { lenis } from "../composables/useScroll";
 import { projectId } from "../composables/useRouteObserver";
-import { social } from "../content/social";
 import ButtonRound from "./ButtonRound.vue";
 import ArrowRight from "./icons/ArrowRight.vue";
 import SoundsToggle from "./SoundsToggle.vue";
@@ -46,6 +45,14 @@ const handleBackClick = () => {
 const handleLogoClick = () => {
   if (!lenis.value) return;
   lenis.value.scrollTo(0);
+};
+
+const handleGetInTouch = () => {
+  if (projectId.value !== null) router.push("/");
+
+  window.setTimeout(() => {
+    window.dispatchEvent(new CustomEvent("portfolio:navigate", { detail: "contact" }));
+  }, projectId.value !== null ? 350 : 0);
 };
 
 const classNames = computed(() => {
@@ -97,11 +104,10 @@ const getInTouchClassNames = computed(() => {
     </div>
     <div class="header-right">
       <Button
-        renderAs="a"
+        renderAs="button"
         variant="accent"
         :aria-label="t('get-in-touch')"
-        :href="social.find((item) => item.name === 'mail')?.url ?? ''"
-        external
+        @click="handleGetInTouch"
         :class="getInTouchClassNames"
         data-cursor="circle-white"
         data-hoversound="hover"
