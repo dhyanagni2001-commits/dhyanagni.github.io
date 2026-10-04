@@ -15,6 +15,8 @@ let mutationObserver: MutationObserver | null = null;
 let visibilityObserver: IntersectionObserver | null = null;
 let frameDocument: Document | null = null;
 let lastTouchY = 0;
+let lastTouchTime = 0;
+let touchVelocity = 0;
 
 const updateHeight = () => {
   const main = frame.value?.contentDocument?.querySelector<HTMLElement>("main");
@@ -65,6 +67,8 @@ const relayWheel = (event: WheelEvent) => {
 
 const rememberTouch = (event: TouchEvent) => {
   lastTouchY = event.touches[0]?.clientY ?? 0;
+  lastTouchTime = performance.now();
+  touchVelocity = 0;
   lenis.value?.scrollTo(window.scrollY, { immediate: true, force: true });
 };
 
@@ -72,9 +76,21 @@ const relayTouch = (event: TouchEvent) => {
   const currentY = event.touches[0]?.clientY ?? lastTouchY;
   const delta = lastTouchY - currentY;
   if (Math.abs(delta) < 2) return;
+
+  const now = performance.now();
+  const elapsed = Math.max(now - lastTouchTime, 8);
+  const currentVelocity = delta / elapsed;
+  touchVelocity = touchVelocity * 0.65 + currentVelocity * 0.35;
+
   event.preventDefault();
   scrollParentBy(delta, true);
   lastTouchY = currentY;
+  lastTouchTime = now;
+};
+
+const finishTouch = () => {
+  if (Math.abs(touchVelocity) > 0.04) scrollParentBy(touchVelocity * 220, false);
+  touchVelocity = 0;
 };
 
 const redirectSocialLink = (event: Event) => {
@@ -98,6 +114,9 @@ const handleFrameLoad = async () => {
     @media (max-width: 579px) {
       main { padding-inline: 14px !important; }
       article { padding: 20px 16px !important; border-radius: 16px !important; }
+    }
+    @media (max-width: 839px), (pointer: coarse) {
+      .mapbox iframe { pointer-events: none !important; }
     }
   `;
   frameDocument.head.appendChild(embeddedStyle);
@@ -129,6 +148,8 @@ const handleFrameLoad = async () => {
   frameDocument.addEventListener("wheel", relayWheel, { passive: false });
   frameDocument.addEventListener("touchstart", rememberTouch, { passive: true });
   frameDocument.addEventListener("touchmove", relayTouch, { passive: false });
+  frameDocument.addEventListener("touchend", finishTouch, { passive: true });
+  frameDocument.addEventListener("touchcancel", finishTouch, { passive: true });
   frameDocument.addEventListener("click", redirectSocialLink, true);
 
   emit("ready");
@@ -153,6 +174,8 @@ onBeforeUnmount(() => {
   frameDocument?.removeEventListener("wheel", relayWheel);
   frameDocument?.removeEventListener("touchstart", rememberTouch);
   frameDocument?.removeEventListener("touchmove", relayTouch);
+  frameDocument?.removeEventListener("touchend", finishTouch);
+  frameDocument?.removeEventListener("touchcancel", finishTouch);
   frameDocument?.removeEventListener("click", redirectSocialLink, true);
   document.body.classList.remove("legacy-portfolio-visible");
 });
