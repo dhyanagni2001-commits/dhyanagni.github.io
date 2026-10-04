@@ -29,11 +29,26 @@ const updateHeight = () => {
 };
 
 const scrollToPortfolio = () => {
-  if (!section.value) return;
-  lenis.value?.scrollTo(section.value, { offset: -16 });
+  const target = frame.value ?? section.value;
+  if (!target) return;
+
+  const offset = frame.value ? -88 : -16;
+  const instance = lenis.value;
+
+  if (instance) {
+    instance.resize();
+    instance.scrollTo(target, { offset, immediate: true, force: true });
+    return;
+  }
+
+  window.scrollTo({
+    top: window.scrollY + target.getBoundingClientRect().top + offset,
+    left: 0,
+    behavior: "auto",
+  });
 };
 
-const navigateTo = (page: string, shouldScroll = true) => {
+const navigateTo = async (page: string, shouldScroll = true) => {
   if (!page || !frameDocument) return;
 
   const button = Array.from(frameDocument.querySelectorAll<HTMLButtonElement>("[data-nav-link]")).find(
@@ -42,8 +57,16 @@ const navigateTo = (page: string, shouldScroll = true) => {
 
   button?.click();
   activePage.value = page;
+
+  // The selected legacy page can be much shorter than the previous one. Let
+  // Vue apply the new iframe height before calculating the parent scroll
+  // position, otherwise Lenis can retain a now-invalid target and jump upward.
+  updateHeight();
+  await nextTick();
+  updateHeight();
+  await nextTick();
+
   if (shouldScroll) scrollToPortfolio();
-  window.setTimeout(updateHeight, 50);
 };
 
 const navigatePortfolio = (event: Event) => navigateTo((event as CustomEvent<string>).detail);
@@ -140,8 +163,6 @@ const handleFrameLoad = async () => {
   frameDocument.querySelectorAll<HTMLButtonElement>("[data-nav-link]").forEach((button) => {
     button.addEventListener("click", () => {
       activePage.value = button.textContent?.trim().toLowerCase() ?? "about";
-      scrollToPortfolio();
-      window.setTimeout(updateHeight, 50);
     });
   });
 
