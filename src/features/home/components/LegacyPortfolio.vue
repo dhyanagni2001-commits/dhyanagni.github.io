@@ -17,6 +17,8 @@ let frameDocument: Document | null = null;
 let lastTouchY = 0;
 let lastTouchTime = 0;
 let touchVelocity = 0;
+let pendingTouchDelta = 0;
+let touchFrame: number | null = null;
 let resizeFrame: number | null = null;
 
 const updateHeight = () => {
@@ -125,10 +127,22 @@ const relayWheel = (event: WheelEvent) => {
 
 const rememberTouch = (event: TouchEvent) => {
   if (event.touches.length !== 1) return;
+  if (touchFrame !== null) cancelAnimationFrame(touchFrame);
+  touchFrame = null;
+  pendingTouchDelta = 0;
   lastTouchY = event.touches[0]?.clientY ?? 0;
   lastTouchTime = performance.now();
   touchVelocity = 0;
   lenis.value?.scrollTo(window.scrollY, { immediate: true, force: true });
+};
+
+const flushTouch = () => {
+  touchFrame = null;
+  if (pendingTouchDelta === 0) return;
+
+  const delta = pendingTouchDelta;
+  pendingTouchDelta = 0;
+  scrollParentBy(delta, true);
 };
 
 const relayTouch = (event: TouchEvent) => {
@@ -143,13 +157,19 @@ const relayTouch = (event: TouchEvent) => {
   touchVelocity = touchVelocity * 0.65 + currentVelocity * 0.35;
 
   event.preventDefault();
-  scrollParentBy(delta, true);
+  pendingTouchDelta += delta;
+  if (touchFrame === null) touchFrame = requestAnimationFrame(flushTouch);
   lastTouchY = currentY;
   lastTouchTime = now;
 };
 
 const finishTouch = () => {
-  if (Math.abs(touchVelocity) > 0.04) scrollParentBy(touchVelocity * 220, false);
+  if (touchFrame !== null) {
+    cancelAnimationFrame(touchFrame);
+    flushTouch();
+  }
+
+  if (Math.abs(touchVelocity) > 0.04) scrollParentBy(touchVelocity * 260, false);
   touchVelocity = 0;
 };
 
@@ -285,6 +305,9 @@ onBeforeUnmount(() => {
   visibilityObserver?.disconnect();
   if (resizeFrame !== null) cancelAnimationFrame(resizeFrame);
   resizeFrame = null;
+  if (touchFrame !== null) cancelAnimationFrame(touchFrame);
+  touchFrame = null;
+  pendingTouchDelta = 0;
   frameDocument?.removeEventListener("wheel", relayWheel);
   frameDocument?.removeEventListener("touchstart", rememberTouch);
   frameDocument?.removeEventListener("touchmove", relayTouch);
