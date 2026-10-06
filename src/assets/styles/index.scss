@@ -75,6 +75,12 @@ body.legacy-portfolio-visible {
   .scroll-icon {
     opacity: 0 !important;
     pointer-events: none !important;
+
+    // Children such as header links opt back in with `pointer-events: all`,
+    // which would leave invisible hit areas over the portfolio tabs.
+    * {
+      pointer-events: none !important;
+    }
   }
 }
 
