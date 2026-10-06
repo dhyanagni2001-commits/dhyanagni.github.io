@@ -1,4 +1,4 @@
-# Portfolio (2025)
+# Portfolio (2026)
 
 Personal portfolio site: project case studies, lightweight 3D and shader demos, bilingual copy (English and German).
 
@@ -29,15 +29,6 @@ Built with **Vue 3**, **TypeScript**, and **Vite**. Motion via **GSAP** and **Le
 
 This project was created and designed by David Heckhoff.
 
-If you use this project or substantial parts of its source code as a base for your own portfolio or work, attribution must be preserved.
-
-Please keep:
-
-- existing credit comments in the source code
-- this attribution section in the README
-- a visible reference to the original project/repository in derivative works
-
 Original portfolio:
 -> https://david-hckh.com
 
-Commercial reuse or redistribution of substantial portions of this project without permission is prohibited.
