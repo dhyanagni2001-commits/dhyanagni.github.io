@@ -61,15 +61,14 @@ html {
   }
 }
 
-body.legacy-portfolio-visible {
-  .intro-wrapper {
-    background-color: #073b79;
-    background-image:
-      radial-gradient(circle at 18% 72%, rgba(39, 214, 255, 0.12), transparent 28%),
-      radial-gradient(circle at 82% 36%, rgba(48, 103, 190, 0.18), transparent 34%),
-      linear-gradient(180deg, #073b79 0%, #092748 100%);
-  }
+// Paint the space colour on the root rather than on .intro-wrapper: the 3D
+// canvas sits at z-index -1, so an .intro-wrapper background would cover the
+// avatar. The root background only shows once the canvas itself is hidden.
+html:has(> body.legacy-portfolio-visible) {
+  background: #073b79;
+}
 
+body.legacy-portfolio-visible {
   .header,
   .header-home,
   .scroll-icon {
