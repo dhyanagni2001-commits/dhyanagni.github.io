@@ -27,8 +27,15 @@ const threeCanvasRef = ref<HTMLCanvasElement | null>(null);
 const threeInitialized = ref<boolean>(false);
 const { isTouch } = useAgent();
 
+const updateRendererActive = () => {
+  // Keep rendering as long as any part of the 3D intro is on screen, so the
+  // avatar doesn't vanish while the portfolio section scrolls up over it.
+  renderer.setIsActive(scrolledPastIntro.value && !projectVisible.value);
+};
+
 const handleIntersection = (entries: IntersectionObserverEntry[]) => {
   scrolledPastIntro.value = entries[0]?.isIntersecting ?? false;
+  updateRendererActive();
 };
 
 const isStickyVisible = computed(() => {
@@ -76,7 +83,6 @@ const handleProjectsLoaded = () => {
 
 const handlePortfolioVisibility = (visible: boolean) => {
   portfolioVisible.value = visible;
-  renderer.setIsActive(!visible && !projectVisible.value);
 };
 
 watchEffect((onInvalidate) => {
@@ -94,13 +100,7 @@ watchEffect((onInvalidate) => {
   });
 });
 
-watch(
-  projectVisible,
-  (newVal) => {
-    renderer.setIsActive(!newVal && !portfolioVisible.value);
-  },
-  { immediate: true },
-);
+watch(projectVisible, updateRendererActive, { immediate: true });
 </script>
 
 <template>
