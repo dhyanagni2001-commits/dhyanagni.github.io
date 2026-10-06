@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b1b1f"/><stop offset="1" stop-color="#111114"/></linearGradient>
+<radialGradient id="glow" cx="0.78" cy="0.42" r="0.55"><stop offset="0" stop-color="#fde047" stop-opacity="0.45"/><stop offset="1" stop-color="#fde047" stop-opacity="0"/></radialGradient>
+<linearGradient id="acc" gradientUnits="userSpaceOnUse" x1="340" y1="40" x2="620" y2="300"><stop offset="0" stop-color="#fde047"/><stop offset="1" stop-color="#fb923c"/></linearGradient>
+<pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#fff" stroke-opacity="0.045"/></pattern>
+</defs>
+<rect width="640" height="360" fill="url(#bg)"/>
+<rect width="640" height="360" fill="url(#grid)"/>
+<rect width="640" height="360" fill="url(#glow)"/>
+<rect x="36" y="38" width="36" height="5" rx="2.5" fill="#fde047"/>
+<text x="36" y="72" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="15" letter-spacing="2" fill="#fde047">AI · CHROME EXTENSION</text>
+<text x="34" y="136" font-family="'Poppins','Segoe UI',Helvetica,Arial,sans-serif" font-size="58" font-weight="700" fill="#fafafa">Explain</text>
+<text x="36" y="172" font-family="'Poppins','Segoe UI',Helvetica,Arial,sans-serif" font-size="20" fill="#c4c4c4">AI slide tutor</text>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="372" y="76" width="180" height="120" rx="10" fill="#f5f5f4" stroke="none"/><rect x="388" y="92" width="90" height="10" rx="3" fill="#222" stroke="none"/><circle cx="394" cy="124" r="3" fill="#555" stroke="none"/><rect x="404" y="120" width="110" height="8" rx="3" fill="#bbb" stroke="none"/><circle cx="394" cy="144" r="3" fill="#555" stroke="none"/><rect x="404" y="140" width="90" height="8" rx="3" fill="#bbb" stroke="none"/><circle cx="394" cy="164" r="3" fill="#555" stroke="none"/><rect x="404" y="160" width="120" height="8" rx="3" fill="#bbb" stroke="none"/><rect x="384" y="136" width="134" height="16" rx="3" fill="#fde047" fill-opacity="0.5" stroke="none"/><rect x="470" y="170" width="140" height="92" rx="12" fill="#232327" stroke="url(#acc)" stroke-width="2.5" transform="rotate(-4 540 216)"/><text x="488" y="206" font-family="'Poppins','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#fafafa" stroke="none" transform="rotate(-4 540 216)">Q: What is</text><text x="488" y="226" font-family="'Poppins','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" fill="#fafafa" stroke="none" transform="rotate(-4 540 216)">backprop?</text><path d="M590 64l5 13 13 5-13 5-5 13-5-13-13-5 13-5z" fill="url(#acc)" stroke="none"/></g>
+<rect x="36" y="290" width="117" height="34" rx="17" fill="#fff" fill-opacity="0.07" stroke="#fff" stroke-opacity="0.16"/><text x="49" y="312" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="15" fill="#e8e8e8">Chrome MV3</text><rect x="161.0" y="290" width="53" height="34" rx="17" fill="#fff" fill-opacity="0.07" stroke="#fff" stroke-opacity="0.16"/><text x="174.0" y="312" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="15" fill="#e8e8e8">LLM</text><rect x="222.3" y="290" width="117" height="34" rx="17" fill="#fff" fill-opacity="0.07" stroke="#fff" stroke-opacity="0.16"/><text x="235.3" y="312" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="15" fill="#e8e8e8">JavaScript</text>
+</svg>

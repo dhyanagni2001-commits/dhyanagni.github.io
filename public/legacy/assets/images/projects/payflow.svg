@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b1b1f"/><stop offset="1" stop-color="#111114"/></linearGradient>
+<radialGradient id="glow" cx="0.78" cy="0.42" r="0.55"><stop offset="0" stop-color="#60a5fa" stop-opacity="0.45"/><stop offset="1" stop-color="#60a5fa" stop-opacity="0"/></radialGradient>
+<linearGradient id="acc" gradientUnits="userSpaceOnUse" x1="340" y1="40" x2="620" y2="300"><stop offset="0" stop-color="#60a5fa"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+<pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#fff" stroke-opacity="0.045"/></pattern>
+</defs>
+<rect width="640" height="360" fill="url(#bg)"/>
+<rect width="640" height="360" fill="url(#grid)"/>
+<rect width="640" height="360" fill="url(#glow)"/>
+<rect x="36" y="38" width="36" height="5" rx="2.5" fill="#60a5fa"/>
+<text x="36" y="72" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="15" letter-spacing="2" fill="#60a5fa">DATA ENGINEERING · CDC</text>
+<text x="34" y="136" font-family="'Poppins','Segoe UI',Helvetica,Arial,sans-serif" font-size="58" font-weight="700" fill="#fafafa">$0.00</text>
+<text x="36" y="172" font-family="'Poppins','Segoe UI',Helvetica,Arial,sans-serif" font-size="20" fill="#c4c4c4">drift, to the cent</text>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="398.0" cy="110" rx="26.0" ry="8" stroke="#fff" stroke-width="2.5"/><path d="M372 110V180a26.0 8 0 0 0 52 0V110" stroke="#fff" stroke-width="2.5"/><path d="M434 145H470" stroke="url(#acc)" stroke-width="3"/><rect x="476" y="128" width="10" height="34" rx="3" fill="url(#acc)" opacity="0.4"/><rect x="490" y="128" width="10" height="34" rx="3" fill="url(#acc)" opacity="0.6000000000000001"/><rect x="504" y="128" width="10" height="34" rx="3" fill="url(#acc)" opacity="0.8"/><rect x="518" y="128" width="10" height="34" rx="3" fill="url(#acc)" opacity="1.0"/><path d="M536 145H556" stroke="url(#acc)" stroke-width="3"/><rect x="562" y="100" width="52" height="24" rx="6" fill="#cd7f32" fill-opacity="0.85"/><rect x="562" y="132" width="52" height="24" rx="6" fill="#c0c0c0" fill-opacity="0.85"/><rect x="562" y="164" width="52" height="24" rx="6" fill="#ffd76a" fill-opacity="0.85"/><text x="372" y="210" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="11" fill="#cfcfcf" stroke="none">postgres → kafka → delta</text><path d="M380 250h220" stroke="#fff" stroke-opacity="0.15" stroke-width="2"/><path d="M380 250h170" stroke="url(#acc)" stroke-width="2"/></g>
+<rect x="36" y="290" width="72" height="34" rx="17" fill="#fff" fill-opacity="0.07" stroke="#fff" stroke-opacity="0.16"/><text x="49" y="312" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="15" fill="#e8e8e8">Kafka</text><rect x="115.5" y="290" width="99" height="34" rx="17" fill="#fff" fill-opacity="0.07" stroke="#fff" stroke-opacity="0.16"/><text x="128.5" y="312" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="15" fill="#e8e8e8">Debezium</text><rect x="222.3" y="290" width="117" height="34" rx="17" fill="#fff" fill-opacity="0.07" stroke="#fff" stroke-opacity="0.16"/><text x="235.3" y="312" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="15" fill="#e8e8e8">Delta Lake</text>
+</svg>
