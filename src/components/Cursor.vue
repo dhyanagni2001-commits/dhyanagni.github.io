@@ -20,6 +20,15 @@ const detectedType = ref<"circle-black" | "arrow" | "arrow-external" | "circle-w
 
 const lerpSpeed = 0.1;
 
+let portfolioEl: Element | null = null;
+
+// White on the dark portfolio section, black over the light 3D scene above it.
+const isOverPortfolio = () => {
+  if (!portfolioEl?.isConnected) portfolioEl = document.querySelector(".legacy-portfolio");
+  if (!portfolioEl) return false;
+  return mouseY.value >= portfolioEl.getBoundingClientRect().top;
+};
+
 const tick = () => {
   // Lerp the current position towards the mouse position
   currentX.value = lerp(currentX.value, mouseX.value, lerpSpeed);
@@ -43,7 +52,7 @@ const tick = () => {
     cursorType.value = detectedType.value;
   } else if (hasMoved.value) {
     isVisible.value = true;
-    cursorType.value = document.body.classList.contains("legacy-portfolio-visible") ? "circle-white" : "circle-black";
+    cursorType.value = isOverPortfolio() ? "circle-white" : "circle-black";
   } else {
     isVisible.value = false;
     cursorType.value = null;
