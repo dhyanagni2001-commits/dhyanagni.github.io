@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 import { lenis } from "../../../composables/useScroll";
+import RocketField from "./RocketField.vue";
 
 const frame = ref<HTMLIFrameElement | null>(null);
 const section = ref<HTMLElement | null>(null);
@@ -235,6 +236,7 @@ const handleFrameLoad = async () => {
   const embeddedStyle = frameDocument.createElement("style");
   embeddedStyle.textContent = `
     .navbar { display: none !important; }
+    html, body { background: transparent !important; }
     @media (hover: hover) and (pointer: fine) {
       html, body, body * { cursor: none !important; }
     }
@@ -322,6 +324,7 @@ onBeforeUnmount(() => {
 
 <template>
   <section ref="section" class="legacy-portfolio" aria-label="Dhyan S Agni portfolio">
+    <RocketField />
     <div class="legacy-portfolio-transition" aria-hidden="true">
       <span>Explore my work</span>
       <span class="legacy-portfolio-transition-line"></span>
@@ -361,10 +364,16 @@ onBeforeUnmount(() => {
   background-image:
     radial-gradient(circle at 18% 15%, rgba(39, 214, 255, 0.14), transparent 25%),
     radial-gradient(circle at 82% 48%, rgba(48, 103, 190, 0.2), transparent 32%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.68) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(115, 205, 255, 0.45) 0 1px, transparent 1.5px),
     linear-gradient(180deg, #073b79 0%, #092748 24%, #071b35 100%);
+  background-position: center, center, 0 0, 43px 67px, center;
+  background-size: auto, auto, 112px 112px, 173px 173px, auto;
   overflow: clip;
 
   &-transition {
+    position: relative;
+    z-index: 1;
     height: clamp(96px, 14vw, 190px);
     margin-top: -1px;
     display: flex;
@@ -387,6 +396,8 @@ onBeforeUnmount(() => {
   }
 
   &-frame {
+    position: relative;
+    z-index: 1;
     display: block;
     width: 100%;
     border: 0;
