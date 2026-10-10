@@ -18,9 +18,13 @@ class ThreeSizes extends EventEmitter<{
   resize() {
     const rect = this.canvas?.getBoundingClientRect();
     if (!rect || !rect.width || !rect.height) return;
-    this.width = rect?.width ?? 0;
-    this.height = rect?.height ?? 0;
-    this.pixelRatio = Math.min(window.devicePixelRatio, 2);
+    // Phones have high DPR but weak GPUs; 1.5 keeps it sharp at ~45% fewer pixels.
+    const maxRatio = window.matchMedia("(pointer: coarse)").matches ? 1.5 : 2;
+    const pixelRatio = Math.min(window.devicePixelRatio, maxRatio);
+    if (rect.width === this.width && rect.height === this.height && pixelRatio === this.pixelRatio) return;
+    this.width = rect.width;
+    this.height = rect.height;
+    this.pixelRatio = pixelRatio;
     this.emit("resize", { width: this.width, height: this.height, pixelRatio: this.pixelRatio });
   }
 
