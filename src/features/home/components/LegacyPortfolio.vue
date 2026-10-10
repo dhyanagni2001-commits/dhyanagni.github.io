@@ -15,11 +15,6 @@ let resizeObserver: ResizeObserver | null = null;
 let mutationObserver: MutationObserver | null = null;
 let visibilityObserver: IntersectionObserver | null = null;
 let frameDocument: Document | null = null;
-let lastTouchY = 0;
-let lastTouchTime = 0;
-let touchVelocity = 0;
-let pendingTouchDelta = 0;
-let touchFrame: number | null = null;
 let resizeFrame: number | null = null;
 
 const updateHeight = () => {
@@ -126,54 +121,6 @@ const relayWheel = (event: WheelEvent) => {
   );
 };
 
-const rememberTouch = (event: TouchEvent) => {
-  if (event.touches.length !== 1) return;
-  if (touchFrame !== null) cancelAnimationFrame(touchFrame);
-  touchFrame = null;
-  pendingTouchDelta = 0;
-  lastTouchY = event.touches[0]?.clientY ?? 0;
-  lastTouchTime = performance.now();
-  touchVelocity = 0;
-  lenis.value?.scrollTo(window.scrollY, { immediate: true, force: true });
-};
-
-const flushTouch = () => {
-  touchFrame = null;
-  if (pendingTouchDelta === 0) return;
-
-  const delta = pendingTouchDelta;
-  pendingTouchDelta = 0;
-  scrollParentBy(delta, true);
-};
-
-const relayTouch = (event: TouchEvent) => {
-  if (event.touches.length !== 1) return;
-  const currentY = event.touches[0]?.clientY ?? lastTouchY;
-  const delta = lastTouchY - currentY;
-  if (Math.abs(delta) < 2) return;
-
-  const now = performance.now();
-  const elapsed = Math.max(now - lastTouchTime, 8);
-  const currentVelocity = delta / elapsed;
-  touchVelocity = touchVelocity * 0.65 + currentVelocity * 0.35;
-
-  event.preventDefault();
-  pendingTouchDelta += delta;
-  if (touchFrame === null) touchFrame = requestAnimationFrame(flushTouch);
-  lastTouchY = currentY;
-  lastTouchTime = now;
-};
-
-const finishTouch = () => {
-  if (touchFrame !== null) {
-    cancelAnimationFrame(touchFrame);
-    flushTouch();
-  }
-
-  if (Math.abs(touchVelocity) > 0.04) scrollParentBy(touchVelocity * 260, false);
-  touchVelocity = 0;
-};
-
 const relayKeyScroll = (event: KeyboardEvent) => {
   const target = event.target instanceof Element ? event.target : null;
   if (target?.closest("input, textarea, select, button, a, [contenteditable='true']")) return;
@@ -245,7 +192,7 @@ const handleFrameLoad = async () => {
       article { padding: 20px 16px !important; border-radius: 16px !important; }
     }
     @media (max-width: 839px), (pointer: coarse) {
-      html, body { touch-action: pan-x pinch-zoom; }
+      html, body { touch-action: pan-x pan-y pinch-zoom; overscroll-behavior: auto; }
       .mapbox iframe { pointer-events: none !important; }
     }
   `;
@@ -261,7 +208,6 @@ const handleFrameLoad = async () => {
   mutationObserver?.disconnect();
   mutationObserver = new MutationObserver(() => requestAnimationFrame(updateHeight));
   mutationObserver.observe(frameDocument.body, {
-    attributes: true,
     childList: true,
     subtree: true,
   });
@@ -274,10 +220,6 @@ const handleFrameLoad = async () => {
   });
 
   frameDocument.addEventListener("wheel", relayWheel, { passive: false });
-  frameDocument.addEventListener("touchstart", rememberTouch, { passive: true });
-  frameDocument.addEventListener("touchmove", relayTouch, { passive: false });
-  frameDocument.addEventListener("touchend", finishTouch, { passive: true });
-  frameDocument.addEventListener("touchcancel", finishTouch, { passive: true });
   frameDocument.addEventListener("keydown", relayKeyScroll);
   frameDocument.addEventListener("click", redirectSocialLink, true);
   frameDocument.addEventListener("mousemove", relayMouseMove);
@@ -307,14 +249,7 @@ onBeforeUnmount(() => {
   visibilityObserver?.disconnect();
   if (resizeFrame !== null) cancelAnimationFrame(resizeFrame);
   resizeFrame = null;
-  if (touchFrame !== null) cancelAnimationFrame(touchFrame);
-  touchFrame = null;
-  pendingTouchDelta = 0;
   frameDocument?.removeEventListener("wheel", relayWheel);
-  frameDocument?.removeEventListener("touchstart", rememberTouch);
-  frameDocument?.removeEventListener("touchmove", relayTouch);
-  frameDocument?.removeEventListener("touchend", finishTouch);
-  frameDocument?.removeEventListener("touchcancel", finishTouch);
   frameDocument?.removeEventListener("keydown", relayKeyScroll);
   frameDocument?.removeEventListener("click", redirectSocialLink, true);
   frameDocument?.removeEventListener("mousemove", relayMouseMove);
@@ -403,7 +338,7 @@ onBeforeUnmount(() => {
     border: 0;
     background: transparent;
     pointer-events: auto !important;
-    touch-action: pan-x pinch-zoom;
+    touch-action: pan-x pan-y pinch-zoom;
   }
 }
 

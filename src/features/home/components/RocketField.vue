@@ -161,8 +161,13 @@ const spawnPuff = (x: number, y: number) => {
 
 const resize = () => {
   if (!renderer || !camera || !root.value) return;
-  width = root.value.clientWidth;
-  height = window.innerHeight;
+  const nextWidth = root.value.clientWidth;
+  const nextHeight = window.innerHeight;
+  // Mobile URL bars resize the viewport while scrolling. Resizing the WebGL
+  // buffer clears the canvas and flickers, so ignore height-only shrinks.
+  if (nextWidth === width && nextHeight <= height) return;
+  height = nextWidth === width ? Math.max(nextHeight, height) : nextHeight;
+  width = nextWidth;
   renderer.setSize(width, height, false);
   camera.left = -width / 2;
   camera.right = width / 2;
@@ -319,6 +324,8 @@ onBeforeUnmount(() => {
     display: block;
     width: 100%;
     height: 100vh;
+    height: 100lvh;
+    transform: translateZ(0);
   }
 }
 </style>
