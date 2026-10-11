@@ -352,9 +352,9 @@ onBeforeUnmount(() => {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 2px;
-  border: 1px solid rgba(255, 219, 112, 0.22);
+  border: 1px solid rgba(255, 132, 0, 0.22);
   border-radius: 18px;
-  background: rgba(31, 31, 34, 0.86);
+  background: rgba(241, 229, 213, 0.92);
   box-shadow: 0 16px 50px rgba(0, 0, 0, 0.36);
   backdrop-filter: blur(18px);
 
@@ -370,7 +370,7 @@ onBeforeUnmount(() => {
     gap: 7px;
     border: 0;
     border-radius: 12px;
-    color: rgba(255, 255, 255, 0.62);
+    color: var(--color-text-400);
     background: transparent;
     font-family: "Urbanist", sans-serif;
     font-size: 13px;
@@ -382,8 +382,8 @@ onBeforeUnmount(() => {
 
     &:hover,
     &:focus-visible {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.12);
+      color: var(--color-text-400);
+      background: var(--color-beige-700);
     }
 
     &:active {
@@ -393,9 +393,9 @@ onBeforeUnmount(() => {
     &-active,
     &-active:hover,
     &-active:focus-visible {
-      color: #1d1d20;
-      background: linear-gradient(135deg, #ffe38a, #ffbd5c);
-      box-shadow: 0 5px 18px rgba(255, 193, 92, 0.2);
+      color: var(--color-white-400);
+      background: var(--color-orange-400);
+      box-shadow: 0 5px 18px rgba(255, 132, 0, 0.25);
     }
   }
 
