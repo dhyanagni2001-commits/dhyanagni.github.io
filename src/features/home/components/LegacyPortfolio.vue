@@ -10,6 +10,32 @@ const activePage = ref("about");
 const emit = defineEmits<{ ready: []; visibility: [visible: boolean] }>();
 const legacyUrl = `${import.meta.env.BASE_URL}legacy/index.html`;
 const pages = ["about", "resume", "projects", "milestones", "contact"] as const;
+const featuredProjects = [
+  {
+    title: "PayFlow",
+    summary: "Real-time payments CDC lakehouse",
+    metric: "3.3K events/s",
+    detail: "Zero loss across 12 chaos tests",
+    stack: ["Kafka", "Debezium", "Delta Lake", "Airflow"],
+    url: "https://github.com/dhyanagni2001-commits/PayFlow",
+  },
+  {
+    title: "FlashKV",
+    summary: "Redis-compatible key-value store in C++20",
+    metric: "3.27M ops/s",
+    detail: "53 Redis commands, runs in the browser via WebAssembly",
+    stack: ["C++20", "Event loop", "WebAssembly"],
+    url: "https://github.com/dhyanagni2001-commits/FlashKV",
+  },
+  {
+    title: "First Fifty",
+    summary: "Agentic battery-cell triage",
+    metric: "7–8 of top 10",
+    detail: "Longest-lived cells found after only 50 cycles",
+    stack: ["Claude agents", "Databricks", "Python"],
+    url: "https://github.com/dhyanagni2001-commits/First_Fifty",
+  },
+];
 
 let resizeObserver: ResizeObserver | null = null;
 let mutationObserver: MutationObserver | null = null;
@@ -182,7 +208,7 @@ const handleFrameLoad = async () => {
 
   const embeddedStyle = frameDocument.createElement("style");
   embeddedStyle.textContent = `
-    .navbar { display: none !important; }
+    .navbar, .sidebar { display: none !important; }
     html, body { background: transparent !important; }
     @media (hover: hover) and (pointer: fine) {
       html, body, body * { cursor: none !important; }
@@ -264,6 +290,26 @@ onBeforeUnmount(() => {
       <span>Explore my work</span>
       <span class="legacy-portfolio-transition-line"></span>
     </div>
+    <div class="featured">
+      <h2 class="featured-title">Featured work</h2>
+      <ul class="featured-list">
+        <li v-for="project in featuredProjects" :key="project.title">
+          <a class="featured-card" :href="project.url" target="_blank" rel="noopener" data-hoversound="hover">
+            <span class="featured-metric">{{ project.metric }}</span>
+            <span class="featured-detail">{{ project.detail }}</span>
+            <h3 class="featured-name">{{ project.title }}</h3>
+            <p class="featured-summary">{{ project.summary }}</p>
+            <ul class="featured-stack">
+              <li v-for="tech in project.stack" :key="tech">{{ tech }}</li>
+            </ul>
+            <span class="featured-link">View on GitHub →</span>
+          </a>
+        </li>
+      </ul>
+      <button type="button" class="featured-all" data-hoversound="hover" @click="navigateTo('projects')">
+        See all projects →
+      </button>
+    </div>
     <nav class="legacy-tabs" aria-label="Portfolio sections">
       <button
         v-for="page in pages"
@@ -342,12 +388,122 @@ onBeforeUnmount(() => {
   }
 }
 
+.featured {
+  position: relative;
+  z-index: 1;
+  width: min(calc(100% - 32px), 1200px);
+  margin: 0 auto 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  &-title {
+    color: var(--color-white-400);
+    font-family: "Urbanist", sans-serif;
+    font-size: clamp(28px, 3.2vw, 44px);
+    font-weight: 900;
+  }
+
+  &-list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  &-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 24px;
+    border: 1px solid var(--color-beige-700);
+    border-radius: 20px;
+    background: var(--color-background-400);
+    color: var(--color-text-400);
+    font-family: "Urbanist", sans-serif;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  &-metric {
+    color: var(--color-orange-400);
+    font-size: clamp(30px, 2.8vw, 40px);
+    font-weight: 900;
+    line-height: 1.05;
+  }
+
+  &-detail {
+    color: var(--color-text-300);
+    font-size: 14px;
+  }
+
+  &-name {
+    margin-top: 14px;
+    font-size: 22px;
+    font-weight: 900;
+  }
+
+  &-summary {
+    color: var(--color-text-300);
+    font-size: 15px;
+  }
+
+  &-stack {
+    margin: 10px 0 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    li {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--color-beige-600);
+      font-size: 12px;
+      font-weight: 700;
+    }
+  }
+
+  &-link {
+    margin-top: auto;
+    color: var(--color-orange-400);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  &-all {
+    padding: 12px 26px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-white-400);
+    font-family: "Urbanist", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--color-orange-400);
+      background: var(--color-orange-400);
+    }
+  }
+}
+
 .legacy-tabs {
   position: sticky;
   top: 16px;
   z-index: 20;
   width: min(calc(100% - 32px), 720px);
-  margin: -22px auto 24px;
+  margin: 0 auto 24px;
   padding: 4px;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -409,6 +565,12 @@ onBeforeUnmount(() => {
   }
 }
 
+@media (max-width: 900px) {
+  .featured-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 640px) {
   .legacy-tabs {
     top: 8px;
@@ -420,7 +582,7 @@ onBeforeUnmount(() => {
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     scrollbar-width: none;
-    background: rgba(31, 31, 34, 0.97);
+    background: rgba(241, 229, 213, 0.98);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
 

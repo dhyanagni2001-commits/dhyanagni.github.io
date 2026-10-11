@@ -990,11 +990,11 @@
           <section class="blog-posts">
             <ul class="blog-posts-list">
               <li class="blog-post-item">
-                <a href="#">
+                <a href="assets/images/IMG_0583.jpg" target="_blank" rel="noopener">
                   <figure class="blog-banner-box">
                     <img
                       src="assets/images/IMG_0583.jpg"
-                      alt="Insta Award"
+                      alt="Insta Award certificate from Happiest Minds Technologies"
                       loading="lazy"
                     />
                   </figure>
@@ -1005,7 +1005,7 @@
 
                       <span class="dot"></span>
 
-                      <time datetime="2022-02-23">July 2025</time>
+                      <time datetime="2025-07">July 2025</time>
                     </div>
 
                     <h3 class="h3 blog-item-title">
@@ -1017,16 +1017,18 @@
                       at Happiest Minds Technologies for continuous learning and
                       professional growth.
                     </p>
+
+                    <span class="blog-link">View certificate →</span>
                   </div>
                 </a>
               </li>
 
               <li class="blog-post-item">
-                <a href="#">
+                <a href="assets/images/WhatsApp Image 2026-01-16 at 20.12.40.jpeg" target="_blank" rel="noopener">
                   <figure class="blog-banner-box">
                     <img
                       src="assets/images/WhatsApp Image 2026-01-16 at 20.12.40.jpeg"
-                      alt="Full StackRoute"
+                      alt="NIIT StackRoute full-stack development certificate"
                       loading="lazy"
                     />
                   </figure>
@@ -1037,7 +1039,7 @@
 
                       <span class="dot"></span>
 
-                      <time datetime="2022-02-23">Nov, 2024</time>
+                      <time datetime="2024-11">Nov, 2024</time>
                     </div>
 
                     <h3 class="h3 blog-item-title">
@@ -1048,16 +1050,18 @@
                       Completed Full-Stack Development training with CI/CD and
                       Azure at NIIT StackRoute.
                     </p>
+
+                    <span class="blog-link">View certificate →</span>
                   </div>
                 </a>
               </li>
 
               <li class="blog-post-item">
-                <a href="#">
+                <a href="assets/images/4MC19CS043-PUBLICATION CERTIFICATE.jpg" target="_blank" rel="noopener">
                   <figure class="blog-banner-box">
                     <img
                       src="assets/images/4MC19CS043-PUBLICATION CERTIFICATE.jpg"
-                      alt="Design digest #80"
+                      alt="IRJMETS journal publication certificate"
                       loading="lazy"
                     />
                   </figure>
@@ -1068,11 +1072,11 @@
 
                       <span class="dot"></span>
 
-                      <time datetime="2022-02-23">July 2023</time>
+                      <time datetime="2023-07">July 2023</time>
                     </div>
 
                     <h3 class="h3 blog-item-title">
-                      Hostel Mess Attendence System
+                      Hostel Mess Attendance System
                     </h3>
 
                     <p class="blog-text">
@@ -1080,6 +1084,8 @@
                       System, presenting an automated face-recognition-based
                       attendance solution.
                     </p>
+
+                    <span class="blog-link">View certificate →</span>
                   </div>
                 </a>
               </li>
@@ -1095,6 +1101,35 @@
           <header>
             <h2 class="h2 article-title">Contact</h2>
           </header>
+
+          <ul class="contact-direct">
+            <li>
+              <a href="mailto:sureshag@usc.edu" class="contact-direct-link">
+                <ion-icon name="mail-outline"></ion-icon>
+                <span>sureshag@usc.edu</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/dhyan-agni/"
+                class="contact-direct-link social-link"
+                target="_top"
+              >
+                <ion-icon name="logo-linkedin"></ion-icon>
+                <span>LinkedIn</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/dhyanagni2001-commits"
+                class="contact-direct-link social-link"
+                target="_top"
+              >
+                <ion-icon name="logo-github"></ion-icon>
+                <span>GitHub</span>
+              </a>
+            </li>
+          </ul>
 
           <section class="mapbox" data-mapbox>
             <figure>
@@ -1145,6 +1180,8 @@
                 <ion-icon name="paper-plane"></ion-icon>
                 <span>Send Message</span>
               </button>
+
+              <p class="form-status" data-form-status role="status" aria-live="polite"></p>
             </form>
 
           </section>
@@ -1183,13 +1220,24 @@
         .addEventListener("submit", function (e) {
           e.preventDefault();
 
+          const status = document.querySelector("[data-form-status]");
+          const button = document.querySelector("[data-form-btn]");
+          const setStatus = (text, state) => {
+            status.textContent = text;
+            status.dataset.state = state;
+          };
+
+          button.disabled = true;
+          setStatus("Sending…", "pending");
+
           emailjs.sendForm("service_wnrkg6r", "template_4eyokvp", this).then(
             function () {
-              alert("✅ Message sent successfully!");
+              setStatus("Thanks! Your message is on its way. I'll get back to you soon.", "success");
               document.getElementById("contact-form").reset();
             },
             function (error) {
-              alert("❌ Failed to send message");
+              setStatus("Couldn't send your message. Please email me at sureshag@usc.edu instead.", "error");
+              button.disabled = false;
               console.error(error);
             },
           );

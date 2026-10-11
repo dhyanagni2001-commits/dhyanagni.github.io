@@ -194,8 +194,8 @@ watch(projectVisible, updateRendererActive, { immediate: true });
 }
 
 .about-spacer {
-  max-height: calc(var(--lvh) * 250);
-  min-height: calc(var(--lvh) * 250);
+  max-height: calc(var(--lvh) * 200);
+  min-height: calc(var(--lvh) * 200);
 }
 
 .intro-wrapper {

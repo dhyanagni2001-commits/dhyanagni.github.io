@@ -47,13 +47,16 @@ const handleLogoClick = () => {
   lenis.value.scrollTo(0);
 };
 
-const handleGetInTouch = () => {
+const navigatePortfolio = (page: string) => {
   if (projectId.value !== null) router.push("/");
 
   window.setTimeout(() => {
-    window.dispatchEvent(new CustomEvent("portfolio:navigate", { detail: "contact" }));
+    window.dispatchEvent(new CustomEvent("portfolio:navigate", { detail: page }));
   }, projectId.value !== null ? 350 : 0);
 };
+
+const handleGetInTouch = () => navigatePortfolio("contact");
+const handleResume = () => navigatePortfolio("resume");
 
 const classNames = computed(() => {
   return {
@@ -103,6 +106,16 @@ const getInTouchClassNames = computed(() => {
       <Logo class="header-logo-image" />
     </div>
     <div class="header-right">
+      <Button
+        renderAs="button"
+        variant="theme"
+        :aria-label="t('resume')"
+        @click="handleResume"
+        :class="getInTouchClassNames"
+        data-cursor="circle-white"
+        data-hoversound="hover"
+        >{{ t("resume") }}</Button
+      >
       <Button
         renderAs="button"
         variant="accent"
