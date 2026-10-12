@@ -259,9 +259,11 @@ export const milestones: {
   {
     title: "AI Infra Summit Hackathon 2026 · 2nd place",
     category: "Qualcomm AI Hub track",
-    date: "2026",
-    datetime: "2026",
+    date: "Sep 2026",
+    datetime: "2026-09",
     text: "Our team, Techies, won 2nd place in the Qualcomm AI Hub track in Santa Clara (organized by lablab.ai and NativelyAI) with TrustGate Edge: real-time access monitoring that recognizes authorized people and flags unknown visitors without sending camera footage to the cloud. We quantized (W8A16), profiled, and optimized a dense computer vision model for the Snapdragon X Elite: all 188/188 layers run on the Hexagon NPU, NPU utilization per embedding dropped from 57% to 11%, and inference takes 1.71 ms.",
+    image: "ai-infra-summit-hackathon-2026.jpg",
+    alt: "AI Infra Summit Hackathon certificate awarded to Dhyan Agni, Sep 10 to 16, 2026",
   },
   {
     title: "Happiest Minds Technologies",
