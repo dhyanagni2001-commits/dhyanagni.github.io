@@ -2,7 +2,7 @@
 import Layout from "../../../components/Layout.vue";
 import Hero from "./Hero.vue";
 import About from "./About.vue";
-import LegacyPortfolio from "./LegacyPortfolio.vue";
+import Portfolio from "./portfolio/Portfolio.vue";
 import { ref, onMounted, onUnmounted, watchEffect, computed, watch } from "vue";
 import { three } from "../../../three";
 import { animations } from "../../../animations";
@@ -127,7 +127,7 @@ watch(projectVisible, updateRendererActive, { immediate: true });
         <div class="intro-wrapper-spacer"></div>
         <div class="about-spacer" ref="aboutSpacerRef" id="about"></div>
       </div>
-      <LegacyPortfolio id="projects" @ready="handleProjectsLoaded" @visibility="handlePortfolioVisibility" />
+      <Portfolio id="projects" @ready="handleProjectsLoaded" @visibility="handlePortfolioVisibility" />
     </Layout>
   </div>
   <HeaderHome v-if="projectsLoaded" />

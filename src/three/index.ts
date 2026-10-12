@@ -11,7 +11,7 @@ let canvas: HTMLCanvasElement | null = null;
 const init = (_canvas: HTMLCanvasElement) => {
   canvas = _canvas;
 
-  resources.once("ready", () => {
+  const setup = () => {
     threeSizes.init(_canvas);
     camera.init();
     renderTarget.init();
@@ -19,7 +19,11 @@ const init = (_canvas: HTMLCanvasElement) => {
 
     objects.init();
     raycast.init();
-  });
+  };
+
+  // On a remount (e.g. hot reload) resources are already loaded and "ready" won't fire again.
+  if (resources.isReady) setup();
+  else resources.once("ready", setup);
 };
 
 const destroy = () => {

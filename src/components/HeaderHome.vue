@@ -7,9 +7,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useHeaderTheme } from "../composables/useHeaderTheme";
 import { projectId } from "../composables/useRouteObserver";
 
-type ActiveLink = "about" | "projects" | "contact";
+type ActiveLink = "about" | "projects" | "resume";
 const activeLink = ref<ActiveLink | null>(null);
-const sections: ActiveLink[] = ["about", "projects", "contact"];
+const sections: ActiveLink[] = ["about", "projects", "resume"];
 
 const handleLinkClick = (section: ActiveLink) => {
   if (section === "about") {
@@ -24,7 +24,7 @@ const handleLinkClick = (section: ActiveLink) => {
 const ariaLabels = {
   about: t("about"),
   projects: t("projects"),
-  contact: t("contact"),
+  resume: t("resume"),
 };
 
 const isMounted = ref(false);

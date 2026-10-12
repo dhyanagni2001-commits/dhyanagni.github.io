@@ -64,11 +64,11 @@ html {
 // Paint the space colour on the root rather than on .intro-wrapper: the 3D
 // canvas sits at z-index -1, so an .intro-wrapper background would cover the
 // avatar. The root background only shows once the canvas itself is hidden.
-html:has(> body.legacy-portfolio-visible) {
+html:has(> body.portfolio-visible) {
   background: #073b79;
 }
 
-body.legacy-portfolio-visible {
+body.portfolio-visible {
   .header,
   .header-home,
   .scroll-icon {

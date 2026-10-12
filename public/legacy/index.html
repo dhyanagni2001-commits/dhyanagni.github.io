@@ -1104,12 +1104,6 @@
 
           <ul class="contact-direct">
             <li>
-              <a href="mailto:sureshag@usc.edu" class="contact-direct-link">
-                <ion-icon name="mail-outline"></ion-icon>
-                <span>sureshag@usc.edu</span>
-              </a>
-            </li>
-            <li>
               <a
                 href="https://www.linkedin.com/in/dhyan-agni/"
                 class="contact-direct-link social-link"
@@ -1236,7 +1230,7 @@
               document.getElementById("contact-form").reset();
             },
             function (error) {
-              setStatus("Couldn't send your message. Please email me at sureshag@usc.edu instead.", "error");
+              setStatus("Couldn't send your message. Please try again, or reach me on LinkedIn.", "error");
               button.disabled = false;
               console.error(error);
             },

@@ -56,7 +56,6 @@ const navigatePortfolio = (page: string) => {
 };
 
 const handleGetInTouch = () => navigatePortfolio("contact");
-const handleResume = () => navigatePortfolio("resume");
 
 const classNames = computed(() => {
   return {
@@ -106,16 +105,6 @@ const getInTouchClassNames = computed(() => {
       <Logo class="header-logo-image" />
     </div>
     <div class="header-right">
-      <Button
-        renderAs="button"
-        variant="theme"
-        :aria-label="t('resume')"
-        @click="handleResume"
-        :class="getInTouchClassNames"
-        data-cursor="circle-white"
-        data-hoversound="hover"
-        >{{ t("resume") }}</Button
-      >
       <Button
         renderAs="button"
         variant="accent"

@@ -24,7 +24,7 @@ let portfolioEl: Element | null = null;
 
 // White on the dark portfolio section, black over the light 3D scene above it.
 const isOverPortfolio = () => {
-  if (!portfolioEl?.isConnected) portfolioEl = document.querySelector(".legacy-portfolio");
+  if (!portfolioEl?.isConnected) portfolioEl = document.querySelector(".portfolio");
   if (!portfolioEl) return false;
   return mouseY.value >= portfolioEl.getBoundingClientRect().top;
 };
@@ -88,14 +88,6 @@ const handleMouseMove = (e: MouseEvent) => {
   detectedType.value = checkIfHasCursorAttribute(e.target as Element);
 };
 
-const handlePortfolioMouseMove = (e: Event) => {
-  const { clientX, clientY } = (e as CustomEvent<{ clientX: number; clientY: number }>).detail;
-  hasMoved.value = true;
-  mouseX.value = clientX;
-  mouseY.value = clientY;
-  detectedType.value = "circle-white";
-};
-
 onMounted(() => {
   // Initialize position to center of screen
   mouseX.value = window.innerWidth / 2;
@@ -104,7 +96,6 @@ onMounted(() => {
   currentY.value = mouseY.value;
 
   window.addEventListener("mousemove", handleMouseMove);
-  window.addEventListener("portfolio:mousemove", handlePortfolioMouseMove);
   gsap.ticker.add(tick);
 });
 
@@ -119,7 +110,6 @@ watch(
 
 onUnmounted(() => {
   window.removeEventListener("mousemove", handleMouseMove);
-  window.removeEventListener("portfolio:mousemove", handlePortfolioMouseMove);
   gsap.ticker.remove(tick);
 });
 </script>
