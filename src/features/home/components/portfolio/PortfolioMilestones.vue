@@ -5,14 +5,16 @@ import { legacyAsset, milestones } from "../../../../content/portfolio";
 <template>
   <ul class="milestones">
     <li v-for="milestone in milestones" :key="milestone.title">
-      <a
+      <component
+        :is="milestone.image ? 'a' : 'div'"
         class="milestones-card"
-        :href="legacyAsset(milestone.image)"
-        target="_blank"
-        rel="noopener"
-        data-hoversound="hover"
+        :class="{ 'milestones-card-static': !milestone.image }"
+        :href="milestone.image ? legacyAsset(milestone.image) : undefined"
+        :target="milestone.image ? '_blank' : undefined"
+        :rel="milestone.image ? 'noopener' : undefined"
+        :data-hoversound="milestone.image ? 'hover' : undefined"
       >
-        <figure class="milestones-image">
+        <figure v-if="milestone.image" class="milestones-image">
           <img :src="legacyAsset(milestone.image)" :alt="milestone.alt" loading="lazy" />
         </figure>
         <div class="milestones-content">
@@ -23,9 +25,9 @@ import { legacyAsset, milestones } from "../../../../content/portfolio";
           </p>
           <h3 class="milestones-title">{{ milestone.title }}</h3>
           <p class="milestones-text">{{ milestone.text }}</p>
-          <span class="milestones-link">View certificate →</span>
+          <span v-if="milestone.image" class="milestones-link">View certificate →</span>
         </div>
-      </a>
+      </component>
     </li>
   </ul>
 </template>
@@ -50,7 +52,7 @@ import { legacyAsset, milestones } from "../../../../content/portfolio";
       transform 0.2s ease,
       box-shadow 0.2s ease;
 
-    &:hover,
+    &:hover:not(&-static),
     &:focus-visible {
       transform: translateY(-3px);
       box-shadow: 0 12px 28px rgba(45, 42, 36, 0.12);

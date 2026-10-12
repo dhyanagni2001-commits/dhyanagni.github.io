@@ -9,6 +9,7 @@ import { skills, timelines } from "../../../../content/portfolio";
       <ol class="resume-timeline">
         <li v-for="item in timeline.items" :key="item.title" class="resume-item">
           <h4 class="resume-item-title">{{ item.title }}</h4>
+          <p v-if="item.role" class="resume-item-role">{{ item.role }}</p>
           <span class="resume-item-period">{{ item.period }}</span>
           <p class="resume-item-text">{{ item.text }}</p>
         </li>
@@ -66,6 +67,12 @@ import { skills, timelines } from "../../../../content/portfolio";
     &-title {
       font-size: 18px;
       font-weight: 800;
+    }
+
+    &-role {
+      margin-top: 2px;
+      font-size: 15px;
+      font-weight: 700;
     }
 
     &-period {

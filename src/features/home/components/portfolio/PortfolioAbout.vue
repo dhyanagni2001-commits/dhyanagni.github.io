@@ -8,7 +8,7 @@ import { aboutParagraphs, legacyAsset, services } from "../../../../content/port
       <p v-for="(paragraph, index) in aboutParagraphs" :key="index">{{ paragraph }}</p>
     </div>
 
-    <h3 class="about-subtitle">What I work on</h3>
+    <h3 class="about-subtitle">What I do</h3>
     <ul class="about-services">
       <li v-for="service in services" :key="service.title" class="about-service">
         <img class="about-service-icon" :src="legacyAsset(service.icon)" alt="" width="40" height="40" />

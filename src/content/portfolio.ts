@@ -10,47 +10,48 @@ export const projectCategories: { id: ProjectCategory | "all"; label: string }[]
 ];
 
 export const aboutParagraphs = [
-  "I'm a software engineer and MS Computer Science candidate at USC. Before graduate school, I spent over a year at Happiest Minds building and maintaining production backend services used by 100K+ users. That experience taught me to think beyond features and consider performance, reliability, and how systems behave at scale.",
-  "I'm especially interested in backend and distributed systems that make AI useful in the real world—from data pipelines and asynchronous processing to model-serving APIs, retrieval, and monitoring. I enjoy understanding difficult problems, finding the root cause, and building solutions that remain dependable beyond the demo.",
-  "Outside of tech, you'll usually find me on a tennis court or playing squash.",
+  "I’m a software engineer and MS Computer Science student at USC, graduating in May 2027. Before grad school I spent a year at Happiest Minds building Profile and Flashcard microservices for ATI Testing, a platform with 500K+ users. That job taught me to care about what happens after the feature ships: latency, failures, and how services behave under load.",
+  "Most of what I build sits where backend systems meet ML: job queues, CDC pipelines, retrieval services, and self-hosted LLM serving. I like measuring things properly, finding the actual bottleneck, and writing down the conditions behind every number.",
+  "I’m looking for new-grad software engineering and applied ML roles starting in 2027.",
+  "Outside of tech, you’ll usually find me on a tennis court or playing squash.",
 ];
 
 export const services = [
   {
-    title: "Applied AI Systems",
-    text: "Building AI applications around model-serving APIs, embeddings, retrieval, RAG, and agent workflows, with an emphasis on evaluation, latency, privacy, and reliable production behavior.",
-    icon: "icon-design.svg",
-  },
-  {
     title: "Backend Engineering",
-    text: "Designing APIs and microservices with Python, FastAPI, C#, and ASP.NET Core, backed by PostgreSQL, MySQL, and Redis. I focus on clear service boundaries, efficient data access, and maintainable systems.",
-    icon: "icon-dev.svg",
-  },
-  {
-    title: "Cloud & Reliability",
-    text: "Deploying containerized services with Docker, CI/CD, AWS, and Azure, then using logging, metrics, and dashboards to understand performance and keep production systems healthy.",
+    text: "I design APIs and microservices in Python with FastAPI and in C# with ASP.NET Core, backed by PostgreSQL and MySQL. At Happiest Minds I shipped Kafka-based event flows to production. In my own projects I’ve built API gateways, JWT authentication, and real-time chat over WebSockets.",
     icon: "icon-dev.svg",
   },
   {
     title: "Distributed Systems",
-    text: "Building event-driven and concurrent systems with Kafka and PostgreSQL, including a fault-tolerant distributed job queue tested under worker failures and race conditions, with observability for throughput, latency, and recovery.",
+    text: "I build systems that keep working when parts of them fail. My PostgreSQL job queue handles 17,800 jobs per second with lease-based crash recovery tested in CI. I’ve also built a CDC pipeline that streams Postgres changes through Debezium and Kafka into Delta Lake, and a Redis-compatible key-value store in C++20.",
     icon: "icon-design.svg",
+  },
+  {
+    title: "LLM Serving & Retrieval",
+    text: "I build RAG services with LangGraph and FAISS and serve open models with self-hosted vLLM, benchmarking time-to-first-token and throughput under concurrent load. I evaluate retrieval on held-out queries instead of relying on demos, and I’ve built MCP servers that give AI agents structured tools.",
+    icon: "icon-design.svg",
+  },
+  {
+    title: "Infrastructure & Reliability",
+    text: "I deploy services with Docker and Kubernetes and run tests in GitHub Actions CI on every push. I’ve worked with AWS services including SageMaker, Lambda, and Step Functions. For observability I use Prometheus and Grafana, and Datadog from my time debugging production issues at Happiest Minds.",
+    icon: "icon-dev.svg",
   },
 ];
 
-export const timelines = [
+export const timelines: { title: string; items: { title: string; role?: string; period: string; text: string }[] }[] = [
   {
     title: "Education",
     items: [
       {
         title: "University of Southern California",
-        period: "2025 — 2027",
-        text: "I am a Master’s student in Computer Science at the USC Viterbi School of Engineering, concentrating on Artificial Intelligence and Machine Learning with an emphasis on scalable, real-world systems.",
+        period: "Aug 2025 – May 2027",
+        text: "I’m pursuing a Master of Science in Computer Science at the USC Viterbi School of Engineering. My coursework includes Analysis of Algorithms, Machine Learning, Deep Learning, Agentic AI, Database Systems, and Applied NLP. My focus is on building ML systems that hold up in production, not just in notebooks.",
       },
       {
         title: "Visvesvaraya Technological University",
-        period: "2019 — 2023",
-        text: "Bachelor of Engineering in Computer Science from Malnad College of Engineering (Visvesvaraya Technological University). Built a strong foundation in software engineering, data structures, and problem-solving through coursework and projects.",
+        period: "Aug 2019 – Aug 2023",
+        text: "I earned my Bachelor of Engineering in Computer Science and Engineering from Malnad College of Engineering in Karnataka, India. During my degree I served as Technical Head of the Science Association and co-founded AWAKE, a student technical community. I also published a journal paper on a face-recognition attendance system.",
       },
     ],
   },
@@ -59,18 +60,21 @@ export const timelines = [
     items: [
       {
         title: "Happiest Minds Technologies",
-        period: "May 2024 - July 2025",
-        text: "Software Engineer at Happiest Minds Technologies, building scalable backend services and web applications using ASP.NET Core, Angular, and MySQL. Optimized REST APIs and implemented Kafka-based asynchronous processing to improve performance and scalability. Containerized services using Docker and strengthened deployments through CI/CD pipelines. Resolved production issues efficiently to ensure high system reliability and uptime.",
+        role: "Software Engineer",
+        period: "May 2024 – Jul 2025",
+        text: "I built Profile and Flashcard microservices using ASP.NET Core, Angular, MySQL, and Kafka for ATI Testing, a platform serving 500K+ users. I replaced synchronous profile updates triggered by flashcard progress with Kafka events, which raised completed updates per second by 150% in comparable load tests. I also tuned SQL queries and indexes based on execution-plan analysis, cutting average exam-report API latency by more than 200 ms. Beyond development, I containerized services with Docker, coordinated production deployments, and debugged customer-reported failures using Datadog logs and metrics.",
       },
       {
         title: "Bounce",
-        period: "Sep 2023 - Apr 2024",
-        text: "Data Science Intern at Bounce, optimizing SQL queries and redesigning schemas for a ride-demand data pipeline using Python, SQL, and Tableau, cutting query load time by 35% for fleet-operations services. Engineered ETL pipelines in Python, SQL, and Pandas processing 10M+ ride and user activity records daily, improving data quality by 30% and downstream service reliability.",
+        role: "Data Science Intern (Data Engineering)",
+        period: "Sep 2023 – Apr 2024",
+        text: "I built Python and SQL ETL pipelines that processed more than 10 million ride and user activity records every day, adding validation and deduplication checks so downstream analytics could rely on the data. I cut the dashboard load time of a ride-demand analytics service by 35% by rewriting slow SQL queries and redesigning its relational schema. That gave the fleet operations team faster data for daily decisions.",
       },
       {
         title: "Coulomb AI (YC-backed)",
-        period: "Mar 2023 - Aug 2023",
-        text: "Data Science Intern at Coulomb AI, engineering large-scale ETL pipelines in Python and SQL to process 5M+ battery telemetry records, powering downstream remaining useful life (RUL) prediction and anomaly-detection services. Deployed RUL prediction and anomaly-detection models as production inference services on Amazon SageMaker, achieving 85% accuracy.",
+        role: "Data Science Intern (ML Engineering)",
+        period: "Mar 2023 – Aug 2023",
+        text: "I trained an XGBoost model to predict remaining useful life from more than 5 million battery telemetry records, reaching an R² of 0.87 in offline evaluation, and deployed it as an AWS SageMaker inference endpoint. I also built an Isolation Forest anomaly detector with per-battery dynamic thresholds. In offline tests it flagged 85% of known fault events while reducing false-positive alerts by 25%.",
       },
       {
         title: "Tequed Lab",
@@ -89,36 +93,50 @@ export const timelines = [
     items: [
       {
         title: "Technical Head · Science Association",
-        period: "Aug 2019 — Aug 2023",
-        text: "Led technical operations for SCIENTIA events with 400+ attendees, managing audio-visual systems and resolving live technical issues to ensure smooth execution. Built a Flutter-based online treasure hunt platform and the association website to improve participation and event management. Mentored students in Photoshop, video editing, and digital content creation, while collaborating with student leaders to organize and promote technical, academic, and cultural events.",
+        period: "Aug 2019 – Aug 2023",
+        text: "I led technical operations for SCIENTIA events with more than 400 attendees, handling audio-visual systems and fixing live issues during events. I built the association’s website and a Flutter-based online treasure hunt platform that increased participation. I also worked with other student leaders to plan and promote technical, academic, and cultural events.",
       },
       {
         title: "Founding Member · AWAKE",
         period: "Student Technical Community",
-        text: "Helped establish a student-led technical community focused on practical learning and collaboration. Organized hackathons and hands-on workshops, and conducted sessions on Swift, Dart, and Flutter development to help students build mobile applications and strengthen their development skills.",
+        text: "I helped start AWAKE, a student-led technical community focused on hands-on learning. We organized hackathons and practical workshops, and I taught sessions on Swift, Dart, and Flutter to help students build their first mobile apps.",
       },
     ],
   },
 ];
 
 export const skills = [
-  { label: "Programming Languages", items: "Python, C++, JavaScript, TypeScript, SQL" },
-  { label: "Backend & APIs", items: "ASP.NET Core, Flask, FastAPI, REST APIs, Microservices" },
-  { label: "Frontend", items: "React, Angular" },
+  { label: "Languages", items: "Python, C++20, C#, TypeScript, JavaScript, SQL, Kotlin, Swift" },
   {
-    label: "Machine Learning & AI",
-    items: "Scikit-learn, PyTorch, TensorFlow, Transformers, XGBoost, OpenCV, YOLO, NLP",
+    label: "Backend & Distributed",
+    items:
+      "FastAPI, ASP.NET Core, Node.js/Express, REST APIs, SSE Streaming, WebSockets, Kafka, Debezium (CDC), Microservices, API Gateways, Job Queues",
   },
-  { label: "Data & Analytics", items: "Pandas, NumPy, Data Cleaning, Feature Engineering, EDA, Matplotlib, Seaborn" },
-  { label: "Databases & Caching", items: "MySQL, MongoDB, Redis" },
+  {
+    label: "AI / LLM Systems",
+    items:
+      "RAG, LangGraph, vLLM, FAISS, Sentence-Transformers, BM25, MCP Servers, Claude API, OpenAI API, Ollama, LLM Evaluation, TTFT/ITL Benchmarking",
+  },
+  {
+    label: "Machine Learning",
+    items: "PyTorch, Hugging Face Transformers, PyTorch Geometric, XGBoost, Scikit-learn, TensorFlow, YOLOv8, MLflow",
+  },
+  { label: "Edge & On-Device ML", items: "ONNX Runtime, Qualcomm AI Hub, Core ML, TFLite, WebAssembly" },
+  {
+    label: "Data Engineering",
+    items: "PostgreSQL, Delta Lake, Databricks, PySpark, Airflow, DuckDB, Parquet, Tableau",
+  },
+  { label: "Databases", items: "PostgreSQL, MySQL, SQL Server, SQLite, Core Data" },
   {
     label: "Cloud & DevOps",
-    items: "AWS, Azure, AWS SageMaker, Docker, Kubernetes, Kafka, CI/CD Pipelines, Linux, Git",
+    items:
+      "Docker, Kubernetes, GitHub Actions, AWS (SageMaker, Lambda, Step Functions, CloudWatch), Prometheus, Grafana, Datadog, Linux, Git",
   },
   {
-    label: "Distributed",
-    items: "Microservices, Sharding, Replication, Message Queues, Event-Driven Architecture, Worker Leasing",
+    label: "Frontend & Mobile",
+    items: "React, Redux, Angular, Vue, Three.js, Electron, Jetpack Compose, SwiftUI, Chrome Extensions",
   },
+  { label: "Testing", items: "pytest, NUnit, Cypress, XCTest, Chaos and Crash-Recovery Testing" },
 ];
 
 export const projects: { title: string; description: string; category: ProjectCategory; url: string; image: string }[] =
@@ -229,7 +247,22 @@ export const projects: { title: string; description: string; category: ProjectCa
     },
   ];
 
-export const milestones = [
+export const milestones: {
+  title: string;
+  category: string;
+  date: string;
+  datetime: string;
+  text: string;
+  image?: string;
+  alt?: string;
+}[] = [
+  {
+    title: "AI Infra Summit Hackathon 2026 · 2nd place",
+    category: "Qualcomm AI Hub track",
+    date: "2026",
+    datetime: "2026",
+    text: "Our team, Techies, won 2nd place in the Qualcomm AI Hub track in Santa Clara (organized by lablab.ai and NativelyAI) with TrustGate Edge: real-time access monitoring that recognizes authorized people and flags unknown visitors without sending camera footage to the cloud. We quantized (W8A16), profiled, and optimized a dense computer vision model for the Snapdragon X Elite: all 188/188 layers run on the Hexagon NPU, NPU utilization per embedding dropped from 57% to 11%, and inference takes 1.71 ms.",
+  },
   {
     title: "Happiest Minds Technologies",
     category: "Insta Award",
@@ -261,28 +294,28 @@ export const milestones = [
 
 export const featuredProjects = [
   {
+    title: "HealthIQ",
+    metric: "0.97 MRR@10",
+    description:
+      "An LLM serving and RAG backend that answers questions about 536K healthcare providers and 5,335 hospitals with streamed, cited answers. Dense retrieval scored 0.97 MRR@10 against 0.24 for keyword search on 40 held-out queries. The model runs on a separate vLLM GPU service, reaching 442 tokens per second on a T4.",
+    stack: ["vLLM", "FAISS", "LangGraph", "FastAPI"],
+    url: "https://github.com/dhyanagni2001-commits/Agentic-AI-Healthcare-Intelligence-System",
+  },
+  {
+    title: "Distributed Job Queue",
+    metric: "17.8K jobs/s",
+    description:
+      "A PostgreSQL-backed job queue with lease-based crash recovery, retries, and dead-lettering. Batching claims and completions raised throughput 16x, to about 17,800 jobs per second over 100K jobs with 16 workers on a single machine. Worker crash recovery is tested with SIGKILL in CI on every push.",
+    stack: ["PostgreSQL", "Python", "GitHub Actions"],
+    url: "https://github.com/dhyanagni2001-commits/Distributed_Job_Queue",
+  },
+  {
     title: "PayFlow",
-    summary: "Real-time payments CDC lakehouse",
     metric: "3.3K events/s",
-    detail: "Zero loss across 12 chaos tests",
+    description:
+      "A real-time change-data-capture lakehouse for a simulated payments processor. Changes flow from Postgres through Debezium and Kafka into Delta Lake on Databricks, orchestrated by Airflow. The ledger reconciles to the cent, and the pipeline was tested under 12 failure scenarios at over 3,300 events per second.",
     stack: ["Kafka", "Debezium", "Delta Lake", "Airflow"],
     url: "https://github.com/dhyanagni2001-commits/PayFlow",
-  },
-  {
-    title: "FlashKV",
-    summary: "Redis-compatible key-value store in C++20",
-    metric: "3.27M ops/s",
-    detail: "53 Redis commands, runs in the browser via WebAssembly",
-    stack: ["C++20", "Event loop", "WebAssembly"],
-    url: "https://github.com/dhyanagni2001-commits/FlashKV",
-  },
-  {
-    title: "First Fifty",
-    summary: "Agentic battery-cell triage",
-    metric: "7–8 of top 10",
-    detail: "Longest-lived cells found after only 50 cycles",
-    stack: ["Claude agents", "Databricks", "Python"],
-    url: "https://github.com/dhyanagni2001-commits/First_Fifty",
   },
 ];
 

@@ -104,9 +104,8 @@ onBeforeUnmount(() => {
             data-hoversound="hover"
           >
             <span class="featured-metric">{{ project.metric }}</span>
-            <span class="featured-detail">{{ project.detail }}</span>
             <h3 class="featured-name">{{ project.title }}</h3>
-            <p class="featured-summary">{{ project.summary }}</p>
+            <p class="featured-description">{{ project.description }}</p>
             <ul class="featured-stack">
               <li v-for="tech in project.stack" :key="tech">{{ tech }}</li>
             </ul>
@@ -354,20 +353,17 @@ onBeforeUnmount(() => {
     line-height: 1.05;
   }
 
-  &-detail {
-    color: var(--color-text-300);
-    font-size: 14px;
-  }
-
   &-name {
-    margin-top: 14px;
+    margin-top: 6px;
     font-size: 22px;
     font-weight: 900;
   }
 
-  &-summary {
+  &-description {
+    margin-top: 4px;
     color: var(--color-text-300);
     font-size: 15px;
+    line-height: 1.55;
   }
 
   &-stack {
