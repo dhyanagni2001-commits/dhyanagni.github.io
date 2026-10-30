@@ -33,7 +33,7 @@ const init = () => {
   const noiseOffsets = new Float32Array(PARTICLE_COUNT * 3); // Noise offsets for organic movement
   const sizes = new Float32Array(PARTICLE_COUNT); // Individual size multiplier
 
-  const blueColor = new Color(0.1, 0.808, 1.0); // Blue (similar to lab-shine color)
+  const blueColor = new Color(0.93, 0.42, 0.72); // Pink (matches lab-shine color)
 
   const BOTTOM_RADIUS = 1.0;
 

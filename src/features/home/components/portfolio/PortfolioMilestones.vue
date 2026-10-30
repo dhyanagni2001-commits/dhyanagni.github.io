@@ -49,13 +49,15 @@ import { legacyAsset, milestones } from "../../../../content/portfolio";
     color: inherit;
     text-decoration: none;
     transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
+      transform 0.4s var(--ease-power2-out),
+      border-color 0.4s var(--ease-power2-out),
+      box-shadow 0.4s var(--ease-power2-out);
 
     &:hover:not(&-static),
     &:focus-visible {
       transform: translateY(-3px);
-      box-shadow: 0 12px 28px rgba(45, 42, 36, 0.12);
+      box-shadow: 0 18px 40px rgba(5, 147, 198, 0.16);
+      border-color: var(--color-pink-300);
     }
   }
 

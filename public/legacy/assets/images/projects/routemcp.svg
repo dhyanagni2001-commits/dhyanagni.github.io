@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#05415A"/><stop offset="1" stop-color="#022534"/></linearGradient>
+<radialGradient id="glow" cx="0.78" cy="0.42" r="0.55"><stop offset="0" stop-color="#D83995" stop-opacity="0.45"/><stop offset="1" stop-color="#D83995" stop-opacity="0"/></radialGradient>
+<linearGradient id="acc" gradientUnits="userSpaceOnUse" x1="340" y1="40" x2="620" y2="300"><stop offset="0" stop-color="#D83995"/><stop offset="1" stop-color="#0593C6"/></linearGradient>
+<pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#fff" stroke-opacity="0.045"/></pattern>
+</defs>
+<rect width="640" height="360" fill="url(#bg)"/>
+<rect width="640" height="360" fill="url(#grid)"/>
+<rect width="640" height="360" fill="url(#glow)"/>
+<rect x="36" y="38" width="36" height="5" rx="2.5" fill="#D83995"/>
+<text x="36" y="72" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="15" letter-spacing="2" fill="#D83995">LLM GATEWAY · MCP</text>
+<text x="34" y="136" font-family="'Poppins','Segoe UI',Helvetica,Arial,sans-serif" font-size="58" font-weight="700" fill="#FCFFFF">77–88%</text>
+<text x="36" y="172" font-family="'Poppins','Segoe UI',Helvetica,Arial,sans-serif" font-size="20" fill="#A9D3E4">lower cost than always gpt-4.1</text>
+<g fill="none" stroke-linecap="round">
+<rect x="390" y="128" width="64" height="64" rx="14" fill="url(#acc)"/>
+<text x="422" y="166" text-anchor="middle" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="14" fill="#FCFFFF">MCP</text>
+<path d="M454 160 C 500 160, 500 90, 540 90" stroke="#fff" stroke-opacity="0.3" stroke-width="2"/>
+<path d="M454 160 L 540 160" stroke="#D83995" stroke-width="3"/>
+<path d="M454 160 C 500 160, 500 230, 540 230" stroke="#fff" stroke-opacity="0.3" stroke-width="2"/>
+<rect x="540" y="72" width="76" height="36" rx="10" fill="#fff" fill-opacity="0.08" stroke="#fff" stroke-opacity="0.25"/>
+<rect x="540" y="142" width="76" height="36" rx="10" fill="#D83995" fill-opacity="0.2" stroke="#D83995"/>
+<rect x="540" y="212" width="76" height="36" rx="10" fill="#fff" fill-opacity="0.08" stroke="#fff" stroke-opacity="0.25"/>
+<text x="578" y="95" text-anchor="middle" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="12" fill="#E2F3FA" stroke="none">4.1</text>
+<text x="578" y="165" text-anchor="middle" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="12" fill="#FCFFFF" stroke="none">mini</text>
+<text x="578" y="235" text-anchor="middle" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="12" fill="#E2F3FA" stroke="none">nano</text>
+<path d="M340 160 L 390 160" stroke="#fff" stroke-opacity="0.5" stroke-width="2" stroke-dasharray="4 6"/>
+</g>
+<rect x="36.0" y="290" width="81" height="34" rx="17" fill="#fff" fill-opacity="0.08" stroke="#fff" stroke-opacity="0.18"/><text x="49.0" y="312" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="15" fill="#E2F3FA">Python</text><rect x="125.2" y="290" width="54" height="34" rx="17" fill="#fff" fill-opacity="0.08" stroke="#fff" stroke-opacity="0.18"/><text x="138.2" y="312" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="15" fill="#E2F3FA">MCP</text><rect x="186.8" y="290" width="81" height="34" rx="17" fill="#fff" fill-opacity="0.08" stroke="#fff" stroke-opacity="0.18"/><text x="199.8" y="312" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="15" fill="#E2F3FA">SQLite</text>
+</svg>

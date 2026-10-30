@@ -4,12 +4,12 @@ varying vec3 vPosition;
 uniform sampler2D uDiffuseMap;
 uniform float uProgress;
 
-#define COLOR_TOP vec3(0.,0.38,0.69)
-#define COLOR_CYAN vec3(0.27, 1.0, 1.0)
+#define COLOR_TOP vec3(0.02,0.45,0.6)
+#define COLOR_CYAN vec3(1.0, 0.55, 0.82)
 
 #define SHADOW_START -0.4
 #define SHADOW_END 0.
-#define SHADOW_COLOR vec3(.0, 0., 0.1)
+#define SHADOW_COLOR vec3(0.0, 0.06, 0.1)
 #define SHADOW_OPACITY 0.5
 
 #define RADIUS 2.11

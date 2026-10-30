@@ -179,18 +179,22 @@ const handleSubmit = async () => {
     padding: 0 28px;
     border: 0;
     border-radius: 999px;
-    background: var(--color-orange-400);
+    background: var(--gradient-brand);
     color: var(--color-white-400);
     font-family: inherit;
+    box-shadow: 0 8px 24px rgba(216, 57, 149, 0.25);
     font-size: 15px;
     font-weight: 800;
     letter-spacing: 0.02em;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition:
+      transform 0.3s var(--ease-power2-out),
+      box-shadow 0.3s var(--ease-power2-out);
 
     &:hover:not(:disabled),
     &:focus-visible {
-      background: var(--color-black-400);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(216, 57, 149, 0.35);
     }
 
     &:disabled {
@@ -205,11 +209,11 @@ const handleSubmit = async () => {
     font-size: 15px;
 
     &-success {
-      color: #2f7a46;
+      color: var(--color-sky-600);
     }
 
     &-error {
-      color: #b03a2e;
+      color: var(--color-pink-600);
     }
   }
 }

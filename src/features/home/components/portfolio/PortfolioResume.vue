@@ -46,7 +46,7 @@ import { skills, timelines } from "../../../../content/portfolio";
     flex-direction: column;
     gap: 24px;
     padding-left: 28px;
-    border-left: 2px solid var(--color-beige-700);
+    border-left: 2px solid var(--color-sky-200);
   }
 
   &-item {
@@ -61,7 +61,8 @@ import { skills, timelines } from "../../../../content/portfolio";
       height: 12px;
       border: 3px solid var(--color-background-400);
       border-radius: 50%;
-      background: var(--color-orange-400);
+      background: var(--gradient-brand);
+      box-shadow: 0 0 0 4px rgba(216, 57, 149, 0.12);
     }
 
     &-title {
@@ -107,7 +108,7 @@ import { skills, timelines } from "../../../../content/portfolio";
     line-height: 1.5;
 
     dt {
-      color: var(--color-orange-400);
+      color: var(--color-sky-600);
       font-weight: 800;
     }
 

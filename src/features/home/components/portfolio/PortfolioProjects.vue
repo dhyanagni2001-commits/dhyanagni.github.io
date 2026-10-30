@@ -76,8 +76,8 @@ const categoryLabel = (id: ProjectCategory) => projectCategories.find((category)
 
     &-active,
     &-active:hover {
-      border-color: var(--color-orange-400);
-      background: var(--color-orange-400);
+      border-color: transparent;
+      background: var(--gradient-brand);
       color: var(--color-white-400);
     }
   }
@@ -99,13 +99,15 @@ const categoryLabel = (id: ProjectCategory) => projectCategories.find((category)
     color: inherit;
     text-decoration: none;
     transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
+      transform 0.4s var(--ease-power2-out),
+      border-color 0.4s var(--ease-power2-out),
+      box-shadow 0.4s var(--ease-power2-out);
 
     &:hover,
     &:focus-visible {
       transform: translateY(-3px);
-      box-shadow: 0 12px 28px rgba(45, 42, 36, 0.12);
+      box-shadow: 0 18px 40px rgba(5, 147, 198, 0.16);
+      border-color: var(--color-pink-300);
     }
   }
 
@@ -119,7 +121,7 @@ const categoryLabel = (id: ProjectCategory) => projectCategories.find((category)
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.3s ease;
+      transition: transform 0.6s var(--ease-power2-out);
     }
   }
 
@@ -158,7 +160,7 @@ const categoryLabel = (id: ProjectCategory) => projectCategories.find((category)
 
   &-link {
     margin-top: auto;
-    color: var(--color-orange-400);
+    color: var(--color-sky-600);
     font-size: 14px;
     font-weight: 700;
   }

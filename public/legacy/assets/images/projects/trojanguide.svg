@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#05415A"/><stop offset="1" stop-color="#022534"/></linearGradient>
+<radialGradient id="glow" cx="0.78" cy="0.42" r="0.55"><stop offset="0" stop-color="#0593C6" stop-opacity="0.45"/><stop offset="1" stop-color="#0593C6" stop-opacity="0"/></radialGradient>
+<linearGradient id="acc" gradientUnits="userSpaceOnUse" x1="340" y1="40" x2="620" y2="300"><stop offset="0" stop-color="#D83995"/><stop offset="1" stop-color="#0593C6"/></linearGradient>
+<pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#fff" stroke-opacity="0.045"/></pattern>
+</defs>
+<rect width="640" height="360" fill="url(#bg)"/>
+<rect width="640" height="360" fill="url(#grid)"/>
+<rect width="640" height="360" fill="url(#glow)"/>
+<rect x="36" y="38" width="36" height="5" rx="2.5" fill="#0593C6"/>
+<text x="36" y="72" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="15" letter-spacing="2" fill="#0593C6">MCP SERVER · CAMPUS</text>
+<text x="34" y="136" font-family="'Poppins','Segoe UI',Helvetica,Arial,sans-serif" font-size="58" font-weight="700" fill="#FCFFFF">67 places</text>
+<text x="36" y="172" font-family="'Poppins','Segoe UI',Helvetica,Arial,sans-serif" font-size="20" fill="#A9D3E4">USC campus data as typed MCP tools</text>
+<g fill="none" stroke-linecap="round">
+<path d="M380 110 H 620 M380 170 H 620 M380 230 H 620 M440 60 V 260 M520 60 V 260 M600 60 V 260" stroke="#fff" stroke-opacity="0.14" stroke-width="10"/>
+<rect x="452" y="122" width="56" height="36" rx="6" fill="#fff" fill-opacity="0.08"/>
+<rect x="532" y="182" width="56" height="36" rx="6" fill="#fff" fill-opacity="0.08"/>
+<path d="M480 74 c-24 0 -40 18 -40 40 c0 30 40 66 40 66 s40 -36 40 -66 c0 -22 -16 -40 -40 -40z" fill="url(#acc)"/>
+<circle cx="480" cy="114" r="13" fill="#022534"/>
+<text x="540" y="96" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="12" fill="#E2F3FA" stroke="none">find_building()</text>
+</g>
+<rect x="36.0" y="290" width="81" height="34" rx="17" fill="#fff" fill-opacity="0.08" stroke="#fff" stroke-opacity="0.18"/><text x="49.0" y="312" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="15" fill="#E2F3FA">Python</text><rect x="125.2" y="290" width="54" height="34" rx="17" fill="#fff" fill-opacity="0.08" stroke="#fff" stroke-opacity="0.18"/><text x="138.2" y="312" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="15" fill="#E2F3FA">MCP</text><rect x="186.8" y="290" width="72" height="34" rx="17" fill="#fff" fill-opacity="0.08" stroke="#fff" stroke-opacity="0.18"/><text x="199.8" y="312" font-family="'SF Mono',Menlo,Consolas,monospace" font-size="15" fill="#E2F3FA">stdio</text>
+</svg>

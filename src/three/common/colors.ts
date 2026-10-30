@@ -1,6 +1,7 @@
 import { Color } from "three";
 
 export const colors = {
-  beigeDark: new Color("rgb(233, 222, 208)"),
-  beigeLight: new Color("#f5efe6"),
+  // Names kept from the original beige theme; values are now sky tints.
+  beigeDark: new Color("#E2F3FA"),
+  beigeLight: new Color("#F2FAFD"),
 };

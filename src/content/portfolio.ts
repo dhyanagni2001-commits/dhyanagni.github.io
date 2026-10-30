@@ -150,6 +150,14 @@ export const projects: { title: string; description: string; category: ProjectCa
       image: "projects/first-fifty.svg",
     },
     {
+      title: "RouteMCP — Self-Hosted LLM Gateway",
+      description:
+        "Routes OpenAI-compatible requests across providers using hard constraints and measured cost, quality, and latency, with confidence cascades, failover, and an MCP server. On a 260-task eval it matched or beat always using gpt-4.1 at 77–88% lower cost.",
+      category: "ai",
+      url: "https://github.com/dhyanagni2001-commits/RouteMCP",
+      image: "projects/routemcp.svg",
+    },
+    {
       title: "PayFlow — Real-Time Payments CDC Lakehouse",
       description:
         "Postgres → Debezium → Kafka → Parquet → Delta Lake (bronze/silver/gold) on Databricks, orchestrated by Airflow. Reconciled to the cent with zero loss across 12 chaos tests at ≥3.3K events/s.",
@@ -158,12 +166,28 @@ export const projects: { title: string; description: string; category: ProjectCa
       image: "projects/payflow.svg",
     },
     {
+      title: "LLMForge — GPU Kernels for LLM Inference",
+      description:
+        "Fused residual-add + RMSNorm in CUDA C++, tiled causal attention in Triton, a vLLM custom op, and a TVM fusion pass, all validated against PyTorch references to answer one question: when does a faster kernel make a faster model response?",
+      category: "ai",
+      url: "https://github.com/dhyanagni2001-commits/LLMForge",
+      image: "projects/llmforge.svg",
+    },
+    {
       title: "FlashKV — Redis-Compatible Key-Value Store",
       description:
         "Event-driven, in-memory key-value database written from scratch in C++20. Speaks 53 Redis commands, peaks at 3.27M ops/sec, and runs in the browser via WebAssembly.",
       category: "other",
       url: "https://github.com/dhyanagni2001-commits/FlashKV",
       image: "projects/flashkv.svg",
+    },
+    {
+      title: "InferOps Copilot — Kubernetes Inference Diagnostics",
+      description:
+        "Ask why a deployment keeps restarting: it reads pods, events, and logs through a read-only service account, classifies the root cause with deterministic rules, and streams a cited explanation in a React + FastAPI UI.",
+      category: "ai",
+      url: "https://github.com/dhyanagni2001-commits/InferOps-Copilot",
+      image: "projects/inferops.svg",
     },
     {
       title: "Edge AI Access Control on Snapdragon NPU",
@@ -198,6 +222,22 @@ export const projects: { title: string; description: string; category: ProjectCa
       image: "projects/autotriage.svg",
     },
     {
+      title: "FraudMesh — Graph-Based Fraud Detection",
+      description:
+        "Builds a transaction graph from shared cards and devices and compares XGBoost, XGBoost with graph features, and GraphSAGE on PR-AUC and recall at fixed false-positive rates, including the negative results.",
+      category: "ai",
+      url: "https://github.com/dhyanagni2001-commits/FraudMesh",
+      image: "projects/fraudmesh.svg",
+    },
+    {
+      title: "TrojanGuide MCP — Campus Tools for AI Agents",
+      description:
+        "Local Model Context Protocol server that gives MCP clients typed tools to search USC buildings, libraries, dining, and student services instead of relying on what the model remembers.",
+      category: "ai",
+      url: "https://github.com/dhyanagni2001-commits/TrojanGuide-MCP",
+      image: "projects/trojanguide.svg",
+    },
+    {
       title: "OmniSort AI — Local-First File Organizer",
       description:
         "Watches folders and auto-sorts files using rules, OCR, and a local zero-shot DistilBERT classifier, with duplicate detection, semantic search, a FastAPI service, and an Electron dashboard.",
@@ -222,12 +262,28 @@ export const projects: { title: string; description: string; category: ProjectCa
       image: "projects/job-queue.svg",
     },
     {
+      title: "LiDAR Crosswalk Counter",
+      description:
+        "Camera-free counting prototype: DBSCAN clusters 2D LiDAR points, centroids are tracked across frames, and virtual-line crossings give directional counts, with a Streamlit dashboard.",
+      category: "other",
+      url: "https://github.com/dhyanagni2001-commits/LiDAR-Based-Pedestrian-Counter-for-Crosswalks",
+      image: "projects/lidar-counter.svg",
+    },
+    {
       title: "SettleUp — iOS Expense Splitting",
       description:
         "Native SwiftUI app with MVVM + Combine, Core Data + CloudKit sync, an on-device CoreML expense classifier, and a min-transaction debt-simplification engine.",
       category: "other",
       url: "https://github.com/dhyanagni2001-commits/SettleUp",
       image: "projects/settleup.svg",
+    },
+    {
+      title: "CNCC Inventory — Offline Android Store App",
+      description:
+        "Kotlin + Jetpack Compose app for a clothing shop: scan a barcode to sell, record returns, export Excel reports and label PDFs, with nightly backups and idempotent sales that never double-count. Stress-tested with 100,000 products.",
+      category: "other",
+      url: "https://github.com/dhyanagni2001-commits/CNCC_Inventory_Android",
+      image: "projects/cncc-inventory.svg",
     },
     {
       title: "Rentals House Web — Full-Stack Rental Platform",

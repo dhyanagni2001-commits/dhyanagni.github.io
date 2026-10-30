@@ -52,6 +52,16 @@ import { aboutParagraphs, legacyAsset, services } from "../../../../content/port
     border: 1px solid var(--color-beige-700);
     border-radius: 16px;
     background: var(--color-white-400);
+    transition:
+      transform 0.4s var(--ease-power2-out),
+      border-color 0.4s var(--ease-power2-out),
+      box-shadow 0.4s var(--ease-power2-out);
+
+    &:hover {
+      transform: translateY(-3px);
+      border-color: var(--color-sky-200);
+      box-shadow: 0 18px 40px rgba(5, 147, 198, 0.16);
+    }
 
     &-icon {
       flex: 0 0 auto;

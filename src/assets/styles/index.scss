@@ -42,13 +42,13 @@ html {
 }
 
 ::selection {
-  background: #2d2a24;
+  background: var(--color-pink-500);
   color: rgb(255, 255, 255);
   text-shadow: none;
 }
 
 ::-moz-selection {
-  background: #2d2a24;
+  background: var(--color-pink-500);
   color: rgb(255, 255, 255);
   text-shadow: none;
 }
@@ -65,7 +65,7 @@ html {
 // canvas sits at z-index -1, so an .intro-wrapper background would cover the
 // avatar. The root background only shows once the canvas itself is hidden.
 html:has(> body.portfolio-visible) {
-  background: #073b79;
+  background: var(--color-sky-800);
 }
 
 body.portfolio-visible {
