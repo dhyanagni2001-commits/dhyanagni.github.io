@@ -86,7 +86,7 @@ import { skills, timelines } from "../../../../content/portfolio";
 
     &-text {
       max-width: var(--measure);
-      color: var(--text-muted);
+      color: var(--text-body);
       font-size: var(--type-body);
       line-height: var(--line-height-body);
     }
@@ -114,7 +114,7 @@ import { skills, timelines } from "../../../../content/portfolio";
     }
 
     dd {
-      color: var(--text-muted);
+      color: var(--text-body);
     }
   }
 }

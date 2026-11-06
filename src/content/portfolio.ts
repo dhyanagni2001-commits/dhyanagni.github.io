@@ -10,31 +10,44 @@ export const projectCategories: { id: ProjectCategory | "all"; label: string }[]
 ];
 
 export const aboutParagraphs = [
-  "I’m a software engineer and MS Computer Science student at USC, graduating in May 2027. Before grad school I spent a year at Happiest Minds building Profile and Flashcard microservices for ATI Testing, a platform with 500K+ users. That job taught me to care about what happens after the feature ships: latency, failures, and how services behave under load.",
-  "Most of what I build sits where backend systems meet ML: job queues, CDC pipelines, retrieval services, and self-hosted LLM serving. I like measuring things properly, finding the actual bottleneck, and writing down the conditions behind every number.",
-  "I’m looking for new-grad software engineering and applied ML roles starting in 2027.",
+  "I’m a software engineer and MS Computer Science student at USC, graduating in May 2027. Before grad school, I spent a year at Happiest Minds building microservices for ATI Testing, a platform with 500K+ users.",
+  "Most of what I build sits where backend systems meet ML: job queues, CDC pipelines, retrieval services, and self-hosted LLM serving. I like measuring things properly and finding the actual bottleneck.",
   "Outside of tech, you’ll usually find me on a tennis court or playing squash.",
 ];
 
 export const services = [
   {
     title: "Backend Engineering",
-    text: "I design APIs and microservices in Python with FastAPI and in C# with ASP.NET Core, backed by PostgreSQL and MySQL. At Happiest Minds I shipped Kafka-based event flows to production. In my own projects I’ve built API gateways, JWT authentication, and real-time chat over WebSockets.",
+    summary: "APIs and microservices, including Kafka-based event flows shipped to production.",
+    tags: ["FastAPI", "ASP.NET Core", "PostgreSQL", "MySQL", "Kafka"],
     icon: "icon-dev.svg",
   },
   {
     title: "Distributed Systems",
-    text: "I build systems that keep working when parts of them fail. My PostgreSQL job queue handles 17,800 jobs per second with lease-based crash recovery tested in CI. I’ve also built a CDC pipeline that streams Postgres changes through Debezium and Kafka into Delta Lake, and a Redis-compatible key-value store in C++20.",
+    summary: "Systems that keep working when parts of them fail, from job queues to CDC pipelines.",
+    tags: ["PostgreSQL", "Debezium", "Kafka", "Delta Lake", "C++20"],
     icon: "icon-design.svg",
   },
   {
     title: "LLM Serving & Retrieval",
-    text: "I build RAG services with LangGraph and FAISS and serve open models with self-hosted vLLM, benchmarking time-to-first-token and throughput under concurrent load. I evaluate retrieval on held-out queries instead of relying on demos, and I’ve built MCP servers that give AI agents structured tools.",
+    summary: "RAG services and self-hosted models, evaluated on held-out queries and under load.",
+    tags: [
+      "LLM inference",
+      "vLLM",
+      "Streaming",
+      "Latency benchmarking",
+      "TTFT optimization",
+      "Load testing",
+      "LangGraph",
+      "FAISS",
+      "MCP",
+    ],
     icon: "icon-design.svg",
   },
   {
     title: "Infrastructure & Reliability",
-    text: "I deploy services with Docker and Kubernetes and run tests in GitHub Actions CI on every push. I’ve worked with AWS services including SageMaker, Lambda, and Step Functions. For observability I use Prometheus and Grafana, and Datadog from my time debugging production issues at Happiest Minds.",
+    summary: "Containerized deployment, CI on every push, and production debugging.",
+    tags: ["Docker", "Kubernetes", "GitHub Actions", "AWS", "Prometheus", "Grafana", "Datadog"],
     icon: "icon-dev.svg",
   },
 ];

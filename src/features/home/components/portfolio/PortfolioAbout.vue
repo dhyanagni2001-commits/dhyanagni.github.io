@@ -14,7 +14,10 @@ import { aboutParagraphs, legacyAsset, services } from "../../../../content/port
         <img class="about-service-icon" :src="legacyAsset(service.icon)" alt="" width="40" height="40" />
         <div>
           <h4 class="about-service-title">{{ service.title }}</h4>
-          <p class="about-service-text">{{ service.text }}</p>
+          <p class="about-service-text">{{ service.summary }}</p>
+          <ul class="about-service-tags">
+            <li v-for="tag in service.tags" :key="tag">{{ tag }}</li>
+          </ul>
         </div>
       </li>
     </ul>
@@ -24,13 +27,13 @@ import { aboutParagraphs, legacyAsset, services } from "../../../../content/port
 <style scoped lang="scss">
 .about {
   &-text {
-    max-width: var(--measure);
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    color: var(--text-muted);
-    font-size: 17px;
-    line-height: var(--line-height-body);
+    gap: 14px;
+    color: var(--text-body);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.65;
   }
 
   &-subtitle {
@@ -51,7 +54,7 @@ import { aboutParagraphs, legacyAsset, services } from "../../../../content/port
     gap: 16px;
     padding: 20px;
     border: 1px solid var(--border-light);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     background-color: var(--surface-light);
     transition:
       transform 0.3s var(--ease-power2-out),
@@ -77,14 +80,34 @@ import { aboutParagraphs, legacyAsset, services } from "../../../../content/port
     }
 
     &-text {
-      color: var(--text-muted);
-      font-size: 15px;
-      line-height: var(--line-height-body);
+      color: var(--text-body);
+      font-size: var(--type-body);
+      line-height: 1.5;
+    }
+
+    &-tags {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+
+      li {
+        padding: 3px 10px;
+        border-radius: 999px;
+        background-color: var(--pale-blue);
+        color: var(--text-dark);
+        font-family: var(--font-mono);
+        font-size: var(--type-label);
+      }
     }
   }
 }
 
 @media (max-width: 760px) {
+  .about-text {
+    font-size: 17px;
+  }
+
   .about-services {
     grid-template-columns: 1fr;
   }

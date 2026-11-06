@@ -38,7 +38,7 @@ const navigatePortfolio = (page: string) => {
             >{{ t("get-in-touch") }}</Button
           >
           <Button
-            class="hero-action"
+            class="hero-action hero-action-secondary"
             variant="secondary"
             data-cursor="circle-black"
             data-sound="click"
@@ -47,7 +47,7 @@ const navigatePortfolio = (page: string) => {
             >{{ t("projects") }}</Button
           >
           <Button
-            class="hero-action"
+            class="hero-action hero-action-secondary"
             variant="secondary"
             data-cursor="circle-black"
             data-sound="click"
@@ -165,8 +165,8 @@ const navigatePortfolio = (page: string) => {
 
   &-intro {
     margin-top: var(--space-xxs);
-    text-wrap: pretty;
-    color: var(--text-muted);
+    text-wrap: balance;
+    color: var(--text-body);
     font-size: var(--type-body);
     line-height: 1.5;
 
@@ -224,9 +224,24 @@ const navigatePortfolio = (page: string) => {
   }
 }
 
+// The header nav only appears at this width, so smaller screens keep their
+// own route to these tabs.
+@include mixins.mq("lg") {
+  .hero-actions .hero-action-secondary {
+    display: none;
+  }
+}
+
 @media (max-width: 380px) {
   .hero-actions .hero-action {
     padding: 0 14px;
+  }
+}
+
+// Smallest phones: keep all three on one row, clear of the artwork.
+@media (max-width: 340px) {
+  .hero-actions .hero-action {
+    padding: 0 10px;
   }
 }
 

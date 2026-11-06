@@ -116,8 +116,8 @@ import { legacyAsset, milestones } from "../../../../content/portfolio";
   }
 
   &-text {
-    color: var(--text-muted);
-    font-size: 15px;
+    color: var(--text-body);
+    font-size: var(--type-body);
     line-height: var(--line-height-body);
   }
 

@@ -173,8 +173,8 @@ const categoryLabel = (id: ProjectCategory) => projectCategories.find((category)
 
   &-description {
     margin-top: 8px;
-    color: var(--text-muted);
-    font-size: 15px;
+    color: var(--text-body);
+    font-size: var(--type-body);
     line-height: var(--line-height-body);
   }
 
@@ -185,8 +185,8 @@ const categoryLabel = (id: ProjectCategory) => projectCategories.find((category)
 
     &-text {
       margin-top: 2px;
-      color: var(--text-muted);
-      font-size: var(--type-small);
+      color: var(--text-body);
+      font-size: 15px;
       line-height: 1.5;
     }
   }
@@ -244,6 +244,52 @@ const categoryLabel = (id: ProjectCategory) => projectCategories.find((category)
     color: var(--text-muted);
     font-family: var(--font-mono);
     font-size: var(--type-label);
+  }
+}
+
+// Cards in a row share row tracks, so dividers, tags and links line up however
+// long each description runs. Rows are explicit because the result is optional.
+@supports (grid-template-rows: subgrid) {
+  .projects-list {
+    row-gap: 0;
+
+    > li {
+      display: grid;
+      grid-row: span 6;
+      grid-template-rows: subgrid;
+      padding-bottom: 20px;
+    }
+  }
+
+  .projects-card {
+    display: grid;
+    grid-row: span 6;
+    grid-template-rows: subgrid;
+    height: auto;
+  }
+
+  .projects-image {
+    grid-row: 1;
+  }
+
+  .projects-title {
+    grid-row: 2;
+  }
+
+  .projects-description {
+    grid-row: 3;
+  }
+
+  .projects-result {
+    grid-row: 4;
+  }
+
+  .projects-stack {
+    grid-row: 5;
+  }
+
+  .projects-footer {
+    grid-row: 6;
   }
 }
 

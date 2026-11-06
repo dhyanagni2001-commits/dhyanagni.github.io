@@ -15,10 +15,8 @@ export const isProjectRoute = (path: string) => {
   return path.match(/^\/project\/([^/]+)$/);
 };
 
-export const projectId = computed(() => {
-  const match = isProjectRoute(path.value);
-  return match ? match[1] : null;
-});
+// The template's case-study pages aren't part of this portfolio, so no URL opens one.
+export const projectId = computed<string | null>(() => null);
 
 export const projectVisible = computed(() => {
   return projectId.value !== null && !isTransitioning.value;

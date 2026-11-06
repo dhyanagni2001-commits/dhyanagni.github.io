@@ -39,6 +39,7 @@ export default defineConfig({
         assetFileNames: "assets/[hash].[ext]",
         entryFileNames: "chunks/[name]-[hash].js",
         chunkFileNames: "chunks/[hash].js",
+        manualChunks: (id) => (id.includes("node_modules/three/") ? "three" : undefined),
       },
     },
   },

@@ -164,7 +164,12 @@ onBeforeUnmount(() => {
       </button>
     </nav>
 
-    <article ref="panel" class="portfolio-panel" data-cursor="circle-black">
+    <article
+      ref="panel"
+      class="portfolio-panel"
+      :class="{ 'portfolio-panel-narrow': activePage === 'about' }"
+      data-cursor="circle-black"
+    >
       <div :key="activePage" class="portfolio-panel-page">
         <h2 class="portfolio-panel-title">{{ currentPage.title }}</h2>
         <component :is="currentPage.component" />
@@ -253,11 +258,16 @@ onBeforeUnmount(() => {
     min-height: calc(var(--lvh) * 100 - 120px);
     margin: 0 auto;
     padding: clamp(24px, 4vw, 48px);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-lg);
     background-color: var(--ice-blue);
     color: var(--text-dark);
     font-family: var(--font-sans);
     box-shadow: 0 24px 60px rgba(4, 20, 31, 0.4);
+
+    // Long-form copy reads better at a line length grids don't need.
+    &-narrow {
+      width: min(calc(100% - 32px), 820px);
+    }
 
     &-page {
       animation: portfolio-page-in 0.55s var(--ease-power2-out) both;
@@ -463,6 +473,28 @@ onBeforeUnmount(() => {
   }
 }
 
+// Cards in a row share row tracks, so dividers, tags and links line up however
+// long each description runs.
+@supports (grid-template-rows: subgrid) {
+  .featured-list {
+    row-gap: 0;
+
+    > li {
+      display: grid;
+      grid-row: span 5;
+      grid-template-rows: subgrid;
+      padding-bottom: 20px;
+    }
+  }
+
+  .featured-card {
+    display: grid;
+    grid-row: span 5;
+    grid-template-rows: subgrid;
+    height: auto;
+  }
+}
+
 @media (max-width: 1000px) {
   .featured-list {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -491,7 +523,6 @@ onBeforeUnmount(() => {
 
   .portfolio-panel {
     width: calc(100% - 20px);
-    border-radius: var(--radius-lg);
   }
 }
 </style>

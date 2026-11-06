@@ -95,6 +95,9 @@ const compileScene = async (camera: Camera, sceneToCompile: Scene) => {
     });
 
     instance.compile(sceneToCompile, camera);
+    // three only checks a program on first use, which blocks until the GPU has
+    // linked it. Do that now, behind the preloader, not mid-scroll into the lab.
+    instance.info.programs?.forEach((program) => program.getUniforms());
 
     invisibleObjects.forEach((child) => (child.visible = false));
     instancedWithOriginalCullState.forEach(([child, originalState]) => {
