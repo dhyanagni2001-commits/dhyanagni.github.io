@@ -36,8 +36,8 @@ import { skills, timelines } from "../../../../content/portfolio";
 
   &-subtitle {
     margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: 900;
+    color: var(--text-dark);
+    font-size: var(--type-h3);
   }
 
   &-timeline {
@@ -45,8 +45,8 @@ import { skills, timelines } from "../../../../content/portfolio";
     display: flex;
     flex-direction: column;
     gap: 24px;
-    padding-left: 28px;
-    border-left: 2px solid var(--color-sky-200);
+    padding-left: 24px;
+    border-left: 1px solid var(--border-light);
   }
 
   &-item {
@@ -55,39 +55,40 @@ import { skills, timelines } from "../../../../content/portfolio";
     &::before {
       content: "";
       position: absolute;
-      top: 6px;
-      left: -35px;
-      width: 12px;
-      height: 12px;
-      border: 3px solid var(--color-background-400);
+      top: 5px;
+      left: -30px;
+      width: 11px;
+      height: 11px;
+      border: 2px solid var(--ice-blue);
       border-radius: 50%;
-      background: var(--gradient-brand);
-      box-shadow: 0 0 0 4px rgba(216, 57, 149, 0.12);
+      background-color: var(--cyan-dark);
     }
 
     &-title {
-      font-size: 18px;
-      font-weight: 800;
+      color: var(--text-dark);
+      font-size: var(--type-h4);
     }
 
     &-role {
       margin-top: 2px;
+      color: var(--text-dark);
       font-size: 15px;
       font-weight: 700;
     }
 
     &-period {
       display: block;
-      margin: 2px 0 8px;
-      color: var(--color-orange-400);
-      font-size: 14px;
-      font-weight: 700;
+      margin: 4px 0 8px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: var(--type-label);
     }
 
     &-text {
-      color: var(--color-text-300);
-      font-size: 15px;
-      line-height: 1.65;
+      max-width: var(--measure);
+      color: var(--text-muted);
+      font-size: var(--type-body);
+      line-height: var(--line-height-body);
     }
   }
 
@@ -95,9 +96,9 @@ import { skills, timelines } from "../../../../content/portfolio";
     display: grid;
     gap: 12px;
     padding: 20px;
-    border: 1px solid var(--color-beige-700);
-    border-radius: 16px;
-    background: var(--color-white-400);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    background-color: var(--surface-light);
   }
 
   &-skill {
@@ -108,12 +109,12 @@ import { skills, timelines } from "../../../../content/portfolio";
     line-height: 1.5;
 
     dt {
-      color: var(--color-sky-600);
-      font-weight: 800;
+      color: var(--text-dark);
+      font-weight: 700;
     }
 
     dd {
-      color: var(--color-text-300);
+      color: var(--text-muted);
     }
   }
 }

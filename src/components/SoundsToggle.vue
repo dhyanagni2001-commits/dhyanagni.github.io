@@ -19,7 +19,7 @@ const toggleSounds = () => {
     :class="{ 'music-toggle': true, 'music-toggle-dark': props.isDarkTheme, 'children-unclickable': true }"
     @click="toggleSounds"
     :aria-label="soundsEnabled && howlerUnlocked ? t('disable-sounds') : t('enable-sounds')"
-    data-cursor="circle-white"
+    :data-cursor="props.isDarkTheme ? 'circle-white' : 'circle-black'"
     data-sound="click"
     data-hoversound="hover"
   >
@@ -29,10 +29,21 @@ const toggleSounds = () => {
 
 <style scoped lang="scss">
 .music-toggle {
-  &-dark {
-    background-color: var(--color-dark-blue-500);
-    color: var(--color-white-400);
-    --icon-color: var(--color-white-400);
+  border-color: var(--border-light);
+
+  &.music-toggle-dark {
+    --focus-ring: var(--cyan);
+
+    border-color: var(--border-dark);
+    background-color: var(--teal-navy);
+    color: var(--text-light);
+    --icon-color: var(--text-light);
+
+    @include mixins.hover {
+      &:hover {
+        background-color: var(--raised-teal);
+      }
+    }
   }
 }
 </style>

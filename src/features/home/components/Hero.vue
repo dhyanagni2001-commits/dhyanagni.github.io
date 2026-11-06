@@ -1,7 +1,16 @@
-<script setup>
+<script setup lang="ts">
+import { computed } from "vue";
 import Banner from "../../../components/Banner.vue";
+import Button from "../../../components/Button.vue";
 import { preloaderVisible } from "../../../composables/usePreloader";
 import { t } from "../../../i18n/utils/translate";
+
+// Wraps between phrases rather than inside one ("Graduating / May 2027").
+const statusParts = computed(() => t("hero-status").split(" · "));
+
+const navigatePortfolio = (page: string) => {
+  window.dispatchEvent(new CustomEvent("portfolio:navigate", { detail: page }));
+};
 </script>
 
 <template>
@@ -10,7 +19,42 @@ import { t } from "../../../i18n/utils/translate";
       <div class="hero-content-inner" id="hero-content-inner">
         <div class="hero-content-copys">
           <h1 class="hero-title"><span>Dhyan S. Agni</span></h1>
-          <Banner class="hero-banner" :copy="t('job-title')" v-if="!preloaderVisible" animated />
+          <div class="hero-role">
+            <Banner :copy="t('job-title')" size="sm" v-if="!preloaderVisible" animated />
+          </div>
+          <p class="hero-intro">{{ t("hero-intro") }}</p>
+          <p class="hero-status">
+            <span v-for="part in statusParts" :key="part">{{ part }}</span>
+          </p>
+        </div>
+        <div class="hero-actions">
+          <Button
+            class="hero-action"
+            variant="accent"
+            data-cursor="circle-white"
+            data-sound="click"
+            data-hoversound="hover"
+            @click="navigatePortfolio('contact')"
+            >{{ t("get-in-touch") }}</Button
+          >
+          <Button
+            class="hero-action"
+            variant="secondary"
+            data-cursor="circle-black"
+            data-sound="click"
+            data-hoversound="hover"
+            @click="navigatePortfolio('projects')"
+            >{{ t("projects") }}</Button
+          >
+          <Button
+            class="hero-action"
+            variant="secondary"
+            data-cursor="circle-black"
+            data-sound="click"
+            data-hoversound="hover"
+            @click="navigatePortfolio('resume')"
+            >{{ t("resume") }}</Button
+          >
         </div>
       </div>
     </div>
@@ -30,12 +74,14 @@ import { t } from "../../../i18n/utils/translate";
     align-items: center;
     justify-content: center;
     height: 46%;
+    padding-top: var(--height-header);
 
     @include mixins.landscape {
       height: 100%;
+      padding-top: 0;
 
       @include mixins.mq("md") {
-        padding-bottom: 30%;
+        padding-bottom: 8%;
       }
 
       @include mixins.mq("lg") {
@@ -46,95 +92,169 @@ import { t } from "../../../i18n/utils/translate";
     &-inner {
       transform-origin: center center;
       grid-column: 1 / 13;
-      gap: var(--space-xxl);
+      gap: var(--space-md);
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      width: fit-content;
+      width: min(calc(100% - var(--space-outer) * 2), 560px);
       position: relative;
       left: 50%;
       transform: translateX(-50%);
+
+      @include mixins.mq("md") {
+        gap: var(--space-lg);
+      }
 
       @include mixins.landscape {
         left: 0;
         transform: translateX(0);
         grid-column: 2 / 13;
-        width: fit-content;
+        width: min(100%, 38vw);
+        min-width: 340px;
       }
     }
 
     &-copys {
       display: flex;
       flex-direction: column;
-      gap: var(--space-sm);
+      align-items: flex-start;
+      gap: var(--space-xs);
 
       @include mixins.mq("md") {
-        gap: var(--space-md);
+        gap: var(--space-sm);
       }
-    }
-
-    &-button {
-      width: fit-content;
     }
   }
 
   &-title {
     display: flex;
     flex-direction: column;
-    font-weight: 900;
-    letter-spacing: 0.02em;
+    color: var(--text-dark);
     font-size: clamp(36px, 12.5vw, var(--font-size-title-xl));
-    line-height: 0.92;
+    line-height: 1;
 
     span {
       white-space: nowrap;
     }
 
     @include mixins.landscape {
-      font-size: var(--font-size-title-lg);
-      line-height: var(--line-height-title);
+      font-size: var(--font-size-title-md);
     }
 
     @include mixins.landscape-large {
-      @include mixins.mq("sm") {
-        font-size: var(--font-size-title-xl);
-      }
-
-      @include mixins.mq("xl") {
-        font-size: var(--font-size-title-xxl);
-      }
+      font-size: clamp(var(--font-size-title-md), 5.2vw, var(--font-size-title-xxl));
     }
   }
 
-  &-banner {
-    position: absolute;
-    bottom: -6px;
-    left: 4px;
-    z-index: 10;
-    max-width: calc(100vw - 40px);
-    transform: translate(0, 70%);
+  // Reserves the label's height so the group doesn't shift when it animates in.
+  &-role {
+    min-height: 28px;
 
     :deep(.banner-copy) {
-      font-size: clamp(13px, 3.7vw, 17px);
-      line-height: 1.1;
+      font-size: var(--font-size-md);
+      letter-spacing: 0.03em;
+      line-height: 1.2;
       white-space: nowrap;
     }
 
-    @include mixins.mq("sm") {
-      left: auto;
-      right: -24px;
-      transform: translate(0, 70%);
+    :deep(.banner) {
+      padding: 3px var(--space-xs);
     }
+  }
 
-    @include mixins.mq("lg") {
-      right: -32px;
-      transform: translate(0, 80%);
+  &-intro {
+    margin-top: var(--space-xxs);
+    text-wrap: pretty;
+    color: var(--text-muted);
+    font-size: var(--type-body);
+    line-height: 1.5;
 
-      :deep(.banner-copy) {
-        font-size: var(--font-size-title-xs);
+    @include mixins.mq("md") {
+      font-size: var(--font-size-lg);
+    }
+  }
+
+  &-status {
+    color: var(--text-dark);
+    font-size: var(--type-small);
+    font-weight: 700;
+    line-height: 1.5;
+    // Each phrase carries its separator on the left. The negative margin and
+    // clip hide the one that lands at the start of a line, so a wrapped line
+    // neither starts nor ends on a stray dot.
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -16px;
+    clip-path: inset(0 0 0 16px);
+
+    span {
+      position: relative;
+      padding-left: 16px;
+      white-space: nowrap;
+
+      &::before {
+        content: "·";
+        position: absolute;
+        left: 6px;
       }
     }
+
+    @include mixins.mq("md") {
+      font-size: 15px;
+    }
+  }
+
+  &-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+
+    @include mixins.mq("md") {
+      gap: var(--space-sm);
+    }
+  }
+
+  &-actions &-action {
+    padding: 0 18px;
+
+    @include mixins.mq("xl") {
+      padding: 0 24px;
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-actions .hero-action {
+    padding: 0 14px;
+  }
+}
+
+// Short screens: small phones in portrait, any phone in landscape. Keep the
+// name, role, status line and actions, and let the sentence go.
+@media (orientation: portrait) and (max-height: 700px), (orientation: landscape) and (max-height: 480px) {
+  .hero-intro {
+    display: none;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 480px) {
+  .hero-content {
+    padding-top: var(--height-header);
+    padding-bottom: 0;
+  }
+
+  .hero-content-inner {
+    gap: var(--space-sm);
+    min-width: 360px;
+  }
+
+  .hero-actions .hero-action {
+    padding: 0 14px;
+  }
+
+  .hero-title {
+    font-size: var(--font-size-title-sm);
   }
 }
 </style>

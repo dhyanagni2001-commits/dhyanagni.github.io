@@ -97,7 +97,11 @@ const getInTouchClassNames = computed(() => {
         'header-logo-clickable': scrolledPastHeroVisible,
         'children-unclickable': true,
       }"
+      role="button"
+      :tabindex="scrolledPastHeroVisible && projectId === null ? 0 : -1"
+      :aria-label="t('back-to-home')"
       @click="handleLogoClick"
+      @keydown.enter="handleLogoClick"
       data-sound="click"
       data-hoversound="hover"
       data-cursor="circle-white"
@@ -167,12 +171,23 @@ const getInTouchClassNames = computed(() => {
     transform: translateY(-50%);
   }
 
-  &-get-in-touch {
+  // The hero has its own contact button, so this one takes over once it scrolls away.
+  & &-get-in-touch {
     width: fit-content;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.2s ease-in-out,
+      visibility 0.2s ease-in-out,
+      background-color 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out,
+      transform 0.2s ease-in-out;
+  }
 
-    &-isProjectPage {
-      opacity: 1 !important;
-    }
+  &-scrolled &-get-in-touch,
+  & &-get-in-touch-isProjectPage {
+    opacity: 1;
+    visibility: visible;
   }
 
   &-right {
@@ -191,8 +206,10 @@ const getInTouchClassNames = computed(() => {
   }
 
   &-dark {
-    color: var(--color-white-400);
-    --icon-color: var(--color-white-400);
+    --focus-ring: var(--cyan);
+
+    color: var(--text-light);
+    --icon-color: var(--text-light);
   }
 
   &-get-in-touch {

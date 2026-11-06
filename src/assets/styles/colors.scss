@@ -1,64 +1,60 @@
-// Palette: Sky Blue #0593C6, White #FCFFFF, Hot Pink #D83995.
-// Every other value below is a tint or shade of one of those three, so the
-// site reads as a single system. Legacy token names (beige, orange, cyan…) are
-// kept so existing components pick up the new palette without edits.
+// Core palette. Everything on the site should resolve to one of these; the 3D
+// artwork keeps its own colours.
 :root {
-  /* Brand */
-  --color-sky-900: #022534;
-  --color-sky-800: #033A52;
-  --color-sky-700: #034E6B;
-  --color-sky-600: #04729A;
-  --color-sky-500: #0593C6;
-  --color-sky-400: #3AADD6;
-  --color-sky-300: #7FCBE6;
-  --color-sky-200: #BEE5F3;
-  --color-sky-100: #E2F3FA;
-  --color-sky-50: #F2FAFD;
+  --navy: #08263A;
+  --teal-navy: #0A3B53;
+  --raised-teal: #10465F;
+  --ice-blue: #F3F8FB;
+  --pale-blue: #E8F3F8;
+  --text-dark: #123247;
+  --text-muted: #536F80;
+  --text-light: #F4F9FC;
+  --text-light-muted: #B8CEDA;
+  --cyan: #31B8DD;
+  --cyan-dark: #007C9E;
+  --magenta: #C83F88;
 
-  --color-pink-700: #8F1F60;
-  --color-pink-600: #B52A7B;
-  --color-pink-500: #D83995;
-  --color-pink-400: #E466AE;
-  --color-pink-300: #EE9DCB;
-  --color-pink-100: #FBE4F1;
+  /* Derived interaction and surface steps */
+  --magenta-hover: #A93271;
+  --pale-blue-strong: #D6E8F1;
+  --surface-light: #FFFFFF;
+  --border-light: #D3E3EC;
+  --border-dark: rgba(49, 184, 221, 0.24);
+  --focus-ring: var(--cyan-dark);
 
-  --color-snow: #FCFFFF;
+  /* Legacy names, kept so existing components pick up the palette without edits */
+  --color-text-400: var(--text-dark);
+  --color-text-300: var(--text-muted);
 
-  --gradient-brand: linear-gradient(120deg, var(--color-sky-500) 0%, var(--color-pink-500) 100%);
+  --color-grayscale-500: var(--pale-blue);
+  --color-grayscale-400: var(--border-light);
 
-  /* Semantic */
-  --color-text-400: #0A2C3D;
-  --color-text-300: #4A6878;
+  --color-beige-700: var(--border-light);
+  --color-beige-600: var(--pale-blue);
+  --color-beige-500: var(--pale-blue);
+  --color-beige-400: var(--ice-blue);
 
-  --color-grayscale-500: var(--color-sky-200);
-  --color-grayscale-400: var(--color-sky-100);
+  --color-background-400: var(--ice-blue);
 
-  --color-beige-700: #D3ECF6;
-  --color-beige-600: var(--color-sky-100);
-  --color-beige-500: #EAF6FB;
-  --color-beige-400: var(--color-sky-50);
+  --color-black-400: var(--navy);
 
-  --color-background-400: var(--color-sky-50);
+  --color-gray-500: var(--text-muted);
+  --color-gray-400: var(--text-light-muted);
 
-  --color-black-400: #0A2C3D;
+  --color-orange-400: var(--magenta);
 
-  --color-gray-500: #5E7B8A;
-  --color-gray-400: #A5BFCB;
+  --color-white-400: #FFFFFF;
 
-  --color-orange-400: var(--color-pink-500);
+  --color-cyan-500: var(--cyan);
+  --color-cyan-400: var(--cyan);
 
-  --color-white-400: var(--color-snow);
+  --color-text-cyan-400: var(--text-light);
+  --color-text-cyan-300: var(--text-light-muted);
 
-  --color-cyan-500: var(--color-sky-500);
-  --color-cyan-400: #5EC4EC;
+  --color-dark-blue-600: var(--raised-teal);
+  --color-dark-blue-500: var(--teal-navy);
+  --color-dark-blue-400: var(--navy);
 
-  --color-text-cyan-400: #E6F7FD;
-  --color-text-cyan-300: var(--color-sky-300);
-
-  --color-dark-blue-600: var(--color-sky-600);
-  --color-dark-blue-500: var(--color-sky-700);
-  --color-dark-blue-400: var(--color-sky-800);
-
-  --color-hologram-top: rgb(3, 78, 107);
-  --color-hologram-bottom: rgba(4, 114, 154, 0.6);
+  --color-hologram-top: var(--teal-navy);
+  --color-hologram-bottom: rgba(10, 59, 83, 0.88);
 }

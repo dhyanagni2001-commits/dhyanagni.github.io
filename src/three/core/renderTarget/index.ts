@@ -20,7 +20,8 @@ const init = () => {
 const render = () => {
   const rendererInstance = renderer.getInstance();
   rendererInstance.setRenderTarget(instance);
-  rendererInstance.setClearColor("#04729A");
+  // Darkened by the render target's colour handling; lands on --navy on screen.
+  rendererInstance.setClearColor("#356B82");
   rendererInstance.render(scene, mainCamera.instance);
   rendererInstance.setRenderTarget(null);
 };

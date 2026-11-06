@@ -31,7 +31,7 @@ export const useScroll = () => {
     }
 
     lenis.value = new Lenis({
-      lerp: 0.08,
+      lerp: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 0.08,
     });
 
     lenis.value.on("scroll", handleScroll);

@@ -36,7 +36,21 @@
 
   /* Line Heights */
   --line-height-copy: 1.3;
-  --line-height-title: 1.1;
+  --line-height-title: 1.15;
+  --line-height-body: 1.6;
+
+  /* Type */
+  --font-sans: "Urbanist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "ProFontWindows", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-weight-heading: 700;
+
+  --type-h2: clamp(30px, 3.4vw, 40px);
+  --type-h3: 22px;
+  --type-h4: 18px;
+  --type-body: 16px;
+  --type-small: 14px;
+  --type-label: 13px;
+  --measure: 68ch;
 
   /* Radii */
   --radius-sm: 6px;

@@ -24,18 +24,19 @@ import { aboutParagraphs, legacyAsset, services } from "../../../../content/port
 <style scoped lang="scss">
 .about {
   &-text {
+    max-width: var(--measure);
     display: flex;
     flex-direction: column;
     gap: 16px;
-    color: var(--color-text-300);
+    color: var(--text-muted);
     font-size: 17px;
-    line-height: 1.65;
+    line-height: var(--line-height-body);
   }
 
   &-subtitle {
     margin: 40px 0 20px;
-    font-size: 24px;
-    font-weight: 900;
+    color: var(--text-dark);
+    font-size: var(--type-h3);
   }
 
   &-services {
@@ -49,18 +50,20 @@ import { aboutParagraphs, legacyAsset, services } from "../../../../content/port
     align-items: flex-start;
     gap: 16px;
     padding: 20px;
-    border: 1px solid var(--color-beige-700);
-    border-radius: 16px;
-    background: var(--color-white-400);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    background-color: var(--surface-light);
     transition:
-      transform 0.4s var(--ease-power2-out),
-      border-color 0.4s var(--ease-power2-out),
-      box-shadow 0.4s var(--ease-power2-out);
+      transform 0.3s var(--ease-power2-out),
+      border-color 0.3s var(--ease-power2-out),
+      box-shadow 0.3s var(--ease-power2-out);
 
-    &:hover {
-      transform: translateY(-3px);
-      border-color: var(--color-sky-200);
-      box-shadow: 0 18px 40px rgba(5, 147, 198, 0.16);
+    @include mixins.hover {
+      &:hover {
+        transform: translateY(-3px);
+        border-color: var(--cyan-dark);
+        box-shadow: 0 12px 28px rgba(8, 38, 58, 0.1);
+      }
     }
 
     &-icon {
@@ -69,14 +72,14 @@ import { aboutParagraphs, legacyAsset, services } from "../../../../content/port
 
     &-title {
       margin-bottom: 6px;
-      font-size: 18px;
-      font-weight: 800;
+      color: var(--text-dark);
+      font-size: var(--type-h4);
     }
 
     &-text {
-      color: var(--color-text-300);
+      color: var(--text-muted);
       font-size: 15px;
-      line-height: 1.6;
+      line-height: var(--line-height-body);
     }
   }
 }

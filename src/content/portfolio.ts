@@ -139,169 +139,213 @@ export const skills = [
   { label: "Testing", items: "pytest, NUnit, Cypress, XCTest, Chaos and Crash-Recovery Testing" },
 ];
 
-export const projects: { title: string; description: string; category: ProjectCategory; url: string; image: string }[] =
-  [
-    {
-      title: "First Fifty — Agentic Battery-Cell Triage",
-      description:
-        "Team of five Claude agents that pick which battery cells deserve a full life test after only 50 cycles, with human approval on every call and leakage-safe evaluation. Found 7–8 of the 10 longest-lived cells on a sealed batch. Built for Hack-Nation × Databricks.",
-      category: "ai",
-      url: "https://github.com/dhyanagni2001-commits/First_Fifty",
-      image: "projects/first-fifty.svg",
-    },
-    {
-      title: "RouteMCP — Self-Hosted LLM Gateway",
-      description:
-        "Routes OpenAI-compatible requests across providers using hard constraints and measured cost, quality, and latency, with confidence cascades, failover, and an MCP server. On a 260-task eval it matched or beat always using gpt-4.1 at 77–88% lower cost.",
-      category: "ai",
-      url: "https://github.com/dhyanagni2001-commits/RouteMCP",
-      image: "projects/routemcp.svg",
-    },
-    {
-      title: "PayFlow — Real-Time Payments CDC Lakehouse",
-      description:
-        "Postgres → Debezium → Kafka → Parquet → Delta Lake (bronze/silver/gold) on Databricks, orchestrated by Airflow. Reconciled to the cent with zero loss across 12 chaos tests at ≥3.3K events/s.",
-      category: "other",
-      url: "https://github.com/dhyanagni2001-commits/PayFlow",
-      image: "projects/payflow.svg",
-    },
-    {
-      title: "LLMForge — GPU Kernels for LLM Inference",
-      description:
-        "Fused residual-add + RMSNorm in CUDA C++, tiled causal attention in Triton, a vLLM custom op, and a TVM fusion pass, all validated against PyTorch references to answer one question: when does a faster kernel make a faster model response?",
-      category: "ai",
-      url: "https://github.com/dhyanagni2001-commits/LLMForge",
-      image: "projects/llmforge.svg",
-    },
-    {
-      title: "FlashKV — Redis-Compatible Key-Value Store",
-      description:
-        "Event-driven, in-memory key-value database written from scratch in C++20. Speaks 53 Redis commands, peaks at 3.27M ops/sec, and runs in the browser via WebAssembly.",
-      category: "other",
-      url: "https://github.com/dhyanagni2001-commits/FlashKV",
-      image: "projects/flashkv.svg",
-    },
-    {
-      title: "InferOps Copilot — Kubernetes Inference Diagnostics",
-      description:
-        "Ask why a deployment keeps restarting: it reads pods, events, and logs through a read-only service account, classifies the root cause with deterministic rules, and streams a cited explanation in a React + FastAPI UI.",
-      category: "ai",
-      url: "https://github.com/dhyanagni2001-commits/InferOps-Copilot",
-      image: "projects/inferops.svg",
-    },
-    {
-      title: "Edge AI Access Control on Snapdragon NPU",
-      description:
-        "Real-time face recognition with InsightFace / ArcFace compiled to QNN context binaries for the Snapdragon X Elite Hexagon NPU, with device alerts and on-device inference.",
-      category: "ai",
-      url: "https://github.com/dhyanagni2001-commits/Qualcomm_Hackathon",
-      image: "projects/edge-ai-npu.svg",
-    },
-    {
-      title: "ShopMind — Semantic E-commerce Search Agent",
-      description:
-        "Fine-tuned BERT bi-encoder trained with hard-negative contrastive learning, FAISS dense retrieval, and a LangGraph agent for multi-turn query refinement.",
-      category: "ai",
-      url: "https://github.com/dhyanagni2001-commits/ShopMind",
-      image: "projects/shopmind.svg",
-    },
-    {
-      title: "HealthIQ — Agentic AI Healthcare Intelligence",
-      description:
-        "FastAPI + React platform that uses embeddings, FAISS, and LangGraph to search hospital records, flag data-quality gaps, and generate structured summaries.",
-      category: "ai",
-      url: "https://github.com/dhyanagni2001-commits/Agentic-AI-Healthcare-Intelligence-System",
-      image: "projects/healthiq.svg",
-    },
-    {
-      title: "AutoTriage — Agentic Support-Ticket Triage",
-      description:
-        "LangGraph workflow combining a bi-encoder retriever over FAISS, a DistilBERT category/urgency classifier, rule-based routing, human review, optional LLM reply drafting, and a full audit trail.",
-      category: "ai",
-      url: "https://github.com/dhyanagni2001-commits/Autotriage-Workflow",
-      image: "projects/autotriage.svg",
-    },
-    {
-      title: "FraudMesh — Graph-Based Fraud Detection",
-      description:
-        "Builds a transaction graph from shared cards and devices and compares XGBoost, XGBoost with graph features, and GraphSAGE on PR-AUC and recall at fixed false-positive rates, including the negative results.",
-      category: "ai",
-      url: "https://github.com/dhyanagni2001-commits/FraudMesh",
-      image: "projects/fraudmesh.svg",
-    },
-    {
-      title: "TrojanGuide MCP — Campus Tools for AI Agents",
-      description:
-        "Local Model Context Protocol server that gives MCP clients typed tools to search USC buildings, libraries, dining, and student services instead of relying on what the model remembers.",
-      category: "ai",
-      url: "https://github.com/dhyanagni2001-commits/TrojanGuide-MCP",
-      image: "projects/trojanguide.svg",
-    },
-    {
-      title: "OmniSort AI — Local-First File Organizer",
-      description:
-        "Watches folders and auto-sorts files using rules, OCR, and a local zero-shot DistilBERT classifier, with duplicate detection, semantic search, a FastAPI service, and an Electron dashboard.",
-      category: "ai",
-      url: "https://github.com/dhyanagni2001-commits/Omnisort-AI",
-      image: "projects/omnisort.svg",
-    },
-    {
-      title: "GestureLens — In-Browser Gesture Recognition",
-      description:
-        "MobileNetV2 fine-tuned on seven hand-gesture classes and exported to TensorFlow.js for private, real-time webcam inference that never leaves the browser.",
-      category: "ai",
-      url: "https://github.com/dhyanagni2001-commits/GestureLens",
-      image: "projects/gesturelens.svg",
-    },
-    {
-      title: "Distributed Job Queue with PostgreSQL Coordination",
-      description:
-        "PostgreSQL-backed job queue with concurrent job claiming, retries, lease-based recovery, dead-letter handling, and Prometheus/Grafana monitoring.",
-      category: "other",
-      url: "https://github.com/dhyanagni2001-commits/Distributed_Job_Queue",
-      image: "projects/job-queue.svg",
-    },
-    {
-      title: "LiDAR Crosswalk Counter",
-      description:
-        "Camera-free counting prototype: DBSCAN clusters 2D LiDAR points, centroids are tracked across frames, and virtual-line crossings give directional counts, with a Streamlit dashboard.",
-      category: "other",
-      url: "https://github.com/dhyanagni2001-commits/LiDAR-Based-Pedestrian-Counter-for-Crosswalks",
-      image: "projects/lidar-counter.svg",
-    },
-    {
-      title: "SettleUp — iOS Expense Splitting",
-      description:
-        "Native SwiftUI app with MVVM + Combine, Core Data + CloudKit sync, an on-device CoreML expense classifier, and a min-transaction debt-simplification engine.",
-      category: "other",
-      url: "https://github.com/dhyanagni2001-commits/SettleUp",
-      image: "projects/settleup.svg",
-    },
-    {
-      title: "CNCC Inventory — Offline Android Store App",
-      description:
-        "Kotlin + Jetpack Compose app for a clothing shop: scan a barcode to sell, record returns, export Excel reports and label PDFs, with nightly backups and idempotent sales that never double-count. Stress-tested with 100,000 products.",
-      category: "other",
-      url: "https://github.com/dhyanagni2001-commits/CNCC_Inventory_Android",
-      image: "projects/cncc-inventory.svg",
-    },
-    {
-      title: "Rentals House Web — Full-Stack Rental Platform",
-      description:
-        "React/TypeScript frontend with Leaflet maps, favorites, real-time WebSocket chat, and Cypress E2E tests, backed by Dockerized ASP.NET microservices behind an API gateway.",
-      category: "web",
-      url: "https://github.com/dhyanagni2001-commits/Rentals_House_Web_Frontend",
-      image: "projects/rentals.svg",
-    },
-    {
-      title: "SlideMentor — AI Study Companion",
-      description:
-        "Chrome extension that explains PDF lecture slides in context, answers follow-up questions, generates flashcards, and caches responses client-side.",
-      category: "web",
-      url: "https://github.com/dhyanagni2001-commits/Slidementor",
-      image: "projects/slidementor.svg",
-    },
-  ];
+export const projects: {
+  title: string;
+  purpose: string;
+  metric?: string;
+  result?: string;
+  stack: string[];
+  category: ProjectCategory;
+  url: string;
+  image: string;
+}[] = [
+  {
+    title: "First Fifty — Agentic Battery-Cell Triage",
+    purpose:
+      "Team of five Claude agents that pick which battery cells deserve a full life test after only 50 cycles, with human approval on every call and leakage-safe evaluation. Built for Hack-Nation × Databricks.",
+    metric: "7–8 of 10",
+    result: "Found 7–8 of the 10 longest-lived cells on a sealed batch.",
+    stack: ["Claude agents", "Databricks", "Python"],
+    category: "ai",
+    url: "https://github.com/dhyanagni2001-commits/First_Fifty",
+    image: "projects/first-fifty.svg",
+  },
+  {
+    title: "RouteMCP — Self-Hosted LLM Gateway",
+    purpose:
+      "Routes OpenAI-compatible requests across providers using hard constraints and measured cost, quality, and latency, with confidence cascades, failover, and an MCP server.",
+    metric: "77–88% lower cost",
+    result: "On a 260-task eval it matched or beat always using gpt-4.1 at 77–88% lower cost.",
+    stack: ["Python", "MCP", "SQLite"],
+    category: "ai",
+    url: "https://github.com/dhyanagni2001-commits/RouteMCP",
+    image: "projects/routemcp.svg",
+  },
+  {
+    title: "PayFlow — Real-Time Payments CDC Lakehouse",
+    purpose:
+      "Postgres → Debezium → Kafka → Parquet → Delta Lake (bronze/silver/gold) on Databricks, orchestrated by Airflow.",
+    metric: "≥3.3K events/s",
+    result: "Reconciled to the cent with zero loss across 12 chaos tests at ≥3.3K events/s.",
+    stack: ["Kafka", "Debezium", "Delta Lake"],
+    category: "other",
+    url: "https://github.com/dhyanagni2001-commits/PayFlow",
+    image: "projects/payflow.svg",
+  },
+  {
+    title: "LLMForge — GPU Kernels for LLM Inference",
+    purpose:
+      "Fused residual-add + RMSNorm in CUDA C++, tiled causal attention in Triton, a vLLM custom op, and a TVM fusion pass, all validated against PyTorch references to answer one question: when does a faster kernel make a faster model response?",
+    stack: ["CUDA", "Triton", "vLLM", "TVM"],
+    category: "ai",
+    url: "https://github.com/dhyanagni2001-commits/LLMForge",
+    image: "projects/llmforge.svg",
+  },
+  {
+    title: "FlashKV — Redis-Compatible Key-Value Store",
+    purpose:
+      "Event-driven, in-memory key-value database written from scratch in C++20.",
+    metric: "3.27M ops/sec",
+    result: "Speaks 53 Redis commands, peaks at 3.27M ops/sec, and runs in the browser via WebAssembly.",
+    stack: ["C++20", "epoll", "RESP"],
+    category: "other",
+    url: "https://github.com/dhyanagni2001-commits/FlashKV",
+    image: "projects/flashkv.svg",
+  },
+  {
+    title: "InferOps Copilot — Kubernetes Inference Diagnostics",
+    purpose:
+      "Ask why a deployment keeps restarting: it reads pods, events, and logs through a read-only service account, classifies the root cause with deterministic rules, and streams a cited explanation in a React + FastAPI UI.",
+    stack: ["FastAPI", "React", "kind"],
+    category: "ai",
+    url: "https://github.com/dhyanagni2001-commits/InferOps-Copilot",
+    image: "projects/inferops.svg",
+  },
+  {
+    title: "Edge AI Access Control on Snapdragon NPU",
+    purpose:
+      "Real-time face recognition with InsightFace / ArcFace compiled to QNN context binaries for the Snapdragon X Elite Hexagon NPU, with device alerts and on-device inference.",
+    stack: ["InsightFace", "ArcFace", "QNN"],
+    category: "ai",
+    url: "https://github.com/dhyanagni2001-commits/Qualcomm_Hackathon",
+    image: "projects/edge-ai-npu.svg",
+  },
+  {
+    title: "ShopMind — Semantic E-commerce Search Agent",
+    purpose:
+      "Fine-tuned BERT bi-encoder trained with hard-negative contrastive learning, FAISS dense retrieval, and a LangGraph agent for multi-turn query refinement.",
+    stack: ["BERT", "FAISS", "LangGraph"],
+    category: "ai",
+    url: "https://github.com/dhyanagni2001-commits/ShopMind",
+    image: "projects/shopmind.svg",
+  },
+  {
+    title: "HealthIQ — Agentic AI Healthcare Intelligence",
+    purpose:
+      "FastAPI + React platform that uses embeddings, FAISS, and LangGraph to search hospital records, flag data-quality gaps, and generate structured summaries.",
+    metric: "0.97 MRR@10",
+    result: "Dense retrieval scored 0.97 MRR@10 against 0.24 for keyword search on 40 held-out queries.",
+    stack: ["FastAPI", "React", "FAISS", "LangGraph"],
+    category: "ai",
+    url: "https://github.com/dhyanagni2001-commits/Agentic-AI-Healthcare-Intelligence-System",
+    image: "projects/healthiq.svg",
+  },
+  {
+    title: "AutoTriage — Agentic Support-Ticket Triage",
+    purpose:
+      "LangGraph workflow combining a bi-encoder retriever over FAISS, a DistilBERT category/urgency classifier, rule-based routing, human review, optional LLM reply drafting, and a full audit trail.",
+    stack: ["DistilBERT", "FAISS", "LangGraph"],
+    category: "ai",
+    url: "https://github.com/dhyanagni2001-commits/Autotriage-Workflow",
+    image: "projects/autotriage.svg",
+  },
+  {
+    title: "FraudMesh — Graph-Based Fraud Detection",
+    purpose:
+      "Builds a transaction graph from shared cards and devices and compares XGBoost, XGBoost with graph features, and GraphSAGE on PR-AUC and recall at fixed false-positive rates, including the negative results.",
+    stack: ["PyG", "XGBoost", "GraphSAGE"],
+    category: "ai",
+    url: "https://github.com/dhyanagni2001-commits/FraudMesh",
+    image: "projects/fraudmesh.svg",
+  },
+  {
+    title: "TrojanGuide MCP — Campus Tools for AI Agents",
+    purpose:
+      "Local Model Context Protocol server that gives MCP clients typed tools to search USC buildings, libraries, dining, and student services instead of relying on what the model remembers.",
+    metric: "67 places",
+    result: "USC campus data as typed MCP tools.",
+    stack: ["Python", "MCP", "stdio"],
+    category: "ai",
+    url: "https://github.com/dhyanagni2001-commits/TrojanGuide-MCP",
+    image: "projects/trojanguide.svg",
+  },
+  {
+    title: "OmniSort AI — Local-First File Organizer",
+    purpose:
+      "Watches folders and auto-sorts files using rules, OCR, and a local zero-shot DistilBERT classifier, with duplicate detection, semantic search, a FastAPI service, and an Electron dashboard.",
+    stack: ["OCR", "DistilBERT", "FastAPI"],
+    category: "ai",
+    url: "https://github.com/dhyanagni2001-commits/Omnisort-AI",
+    image: "projects/omnisort.svg",
+  },
+  {
+    title: "GestureLens — In-Browser Gesture Recognition",
+    purpose:
+      "MobileNetV2 fine-tuned on seven hand-gesture classes and exported to TensorFlow.js for private, real-time webcam inference that never leaves the browser.",
+    stack: ["MobileNetV2", "TensorFlow.js"],
+    category: "ai",
+    url: "https://github.com/dhyanagni2001-commits/GestureLens",
+    image: "projects/gesturelens.svg",
+  },
+  {
+    title: "Distributed Job Queue with PostgreSQL Coordination",
+    purpose:
+      "PostgreSQL-backed job queue with concurrent job claiming, retries, lease-based recovery, dead-letter handling, and Prometheus/Grafana monitoring.",
+    metric: "17.8K jobs/s",
+    result: "About 17,800 jobs per second over 100K jobs with 16 workers on a single machine.",
+    stack: ["PostgreSQL", "Prometheus", "Grafana"],
+    category: "other",
+    url: "https://github.com/dhyanagni2001-commits/Distributed_Job_Queue",
+    image: "projects/job-queue.svg",
+  },
+  {
+    title: "LiDAR Crosswalk Counter",
+    purpose:
+      "Camera-free counting prototype: DBSCAN clusters 2D LiDAR points, centroids are tracked across frames, and virtual-line crossings give directional counts, with a Streamlit dashboard.",
+    stack: ["DBSCAN", "Python", "Streamlit"],
+    category: "other",
+    url: "https://github.com/dhyanagni2001-commits/LiDAR-Based-Pedestrian-Counter-for-Crosswalks",
+    image: "projects/lidar-counter.svg",
+  },
+  {
+    title: "SettleUp — iOS Expense Splitting",
+    purpose:
+      "Native SwiftUI app with MVVM + Combine, Core Data + CloudKit sync, an on-device CoreML expense classifier, and a min-transaction debt-simplification engine.",
+    stack: ["SwiftUI", "Core Data", "CloudKit"],
+    category: "other",
+    url: "https://github.com/dhyanagni2001-commits/SettleUp",
+    image: "projects/settleup.svg",
+  },
+  {
+    title: "CNCC Inventory — Offline Android Store App",
+    purpose:
+      "Kotlin + Jetpack Compose app for a clothing shop: scan a barcode to sell, record returns, export Excel reports and label PDFs, with nightly backups and idempotent sales that never double-count.",
+    metric: "100K products",
+    result: "Stress-tested with 100,000 products.",
+    stack: ["Kotlin", "Compose", "Room"],
+    category: "other",
+    url: "https://github.com/dhyanagni2001-commits/CNCC_Inventory_Android",
+    image: "projects/cncc-inventory.svg",
+  },
+  {
+    title: "Rentals House Web — Full-Stack Rental Platform",
+    purpose:
+      "React/TypeScript frontend with Leaflet maps, favorites, real-time WebSocket chat, and Cypress E2E tests, backed by Dockerized ASP.NET microservices behind an API gateway.",
+    stack: ["React", "TypeScript", "ASP.NET"],
+    category: "web",
+    url: "https://github.com/dhyanagni2001-commits/Rentals_House_Web_Frontend",
+    image: "projects/rentals.svg",
+  },
+  {
+    title: "SlideMentor — AI Study Companion",
+    purpose:
+      "Chrome extension that explains PDF lecture slides in context, answers follow-up questions, generates flashcards, and caches responses client-side.",
+    stack: ["Chrome MV3", "LLM", "JavaScript"],
+    category: "web",
+    url: "https://github.com/dhyanagni2001-commits/Slidementor",
+    image: "projects/slidementor.svg",
+  },
+];
 
 export const milestones: {
   title: string;
@@ -354,24 +398,27 @@ export const featuredProjects = [
   {
     title: "HealthIQ",
     metric: "0.97 MRR@10",
-    description:
-      "An LLM serving and RAG backend that answers questions about 536K healthcare providers and 5,335 hospitals with streamed, cited answers. Dense retrieval scored 0.97 MRR@10 against 0.24 for keyword search on 40 held-out queries. The model runs on a separate vLLM GPU service, reaching 442 tokens per second on a T4.",
+    purpose: "An LLM serving and RAG backend that answers questions about 536K healthcare providers and 5,335 hospitals with streamed, cited answers.",
+    result:
+      "Dense retrieval scored 0.97 MRR@10 against 0.24 for keyword search on 40 held-out queries. The model runs on a separate vLLM GPU service, reaching 442 tokens per second on a T4.",
     stack: ["vLLM", "FAISS", "LangGraph", "FastAPI"],
     url: "https://github.com/dhyanagni2001-commits/Agentic-AI-Healthcare-Intelligence-System",
   },
   {
     title: "Distributed Job Queue",
     metric: "17.8K jobs/s",
-    description:
-      "A PostgreSQL-backed job queue with lease-based crash recovery, retries, and dead-lettering. Batching claims and completions raised throughput 16x, to about 17,800 jobs per second over 100K jobs with 16 workers on a single machine. Worker crash recovery is tested with SIGKILL in CI on every push.",
+    purpose: "A PostgreSQL-backed job queue with lease-based crash recovery, retries, and dead-lettering.",
+    result:
+      "Batching claims and completions raised throughput 16x, to about 17,800 jobs per second over 100K jobs with 16 workers on a single machine. Worker crash recovery is tested with SIGKILL in CI on every push.",
     stack: ["PostgreSQL", "Python", "GitHub Actions"],
     url: "https://github.com/dhyanagni2001-commits/Distributed_Job_Queue",
   },
   {
     title: "PayFlow",
     metric: "3.3K events/s",
-    description:
-      "A real-time change-data-capture lakehouse for a simulated payments processor. Changes flow from Postgres through Debezium and Kafka into Delta Lake on Databricks, orchestrated by Airflow. The ledger reconciles to the cent, and the pipeline was tested under 12 failure scenarios at over 3,300 events per second.",
+    purpose: "A real-time change-data-capture lakehouse for a simulated payments processor.",
+    result:
+      "Changes flow from Postgres through Debezium and Kafka into Delta Lake on Databricks, orchestrated by Airflow. The ledger reconciles to the cent, and the pipeline was tested under 12 failure scenarios at over 3,300 events per second.",
     stack: ["Kafka", "Debezium", "Delta Lake", "Airflow"],
     url: "https://github.com/dhyanagni2001-commits/PayFlow",
   },

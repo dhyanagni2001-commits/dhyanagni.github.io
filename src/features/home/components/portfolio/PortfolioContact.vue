@@ -3,6 +3,7 @@ import { computed, reactive, ref } from "vue";
 import { contactLinks, emailJs } from "../../../../content/portfolio";
 import Linkedin from "../../../../components/icons/Linkedin.vue";
 import Github from "../../../../components/icons/Github.vue";
+import Button from "../../../../components/Button.vue";
 
 const icons = { linkedin: Linkedin, github: Github };
 
@@ -83,9 +84,16 @@ const handleSubmit = async () => {
         <textarea v-model="form.message" name="message" rows="5" required></textarea>
       </label>
 
-      <button class="contact-submit" type="submit" :disabled="!canSubmit" data-hoversound="hover">
+      <Button
+        class="contact-submit"
+        variant="accent"
+        type="submit"
+        :disabled="!canSubmit"
+        data-cursor="circle-white"
+        data-hoversound="hover"
+      >
         {{ status === "sending" ? "Sending…" : "Send message" }}
-      </button>
+      </Button>
       <p class="contact-status" :class="`contact-status-${status}`" role="status" aria-live="polite">
         {{ statusMessage }}
       </p>
@@ -105,20 +113,25 @@ const handleSubmit = async () => {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 18px;
-    border: 1px solid var(--color-beige-700);
+    min-height: 44px;
+    padding: 0 18px;
+    border: 1px solid var(--border-light);
     border-radius: 999px;
-    background: var(--color-white-400);
-    color: var(--color-text-400);
+    background-color: var(--surface-light);
+    color: var(--text-dark);
     font-size: 15px;
     font-weight: 700;
     text-decoration: none;
-    --icon-color: var(--color-orange-400);
-    transition: border-color 0.2s ease;
+    --icon-color: var(--cyan-dark);
+    transition:
+      border-color 0.2s ease,
+      transform 0.2s ease;
 
-    &:hover,
-    &:focus-visible {
-      border-color: var(--color-orange-400);
+    @include mixins.hover {
+      &:hover {
+        border-color: var(--cyan-dark);
+        transform: translateY(-1px);
+      }
     }
 
     &-icon {
@@ -129,8 +142,8 @@ const handleSubmit = async () => {
 
   &-subtitle {
     margin: 36px 0 16px;
-    font-size: 24px;
-    font-weight: 900;
+    color: var(--text-dark);
+    font-size: var(--type-h3);
   }
 
   &-form {
@@ -149,25 +162,27 @@ const handleSubmit = async () => {
     display: flex;
     flex-direction: column;
     gap: 6px;
-    color: var(--color-text-300);
-    font-size: 14px;
+    color: var(--text-dark);
+    font-size: var(--type-small);
     font-weight: 700;
 
     input,
     textarea {
       width: 100%;
       padding: 12px 14px;
-      border: 1px solid var(--color-beige-700);
-      border-radius: 12px;
-      background: var(--color-white-400);
-      color: var(--color-text-400);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      background-color: var(--surface-light);
+      color: var(--text-dark);
       font-family: inherit;
-      font-size: 16px;
+      font-size: var(--type-body);
       font-weight: 400;
       resize: vertical;
+      transition: border-color 0.2s ease;
 
       &:focus {
-        outline: 2px solid var(--color-orange-400);
+        border-color: var(--cyan-dark);
+        outline: 2px solid var(--focus-ring);
         outline-offset: 1px;
       }
     }
@@ -175,45 +190,19 @@ const handleSubmit = async () => {
 
   &-submit {
     align-self: flex-start;
-    height: 48px;
-    padding: 0 28px;
-    border: 0;
-    border-radius: 999px;
-    background: var(--gradient-brand);
-    color: var(--color-white-400);
-    font-family: inherit;
-    box-shadow: 0 8px 24px rgba(216, 57, 149, 0.25);
-    font-size: 15px;
-    font-weight: 800;
-    letter-spacing: 0.02em;
-    cursor: pointer;
-    transition:
-      transform 0.3s var(--ease-power2-out),
-      box-shadow 0.3s var(--ease-power2-out);
-
-    &:hover:not(:disabled),
-    &:focus-visible {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(216, 57, 149, 0.35);
-    }
-
-    &:disabled {
-      opacity: 0.55;
-      cursor: not-allowed;
-    }
   }
 
   &-status {
     min-height: 1.5em;
-    color: var(--color-text-300);
+    color: var(--text-muted);
     font-size: 15px;
 
     &-success {
-      color: var(--color-sky-600);
+      color: var(--text-dark);
     }
 
     &-error {
-      color: var(--color-pink-600);
+      color: var(--magenta-hover);
     }
   }
 }

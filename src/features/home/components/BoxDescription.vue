@@ -166,6 +166,7 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
     }
 
     &-name {
+      font-family: var(--font-sans);
       font-size: var(--font-size-title-xs);
       font-weight: 700;
     }
@@ -235,6 +236,8 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
 
   &-copy {
     will-change: opacity;
+    font-family: var(--font-sans);
+    line-height: 1.4;
     font-size: var(--font-size-md);
     padding: var(--space-sm) var(--space-md);
 

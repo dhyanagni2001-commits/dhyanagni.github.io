@@ -1,7 +1,7 @@
 import { resources } from "../../../utils/resources";
 import { scene } from "../../core/scene";
 import { Euler, Group, Mesh } from "three";
-import { getRoomMaterial } from "../../common/materials";
+import { getCarpetMaterial, getRoomMaterial } from "../../common/materials";
 import { sceneWeights } from "../../../animations/scenes";
 import gsap from "gsap";
 import { shadow } from "./shadow";
@@ -66,7 +66,7 @@ const initObjects = () => {
 
   Object.values(objects).forEach((object) => {
     if (!object) return;
-    const mat = getRoomMaterial();
+    const mat = object.name === "carpet" ? getCarpetMaterial() : getRoomMaterial();
     object.material = mat;
     group.add(object);
 

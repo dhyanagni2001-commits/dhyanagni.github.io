@@ -14,19 +14,19 @@ import {
   WebGLRenderer,
 } from "three";
 
-// A rippling surface of glowing dots behind the portfolio panel, like a
-// signal or waveform, shaded from sky blue to hot pink. The waves drift over
-// time, shift with scroll, and ripple outward from the pointer.
+// A rippling surface of faint dots behind the portfolio panel, like a signal or
+// waveform, shaded through the site's cyans and kept dim so it never competes
+// with the cards. The waves drift over time, shift with scroll, and ripple
+// outward from the pointer.
 
 const root = ref<HTMLElement | null>(null);
 const canvas = ref<HTMLCanvasElement | null>(null);
 
 const PALETTE = {
-  sky: new Color("#0593C6"),
-  skyLight: new Color("#7FCBE6"),
-  snow: new Color("#FCFFFF"),
-  pink: new Color("#D83995"),
-  pinkLight: new Color("#EE9DCB"),
+  cyan: new Color("#31B8DD"),
+  cyanDark: new Color("#007C9E"),
+  lightMuted: new Color("#B8CEDA"),
+  light: new Color("#F4F9FC"),
 };
 
 const WAVE_WIDTH = 44;
@@ -68,9 +68,9 @@ const vertexShader = /* glsl */ `
 `;
 
 const fragmentShader = /* glsl */ `
-  uniform vec3 uSky;
-  uniform vec3 uPink;
-  uniform vec3 uSnow;
+  uniform vec3 uCyan;
+  uniform vec3 uCyanDark;
+  uniform vec3 uLight;
 
   varying float vHeight;
   varying float vMix;
@@ -81,13 +81,13 @@ const fragmentShader = /* glsl */ `
     if (r > 0.5) discard;
     float softEdge = smoothstep(0.5, 0.1, r);
 
-    vec3 color = mix(uSky, uPink, vMix);
+    vec3 color = mix(uCyanDark, uCyan, vMix);
     // Wave crests catch the light.
     float crest = smoothstep(0.6, 2.2, vHeight);
-    color = mix(color, uSnow, crest * 0.5);
+    color = mix(color, uLight, crest * 0.15);
 
     float fade = smoothstep(44.0, 10.0, vDepth);
-    float alpha = softEdge * fade * (0.7 + 0.3 * smoothstep(-2.0, 1.8, vHeight));
+    float alpha = softEdge * fade * (0.7 + 0.3 * smoothstep(-2.0, 1.8, vHeight)) * 0.3;
     gl_FragColor = vec4(color, alpha);
   }
 `;
@@ -148,9 +148,9 @@ const createWave = () => {
         uSize: { value: isSmall ? 8 : 7.5 },
         uPixelRatio: { value: renderer!.getPixelRatio() },
         uPointer: { value: new Vector2(0, -4) },
-        uSky: { value: PALETTE.sky },
-        uPink: { value: PALETTE.pink },
-        uSnow: { value: PALETTE.snow },
+        uCyan: { value: PALETTE.cyan },
+        uCyanDark: { value: PALETTE.cyanDark },
+        uLight: { value: PALETTE.light },
       },
     }),
   );
@@ -164,7 +164,7 @@ const createStars = () => {
   const count = width < 640 ? 160 : 320;
   const positions = new Float32Array(count * 3);
   const colors = new Float32Array(count * 3);
-  const tints = [PALETTE.snow, PALETTE.skyLight, PALETTE.pinkLight];
+  const tints = [PALETTE.light, PALETTE.lightMuted, PALETTE.cyan];
 
   for (let i = 0; i < count; i++) {
     positions[i * 3] = random(-30, 30);
@@ -185,7 +185,7 @@ const createStars = () => {
       size: 0.08,
       vertexColors: true,
       transparent: true,
-      opacity: 0.6,
+      opacity: 0.22,
       depthWrite: false,
       blending: AdditiveBlending,
     }),

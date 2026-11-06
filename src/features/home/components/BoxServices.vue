@@ -271,6 +271,7 @@ const services = computed(() => {
   }
 
   &-title {
+    font-family: var(--font-sans);
     font-size: var(--font-size-title-xs);
     font-weight: 700;
 

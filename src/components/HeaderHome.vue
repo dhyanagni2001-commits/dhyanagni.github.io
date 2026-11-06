@@ -72,23 +72,19 @@ onMounted(() => {
 
 <template>
   <div :class="['header-home', { 'header-home-mounted': isMounted, 'header-home-isProjectPage': projectId !== null }]">
-    <div :class="['header-home-links', { 'header-home-links-dark': isDarkTheme }]">
+    <div :class="['header-home-links', 'nav-pill', { 'nav-pill-dark': isDarkTheme }]">
       <div
         :class="[
           'header-home-bar',
-          { 'header-home-bar-active': activeLink !== null && hasScrolledIntoView, 'header-home-bar-dark': isDarkTheme },
+          { 'header-home-bar-active': activeLink !== null && hasScrolledIntoView },
         ]"
         :style="barStyle"
       ></div>
       <HeaderLink
         v-for="section in sections"
         :key="section"
-        :is-active="activeLink === section"
-        :class="[
-          'header-home-link',
-          { 'header-home-link-active': activeLink === section && hasScrolledIntoView },
-          'children-unclickable',
-        ]"
+        :is-active="activeLink === section && hasScrolledIntoView"
+        class="children-unclickable"
         @click="handleLinkClick(section)"
         :is-dark-theme="isDarkTheme"
         :aria-label="ariaLabels[section]"
@@ -129,62 +125,23 @@ onMounted(() => {
     display: flex;
   }
 
-  &-links {
-    position: relative;
-    display: flex;
-    padding: 3px;
-    background-color: var(--color-beige-500);
-    border-radius: 100px;
-    color: var(--color-text-400);
-    transition:
-      color 0.1s ease-in-out,
-      background-color 0.1s ease-in-out;
-
-    &-dark {
-      background-color: var(--color-dark-blue-500);
-      color: var(--color-white-400);
-    }
-  }
-
   &-bar {
     position: absolute;
-    top: 3px;
-    left: 3px;
-    height: calc(100% - 6px);
+    top: 4px;
+    left: 4px;
+    height: calc(100% - 8px);
     width: 128px;
-    background: var(--color-orange-400);
+    background-color: var(--nav-active-bg);
     border-radius: 100px;
     transition:
       transform 0.3s var(--ease-smooth),
       opacity 0.1s ease-in-out,
-      background-color 0.1s ease-in-out;
+      background-color 0.2s ease-in-out;
     z-index: 1;
     opacity: 0;
 
-    &-dark {
-      background-color: var(--color-cyan-500);
-    }
-
     &-active {
       opacity: 1;
-    }
-  }
-
-  &-link {
-    position: relative;
-    z-index: 2;
-    letter-spacing: 0.02em;
-    font-weight: 700;
-    border: none;
-    background: none;
-    transition: color 0.1s ease-in-out;
-    font-size: var(--font-size-md);
-    width: 128px;
-    white-space: nowrap;
-    text-transform: uppercase;
-
-    &-active {
-      color: var(--color-white-400);
     }
   }
 }

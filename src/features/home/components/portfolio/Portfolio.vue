@@ -2,6 +2,7 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 import { lenis } from "../../../../composables/useScroll";
 import { featuredProjects } from "../../../../content/portfolio";
+import Button from "../../../../components/Button.vue";
 import SkyField from "../SkyField.vue";
 import PortfolioAbout from "./PortfolioAbout.vue";
 import PortfolioResume from "./PortfolioResume.vue";
@@ -108,7 +109,7 @@ onBeforeUnmount(() => {
 
     <div class="featured">
       <p class="featured-eyebrow" data-reveal>Selected projects</p>
-      <h2 class="featured-title" data-reveal>Featured <span>work</span></h2>
+      <h2 class="featured-title" data-reveal>Featured work</h2>
       <ul class="featured-list">
         <li
           v-for="(project, index) in featuredProjects"
@@ -121,12 +122,15 @@ onBeforeUnmount(() => {
             :href="project.url"
             target="_blank"
             rel="noopener"
-            data-cursor="circle-black"
+            data-cursor="circle-white"
             data-hoversound="hover"
           >
-            <span class="featured-metric">{{ project.metric }}</span>
             <h3 class="featured-name">{{ project.title }}</h3>
-            <p class="featured-description">{{ project.description }}</p>
+            <p class="featured-description">{{ project.purpose }}</p>
+            <div class="featured-result">
+              <span class="featured-metric">{{ project.metric }}</span>
+              <p class="featured-result-text">{{ project.result }}</p>
+            </div>
             <ul class="featured-stack">
               <li v-for="tech in project.stack" :key="tech">{{ tech }}</li>
             </ul>
@@ -134,23 +138,28 @@ onBeforeUnmount(() => {
           </a>
         </li>
       </ul>
-      <button type="button" class="featured-all" data-hoversound="hover" @click="navigateTo('projects')">
+      <Button
+        class="featured-all"
+        variant="secondary-dark"
+        data-cursor="circle-white"
+        data-hoversound="hover"
+        @click="navigateTo('projects')"
+      >
         See all projects →
-      </button>
+      </Button>
     </div>
 
-    <nav class="portfolio-tabs" aria-label="Portfolio sections" data-cursor="circle-black">
+    <nav class="portfolio-tabs nav-pill nav-pill-dark" aria-label="Portfolio sections" data-cursor="circle-white">
       <button
         v-for="page in pages"
         :key="page.id"
         type="button"
-        class="portfolio-tabs-button"
-        :class="{ 'portfolio-tabs-button-active': activePage === page.id }"
+        class="portfolio-tabs-button nav-pill-item"
+        :class="{ 'nav-pill-item-on': activePage === page.id }"
         :aria-current="activePage === page.id ? 'page' : undefined"
         data-hoversound="hover"
         @click="navigateTo(page.id)"
       >
-        <span class="portfolio-tabs-dot"></span>
         {{ page.label }}
       </button>
     </nav>
@@ -166,40 +175,47 @@ onBeforeUnmount(() => {
 
 <style scoped lang="scss">
 .portfolio {
+  --focus-ring: var(--cyan);
+
   position: relative;
   z-index: 5;
   width: 100%;
   padding-bottom: 120px;
-  background-color: var(--color-sky-900);
-  background-image:
-    radial-gradient(60% 40% at 12% 8%, rgba(5, 147, 198, 0.35), transparent 70%),
-    radial-gradient(50% 35% at 90% 38%, rgba(216, 57, 149, 0.22), transparent 70%),
-    radial-gradient(55% 40% at 15% 78%, rgba(216, 57, 149, 0.14), transparent 70%),
-    linear-gradient(180deg, var(--color-sky-700) 0%, var(--color-sky-800) 22%, var(--color-sky-900) 100%);
-  overflow: clip;
+  background-color: var(--navy);
+  // Only clip sideways: the fade below hangs above the section's top edge.
+  overflow-x: clip;
+
+  // Dissolves the 3D lab into the section instead of ending it on a hard line.
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: clamp(40px, 4.5vw, 64px);
+    background: linear-gradient(to bottom, rgba(8, 38, 58, 0), var(--navy));
+    pointer-events: none;
+  }
 
   &-transition {
     position: relative;
     z-index: 1;
-    height: clamp(110px, 14vw, 190px);
-    margin-top: -1px;
+    height: clamp(96px, 12vw, 160px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 14px;
-    color: rgba(252, 255, 255, 0.75);
-    background: linear-gradient(180deg, var(--color-sky-700) 0%, rgba(3, 78, 107, 0) 100%);
-    font-family: "ProFontWindows", monospace;
-    font-size: clamp(12px, 1.2vw, 16px);
+    color: var(--text-light-muted);
+    font-family: var(--font-mono);
+    font-size: var(--type-label);
     letter-spacing: 0.14em;
     text-transform: uppercase;
 
     &-line {
-      width: 2px;
-      height: clamp(24px, 4vw, 52px);
-      border-radius: 2px;
-      background: linear-gradient(to bottom, var(--color-sky-300), var(--color-pink-500), transparent);
+      width: 1px;
+      height: clamp(24px, 3vw, 40px);
+      background: linear-gradient(to bottom, var(--cyan), transparent);
       animation: portfolio-line 2.4s var(--ease-smooth) infinite;
       transform-origin: top;
     }
@@ -210,75 +226,25 @@ onBeforeUnmount(() => {
     top: 16px;
     z-index: 20;
     width: min(calc(100% - 32px), 720px);
-    margin: 0 auto 28px;
-    padding: 5px;
+    margin: 0 auto 24px;
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 2px;
-    border: 1px solid rgba(252, 255, 255, 0.6);
-    border-radius: 999px;
-    background: rgba(252, 255, 255, 0.94);
-    box-shadow:
-      0 18px 50px rgba(2, 37, 52, 0.35),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(18px) saturate(1.4);
-    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    box-shadow: 0 4px 12px rgba(4, 20, 31, 0.3);
 
     &-button {
-      position: relative;
       width: 100%;
-      min-height: 48px;
       min-width: 0;
-      padding: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      border: 0;
-      border-radius: 999px;
-      color: var(--color-text-400);
-      background: transparent;
-      font-family: "Urbanist", sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      cursor: pointer;
-      transition:
-        color 0.3s var(--ease-power2-out),
-        background 0.3s var(--ease-power2-out),
-        box-shadow 0.3s var(--ease-power2-out),
-        transform 0.2s var(--ease-power2-out);
+      padding: 0 8px;
 
-      &:hover,
-      &:focus-visible {
-        color: var(--color-sky-600);
-        background: var(--color-sky-100);
+      &.nav-pill-item-on {
+        background-color: var(--nav-active-bg);
       }
-
-      &:active {
-        transform: scale(0.97);
-      }
-
-      &-active,
-      &-active:hover,
-      &-active:focus-visible {
-        color: var(--color-white-400);
-        background: var(--gradient-brand);
-        box-shadow: 0 6px 20px rgba(216, 57, 149, 0.35);
-      }
-    }
-
-    &-dot {
-      width: 5px;
-      height: 5px;
-      flex: 0 0 auto;
-      border-radius: 50%;
-      background: currentColor;
-      opacity: 0.7;
     }
   }
 
   &-panel {
+    --focus-ring: var(--cyan-dark);
+
     position: relative;
     z-index: 1;
     width: min(calc(100% - 32px), 1000px);
@@ -286,38 +252,21 @@ onBeforeUnmount(() => {
     // the panel can scroll up under the sticky tab bar.
     min-height: calc(var(--lvh) * 100 - 120px);
     margin: 0 auto;
-    padding: clamp(24px, 4vw, 52px);
-    border: 1px solid rgba(252, 255, 255, 0.7);
-    border-radius: 28px;
-    background: linear-gradient(180deg, var(--color-white-400) 0%, var(--color-sky-50) 100%);
-    color: var(--color-text-400);
-    font-family: "Urbanist", sans-serif;
-    box-shadow:
-      0 30px 80px rgba(2, 37, 52, 0.45),
-      0 0 0 6px rgba(252, 255, 255, 0.06);
+    padding: clamp(24px, 4vw, 48px);
+    border-radius: var(--radius-xl);
+    background-color: var(--ice-blue);
+    color: var(--text-dark);
+    font-family: var(--font-sans);
+    box-shadow: 0 24px 60px rgba(4, 20, 31, 0.4);
 
     &-page {
       animation: portfolio-page-in 0.55s var(--ease-power2-out) both;
     }
 
     &-title {
-      position: relative;
-      margin-bottom: 32px;
-      padding-bottom: 16px;
-      font-size: clamp(30px, 3.4vw, 44px);
-      font-weight: 900;
-      line-height: 1.1;
-
-      &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 56px;
-        height: 5px;
-        border-radius: 3px;
-        background: var(--gradient-brand);
-      }
+      margin-bottom: 28px;
+      color: var(--text-dark);
+      font-size: var(--type-h2);
     }
   }
 }
@@ -333,26 +282,18 @@ onBeforeUnmount(() => {
   gap: 24px;
 
   &-eyebrow {
-    margin-bottom: -14px;
-    color: var(--color-sky-300);
-    font-family: "ProFontWindows", monospace;
-    font-size: 14px;
-    letter-spacing: 0.16em;
+    margin-bottom: -16px;
+    color: var(--cyan);
+    font-family: var(--font-mono);
+    font-size: var(--type-label);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
   }
 
   &-title {
-    color: var(--color-white-400);
-    font-family: "Urbanist", sans-serif;
-    font-size: clamp(32px, 3.6vw, 52px);
-    font-weight: 900;
-
-    span {
-      background: linear-gradient(120deg, var(--color-sky-300), var(--color-pink-400));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+    color: var(--text-light);
+    font-family: var(--font-sans);
+    font-size: var(--type-h2);
   }
 
   &-list {
@@ -360,139 +301,122 @@ onBeforeUnmount(() => {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
+
+    > li {
+      min-width: 0;
+    }
   }
 
   &-card {
-    position: relative;
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding: 26px;
-    border: 1px solid rgba(127, 203, 230, 0.22);
-    border-radius: 24px;
-    // Solid so the 3D models behind never show through the text.
-    background: linear-gradient(160deg, #06506C 0%, #043A52 100%);
-    color: var(--color-white-400);
-    font-family: "Urbanist", sans-serif;
+    padding: 24px;
+    border: 1px solid var(--border-dark);
+    border-radius: var(--radius-lg);
+    // Opaque so the dot field behind never shows through the text.
+    background-color: var(--teal-navy);
+    color: var(--text-light);
+    font-family: var(--font-sans);
     text-decoration: none;
-    box-shadow: 0 20px 50px rgba(2, 37, 52, 0.45);
-    overflow: hidden;
     transition:
-      transform 0.45s var(--ease-power2-out),
-      border-color 0.45s var(--ease-power2-out),
-      box-shadow 0.45s var(--ease-power2-out);
+      transform 0.3s var(--ease-power2-out),
+      border-color 0.3s var(--ease-power2-out),
+      background-color 0.3s var(--ease-power2-out);
 
-    // Gradient hairline along the top edge, brightened on hover.
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0 0 auto;
-      height: 2px;
-      background: var(--gradient-brand);
-      opacity: 0.6;
-      transition: opacity 0.45s var(--ease-power2-out);
+    &:focus-visible {
+      background-color: var(--raised-teal);
     }
 
-    &:hover,
-    &:focus-visible {
-      transform: translateY(-6px);
-      border-color: rgba(238, 157, 203, 0.5);
-      box-shadow: 0 24px 60px rgba(216, 57, 149, 0.22);
-
-      &::before {
-        opacity: 1;
+    @include mixins.hover {
+      &:hover {
+        transform: translateY(-3px);
+        border-color: var(--cyan);
+        background-color: var(--raised-teal);
       }
     }
   }
 
-  &-metric {
-    background: linear-gradient(120deg, var(--color-sky-300), var(--color-pink-400));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-size: clamp(30px, 2.8vw, 42px);
-    font-weight: 900;
-    line-height: 1.1;
-  }
-
   &-name {
-    margin-top: 6px;
-    font-size: 22px;
-    font-weight: 900;
+    font-size: var(--type-h3);
   }
 
   &-description {
-    margin-top: 4px;
-    color: rgba(226, 243, 250, 0.9);
-    font-size: 15px;
-    line-height: 1.6;
+    margin-top: 8px;
+    color: var(--text-light-muted);
+    font-size: var(--type-body);
+    line-height: var(--line-height-body);
+  }
+
+  &-result {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-dark);
+
+    &-text {
+      margin-top: 4px;
+      color: var(--text-light-muted);
+      font-size: 15px;
+      line-height: var(--line-height-body);
+    }
+  }
+
+  &-metric {
+    color: var(--cyan);
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
   }
 
   &-stack {
-    margin: 12px 0 16px;
+    margin: 16px 0 20px;
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
 
     li {
-      padding: 4px 11px;
-      border: 1px solid rgba(127, 203, 230, 0.3);
+      padding: 3px 10px;
+      border: 1px solid var(--border-dark);
       border-radius: 999px;
-      background: rgba(5, 147, 198, 0.16);
-      color: var(--color-sky-100);
-      font-size: 12px;
-      font-weight: 700;
+      color: var(--text-light);
+      font-family: var(--font-mono);
+      font-size: var(--type-label);
     }
   }
 
   &-link {
     margin-top: auto;
-    color: var(--color-pink-300);
-    font-size: 14px;
+    color: var(--cyan);
+    font-size: var(--type-small);
     font-weight: 700;
-    transition: color 0.3s ease;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
   }
 
-  &-card:hover &-link {
-    color: var(--color-white-400);
+  &-card:focus-visible &-link {
+    color: var(--text-light);
+    text-decoration: underline;
+  }
+
+  @include mixins.hover {
+    &-card:hover &-link {
+      color: var(--text-light);
+      text-decoration: underline;
+    }
   }
 
   &-all {
-    padding: 13px 28px;
-    border: 1px solid rgba(252, 255, 255, 0.35);
-    border-radius: 999px;
-    background: rgba(252, 255, 255, 0.04);
-    color: var(--color-white-400);
-    font-family: "Urbanist", sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-    transition:
-      background 0.35s var(--ease-power2-out),
-      border-color 0.35s var(--ease-power2-out),
-      box-shadow 0.35s var(--ease-power2-out),
-      transform 0.2s var(--ease-power2-out);
-
-    &:hover,
-    &:focus-visible {
-      border-color: transparent;
-      background: var(--gradient-brand);
-      box-shadow: 0 10px 30px rgba(216, 57, 149, 0.35);
-    }
-
-    &:active {
-      transform: scale(0.97);
-    }
+    height: 44px;
+    padding: 0 24px;
   }
 }
 
 [data-reveal] {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(20px);
   transition:
-    opacity 0.8s var(--ease-power2-out) var(--reveal-delay, 0ms),
-    transform 0.8s var(--ease-power2-out) var(--reveal-delay, 0ms);
+    opacity 0.7s var(--ease-power2-out) var(--reveal-delay, 0ms),
+    transform 0.7s var(--ease-power2-out) var(--reveal-delay, 0ms);
 
   &.is-revealed {
     opacity: 1;
@@ -503,7 +427,7 @@ onBeforeUnmount(() => {
 @keyframes portfolio-page-in {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -539,6 +463,12 @@ onBeforeUnmount(() => {
   }
 }
 
+@media (max-width: 1000px) {
+  .featured-list {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
 @media (max-width: 760px) {
   .featured-list {
     grid-template-columns: 1fr;
@@ -550,29 +480,18 @@ onBeforeUnmount(() => {
     top: 8px;
     width: calc(100% - 20px);
     margin-bottom: 14px;
-    padding: 4px;
-    gap: 0;
-    border-radius: 18px;
-    background: rgba(252, 255, 255, 0.96);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
 
     &-button {
       min-height: 44px;
-      padding: 10px 2px;
-      border-radius: 14px;
-      font-size: clamp(10.5px, 3vw, 12px);
+      padding: 0 2px;
+      font-size: clamp(11.5px, 3.2vw, 13px);
       letter-spacing: 0;
-    }
-
-    &-dot {
-      display: none;
     }
   }
 
   .portfolio-panel {
     width: calc(100% - 20px);
-    border-radius: 20px;
+    border-radius: var(--radius-lg);
   }
 }
 </style>

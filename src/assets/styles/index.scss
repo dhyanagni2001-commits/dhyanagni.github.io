@@ -11,8 +11,8 @@ html {
   background: var(--color-background-400);
   color: var(--color-text-400);
   --icon-color: var(--color-text-400);
-  font-family: "Urbanist";
-  letter-spacing: 0.02em;
+  font-family: var(--font-sans);
+  letter-spacing: 0.01em;
   overflow-y: scroll !important;
 
   --vh: 1vh;
@@ -41,14 +41,112 @@ html {
   height: calc(var(--svh) * 100);
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-weight: var(--font-weight-heading);
+  line-height: var(--line-height-title);
+  letter-spacing: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+// Pill navigation shared by the header and the portfolio tabs, so both look and
+// behave the same over light and dark sections.
+.nav-pill {
+  --nav-hover-bg: var(--pale-blue-strong);
+  --nav-active-bg: var(--cyan-dark);
+  --nav-active-text: var(--color-white-400);
+  --focus-ring: var(--cyan-dark);
+
+  position: relative;
+  display: flex;
+  padding: 4px;
+  border: 1px solid var(--border-light);
+  border-radius: 999px;
+  background-color: var(--pale-blue);
+  color: var(--text-dark);
+  transition:
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
+
+  &-dark {
+    --nav-hover-bg: var(--raised-teal);
+    --nav-active-bg: var(--cyan);
+    --nav-active-text: var(--navy);
+    --focus-ring: var(--cyan);
+
+    border-color: var(--border-dark);
+    background-color: var(--teal-navy);
+    color: var(--text-light);
+  }
+
+  &-item {
+    position: relative;
+    z-index: 2;
+    // Matches the 44px buttons beside it once the pill's padding is added.
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: inherit;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    transition:
+      color 0.2s ease-in-out,
+      background-color 0.2s ease-in-out,
+      transform 0.2s ease-in-out;
+
+    @media (pointer: coarse) {
+      min-height: 44px;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover:not(&-on) {
+        background-color: var(--nav-hover-bg);
+      }
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
+
+    &-on {
+      color: var(--nav-active-text);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 ::selection {
-  background: var(--color-pink-500);
+  background: var(--magenta);
   color: rgb(255, 255, 255);
   text-shadow: none;
 }
 
 ::-moz-selection {
-  background: var(--color-pink-500);
+  background: var(--magenta);
   color: rgb(255, 255, 255);
   text-shadow: none;
 }
@@ -65,7 +163,7 @@ html {
 // canvas sits at z-index -1, so an .intro-wrapper background would cover the
 // avatar. The root background only shows once the canvas itself is hidden.
 html:has(> body.portfolio-visible) {
-  background: var(--color-sky-800);
+  background: var(--navy);
 }
 
 body.portfolio-visible {
@@ -73,6 +171,7 @@ body.portfolio-visible {
   .header-home,
   .scroll-icon {
     opacity: 0 !important;
+    visibility: hidden !important;
     pointer-events: none !important;
 
     // Children such as header links opt back in with `pointer-events: all`,

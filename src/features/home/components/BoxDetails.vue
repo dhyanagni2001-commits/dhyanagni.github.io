@@ -221,11 +221,13 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
   }
 
   &-title {
+    font-family: var(--font-sans);
     font-size: var(--font-size-title-xxs);
     font-weight: 700;
+    white-space: nowrap;
 
     @include mixins.mq("md") {
-      font-size: var(--font-size-title-sm);
+      font-size: var(--font-size-title-xs);
     }
   }
 

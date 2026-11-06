@@ -75,8 +75,8 @@ watchEffect((onInvalidate) => {
 
   &-background {
     position: absolute;
-    outline: var(--stroke-lg) solid var(--color-beige-400);
-    background-color: var(--color-pink-500);
+    border-radius: var(--radius-sm);
+    background-color: var(--magenta);
     top: 0;
     left: 0;
     width: 100%;
@@ -105,7 +105,8 @@ watchEffect((onInvalidate) => {
   &-copy {
     font-weight: 700;
     color: var(--color-white-400);
-    font-family: "ProFontWindows";
+    position: relative;
+    font-family: var(--font-mono);
     text-transform: uppercase;
 
     &-size {

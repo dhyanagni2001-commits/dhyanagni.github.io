@@ -11,11 +11,23 @@ import type { Material } from "three";
 // oranges become hot pink, saturated yellows a soft pink tint, and the neutral
 // beiges are scaled so the old background tone lands exactly on the new one.
 const palette = {
-  pink: new Color("#D83995"),
-  softPink: new Color("#F6CFE5"),
+  pink: new Color("#C83F88"),
+  softPink: new Color("#F3D3E4"),
 };
 
-const applyPalette = (material: MeshBasicMaterial, fromBackground: string, toBackground: Color) => {
+// The rug fills a third of the hero, so it gets a lighter tint of the same hue
+// to leave the desk and avatar as the focal point.
+const carpetPalette = {
+  pink: new Color("#EDC3DA"),
+  softPink: new Color("#F9EBF3"),
+};
+
+const applyPalette = (
+  material: MeshBasicMaterial,
+  fromBackground: string,
+  toBackground: Color,
+  accents: { pink: Color; softPink: Color } = palette,
+) => {
   // Ratio is computed in linear space, matching what the shader sees after
   // sampling an sRGB texture.
   const from = new Color(fromBackground);
@@ -23,8 +35,8 @@ const applyPalette = (material: MeshBasicMaterial, fromBackground: string, toBac
 
   material.onBeforeCompile = (shader) => {
     shader.uniforms.uNeutralScale = { value: neutralScale };
-    shader.uniforms.uPink = { value: palette.pink };
-    shader.uniforms.uSoftPink = { value: palette.softPink };
+    shader.uniforms.uPink = { value: accents.pink };
+    shader.uniforms.uSoftPink = { value: accents.softPink };
 
     shader.fragmentShader = shader.fragmentShader
       .replace(
@@ -68,6 +80,7 @@ const applyPalette = (material: MeshBasicMaterial, fromBackground: string, toBac
 };
 
 let roomMaterial: Material | null = null;
+let carpetMaterial: Material | null = null;
 let contactMaterial: Material | null = null;
 let shadowMaterial: ShaderMaterial | null = null;
 
@@ -80,6 +93,17 @@ export const getRoomMaterial = (): Material => {
   applyPalette(roomMaterial as MeshBasicMaterial, "#f5efe6", colors.beigeLight);
 
   return roomMaterial;
+};
+
+export const getCarpetMaterial = (): Material => {
+  if (carpetMaterial) return carpetMaterial;
+  const texture = resources.items["room-texture"];
+  texture.flipY = false;
+
+  carpetMaterial = new MeshBasicMaterial({ map: texture });
+  applyPalette(carpetMaterial as MeshBasicMaterial, "#f5efe6", colors.beigeLight, carpetPalette);
+
+  return carpetMaterial;
 };
 
 export const getContactMaterial = (): Material => {

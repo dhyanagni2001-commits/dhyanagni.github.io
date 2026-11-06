@@ -43,7 +43,7 @@ void main() {
     float centerAlpha = smoothstep(0.075, 0.059, centerDist);
     centerAlpha *= 0.4;
 
-    vec3 finalColor = mix(uColor, uLineColor, pattern);
+    vec3 finalColor = mix(uColor, uLineColor, pattern * 0.5);
     finalColor = mix(finalColor, SHADOW_COLOR, centerAlpha);
 
     gl_FragColor = vec4(finalColor, alpha * uOpacity);
