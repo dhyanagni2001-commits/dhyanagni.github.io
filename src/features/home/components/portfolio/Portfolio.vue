@@ -164,12 +164,7 @@ onBeforeUnmount(() => {
       </button>
     </nav>
 
-    <article
-      ref="panel"
-      class="portfolio-panel"
-      :class="{ 'portfolio-panel-narrow': activePage === 'about' }"
-      data-cursor="circle-black"
-    >
+    <article ref="panel" class="portfolio-panel" data-cursor="circle-black">
       <div :key="activePage" class="portfolio-panel-page">
         <h2 class="portfolio-panel-title">{{ currentPage.title }}</h2>
         <component :is="currentPage.component" />
@@ -252,7 +247,7 @@ onBeforeUnmount(() => {
 
     position: relative;
     z-index: 1;
-    width: min(calc(100% - 32px), 1000px);
+    width: min(calc(100% - 32px), 820px);
     // Short tabs (Milestones, Contact) would otherwise end the page before
     // the panel can scroll up under the sticky tab bar.
     min-height: calc(var(--lvh) * 100 - 120px);
@@ -263,11 +258,6 @@ onBeforeUnmount(() => {
     color: var(--text-dark);
     font-family: var(--font-sans);
     box-shadow: 0 24px 60px rgba(4, 20, 31, 0.4);
-
-    // Long-form copy reads better at a line length grids don't need.
-    &-narrow {
-      width: min(calc(100% - 32px), 820px);
-    }
 
     &-page {
       animation: portfolio-page-in 0.55s var(--ease-power2-out) both;
