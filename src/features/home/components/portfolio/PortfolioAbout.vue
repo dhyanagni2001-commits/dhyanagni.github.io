@@ -27,6 +27,7 @@ import { aboutParagraphs, legacyAsset, services } from "../../../../content/port
 <style scoped lang="scss">
 .about {
   &-text {
+    max-width: var(--measure);
     display: flex;
     flex-direction: column;
     gap: 14px;

@@ -247,7 +247,7 @@ onBeforeUnmount(() => {
 
     position: relative;
     z-index: 1;
-    width: min(calc(100% - 32px), 900px);
+    width: min(calc(100% - 32px), 1100px);
     // Short tabs (Milestones, Contact) would otherwise end the page before
     // the panel can scroll up under the sticky tab bar.
     min-height: calc(var(--lvh) * 100 - 120px);
